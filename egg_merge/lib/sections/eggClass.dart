@@ -2,7 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
+List <int> idler=[
+  0,0,2,0,
+  0,0,0,0,
+  0,0,0,0,
+  0,0,0,0,
+  0,0,0,0
+];
 
 
 class EggClass{
@@ -24,9 +30,7 @@ class EggClass{
         color: Colors.black12,
       );
     }else{
-      return Container(
-        child: Text(this.id.toString()),
-      );
+      return Text(idler[0].toString());
     }
   }
 }
