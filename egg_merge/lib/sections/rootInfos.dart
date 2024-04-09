@@ -20,3 +20,4 @@ List <int> sayfa= [
   0,0,0,0,
   0,0,0,0,
 ];
+int deneme =1;
