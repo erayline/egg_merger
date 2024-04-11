@@ -2,10 +2,13 @@ import 'package:egg_merge/sections/bottom_bar.dart';
 import 'package:egg_merge/sections/eggClass.dart';
 import 'package:egg_merge/sections/game_section.dart';
 import 'package:egg_merge/sections/level_bar.dart';
+import 'package:egg_merge/sections/silinecek.dart';
 import 'package:egg_merge/sections/spawn_timer.dart';
 import 'package:egg_merge/sections/upperBar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'sections/rootInfos.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'My App',
-      home: MyHomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>denemeSeti())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'My App',
+        home: MyHomePage(),
+      ),
     );
   }
 }
@@ -50,16 +58,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            upperBar(),
-            levelBar(),
-            inGame(),
-            spawnTimer(),
-            bottomBar()
-          ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<denemeSeti>(create: (context)=>denemeSeti())
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              upperBar(),
+              levelBar(),
+              inGame(),
+              spawnTimer(),
+              bottomBar(),
+              denemeSeti().denemeSilinecekWidget(),
+              denemeSeti().increaseMoney()
+            ],
+          ),
         ),
       ),
     );

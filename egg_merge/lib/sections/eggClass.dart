@@ -11,9 +11,9 @@ List <int> idler=[
 ];
 
 
-class EggClass{
+class EggClass extends ChangeNotifier{
   int level = 0;
-
+  
   EggClass(int this.level){
     this.level=level;
   }
@@ -32,7 +32,7 @@ class EggClass{
         color:Colors.transparent,
         child: Image.asset('ourAssets/images/egg.png'),
       );
-    }else{
+    }else{//TODO buraya draggable koyduğunda fonksiyonların içerisine notify change falan koyacaksın
       return Container(
         width: 50,height: 50,
         child: Image.asset('ourAssets/images/animal.png'),
