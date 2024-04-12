@@ -1,16 +1,10 @@
 # egg_merge
 
-A new Flutter project.
+A new Flutter project. I am learning plus creating a game as a side hustle.
 
-## Getting Started
+## Why tho
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+Because I love idle games since I was a kid.
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
