@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>denemeSeti())
+        ChangeNotifierProvider<EggClass>(create: (context)=>EggClass()),
+        ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -60,10 +61,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<denemeSeti>(create: (context)=>denemeSeti())
+        ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
       ],
       child: Scaffold(
         body: SafeArea(
+          
           child: Column(
             children: <Widget>[
               upperBar(),
@@ -71,14 +73,12 @@ class _HomePageState extends State<HomePage> {
               inGame(),
               spawnTimer(),
               bottomBar(),
-              denemeSeti().denemeSilinecekWidget(),
-              denemeSeti().increaseMoney()
             ],
           ),
         ),
       ),
     );
-    ;
+    
   }
 }
 
