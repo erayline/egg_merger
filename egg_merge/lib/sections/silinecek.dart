@@ -30,10 +30,9 @@ List<String>ImageRoutes=[
     "ourAssets/images/hen.png",
     "ourAssets/images/money.png",
     "ourAssets/images/upgrade.png",
+    "ourAssets/images/chicken-wings.png",
   ];
 class EggObjectModel extends ChangeNotifier {
-
-
   List<EggObject> EggIndexList = [
     EggObject(),
     EggObject(),
@@ -116,7 +115,7 @@ class EggObjectModel extends ChangeNotifier {
         // index bulunduğumuz widgetin listedeki konumu gelen bilgi ise karşı tarafın bulunduğu konum
           onAcceptWithDetails: (DragTargetDetails<Object?> details) {
           int draggedObjectData = details.data as int;
-            if(value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level){
+            if(value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level && draggedObjectData != thisObjectIndex){
               print('tebrikler');
               value.EggIndexList[thisObjectIndex].level++;
               value.EggIndexList[draggedObjectData].level = 0;
