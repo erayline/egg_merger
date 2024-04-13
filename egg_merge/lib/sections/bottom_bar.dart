@@ -88,6 +88,11 @@ class _UpgradeMenuState extends State<UpgradeMenu> {
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 235, 134, 40),
         ),
+        child: ListView(children: [
+          Text('ilk'),
+          Text('iki'),
+          Text('üç'),
+        ],),
       ),
     );
   }
