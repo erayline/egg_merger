@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<EggClass>(create: (context)=>EggClass()),
         ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
+        ChangeNotifierProvider<UygulamaModeli>(create: (context)=>UygulamaModeli()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
+        ChangeNotifierProvider<UygulamaModeli>(create: (context)=>UygulamaModeli()),
       ],
       child: Scaffold(
         body: SafeArea(

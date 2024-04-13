@@ -10,7 +10,6 @@ done-> UI geliştir
 done-> birleştirme mekaniğini kodla
 
 -> boş yumurta oluştur, level 0 iken gözükecek.
-
 -> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
 
 -> create the spawn mechanics
@@ -25,4 +24,3 @@ done-> birleştirme mekaniğini kodla
 ->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
 
 ->prestij menüsü kodlanacak
-değişiklik
