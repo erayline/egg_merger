@@ -1,0 +1,14 @@
+!Yapılacaklar listesi (sırayla takip et)
+
+
+#MVP KISMI
+
+#ilk adımlar
+
+done-> UI geliştir
+done-> birleştirme mekaniğini kodla
+-> create the spawn mechanics
+--> boş yumurta oluştur, level 0 iken gözükecek.
+--> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
+--> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
+--> 

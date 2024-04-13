@@ -2,7 +2,7 @@ import 'package:egg_merge/sections/bottom_bar.dart';
 import 'package:egg_merge/sections/eggClass.dart';
 import 'package:egg_merge/sections/game_section.dart';
 import 'package:egg_merge/sections/level_bar.dart';
-import 'package:egg_merge/sections/silinecek.dart';
+import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:egg_merge/sections/spawn_timer.dart';
 import 'package:egg_merge/sections/upperBar.dart';
 import 'package:flutter/material.dart';
