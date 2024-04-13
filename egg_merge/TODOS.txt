@@ -7,8 +7,8 @@
 
 done-> UI geliştir
 done-> birleştirme mekaniğini kodla
+-> boş yumurta oluştur, level 0 iken gözükecek.
+-> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
 -> create the spawn mechanics
---> boş yumurta oluştur, level 0 iken gözükecek.
---> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
---> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
---> 
+^--> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
+^--> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
