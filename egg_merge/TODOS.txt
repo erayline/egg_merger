@@ -18,9 +18,12 @@ done-> birleştirme mekaniğini kodla
 ^--> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
 ^^-->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
 
+->Figmadan dizaynını tamamla
+
 ->geliştirmeler menüsü kodlanacak
 
 ->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
 
 ->prestij menüsü kodlanacak
+değişiklik
 
