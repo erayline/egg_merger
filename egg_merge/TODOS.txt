@@ -6,14 +6,21 @@
 #ilk adımlar
 
 done-> UI geliştir
+
 done-> birleştirme mekaniğini kodla
+
 -> boş yumurta oluştur, level 0 iken gözükecek.
+
 -> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
+
 -> create the spawn mechanics
 ^--> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
 ^--> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
 ^^-->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
+
 ->geliştirmeler menüsü kodlanacak
+
 ->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
+
 ->prestij menüsü kodlanacak
-->
+
