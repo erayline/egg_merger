@@ -26,4 +26,3 @@ done-> birleştirme mekaniğini kodla
 
 ->prestij menüsü kodlanacak
 değişiklik
-
