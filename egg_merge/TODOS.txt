@@ -7,14 +7,6 @@
 
 #ilk adımlar
 
--> create the spawn mechanics
----> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
----> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
---->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
--->spawner timer'ındaki sayı doğru düzgün değişsin.
-
-->create money mechanics
--->return 3^level * goldpan
 
 ->Figmadan dizaynını tamamla
 --->geliştirmeler menüsü
@@ -35,3 +27,11 @@ done-> UI geliştir
 done-> birleştirme mekaniğini kodla
 done-> boş yumurta oluştur, level 0 iken gözükecek.
 done-> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
+done-> create the spawn mechanics
+done---> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
+done---> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
+done--->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
+done-->spawner timer'ındaki sayı doğru düzgün değişsin.
+
+done->create money mechanics
+done-->return 3^level * goldpan

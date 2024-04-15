@@ -1,4 +1,6 @@
+import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'rootInfos.dart';
 
 class upperBar extends StatefulWidget {
@@ -48,7 +50,14 @@ class upperMoneyBarState extends State<upperMoneyBar> {
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
           Image.asset('ourAssets/images/money.png',width: 30,),
-          Expanded(child: Center(child: Text(moneyA.toString()))),
+          Consumer<EggObjectModel>(builder:(context, value, child) {
+            return Expanded(child: Column(
+              children: [
+                Center(child: Text(value.totalMoney.toString())),
+                Center(child: Text(value.calculateMoneyPerSec().toString()+"/s")),
+              ],
+            ));
+          },),
           SizedBox(width: 36,),
         ],),
       ),

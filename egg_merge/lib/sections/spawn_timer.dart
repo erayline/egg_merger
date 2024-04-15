@@ -1,11 +1,18 @@
 import 'dart:async';
+import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class UygulamaModeli extends ChangeNotifier {
   int counter = 10;
 }
+
+
+
+
+
 
 class spawnTimer extends StatefulWidget {
   const spawnTimer({super.key});
@@ -23,15 +30,21 @@ class _spawnTimerState extends State<spawnTimer> {
       color: Color.fromARGB(255, 255, 205, 41),
       child: Row(
         children: <Widget>[
-          const SizedBox(
-            width: 56,
-          ),
-          Expanded(
-            child: Consumer<UygulamaModeli>(
+          Consumer<EggObjectModel>(
               builder: (context, value, child) {
-                return Center(child: Text(value.counter.toString()));
+                return LinearPercentIndicator(
+                  // animation: true,
+                  // animateFromLastPercent: true,
+                  progressColor: Color.fromARGB(255, 20, 174, 92),
+                  width: 200,
+                  lineHeight: 30,
+                  percent: value.spawnerPercent,
+                );
               },
             ),
+          
+          const SizedBox(
+            width: 56,
           ),
           Image.asset(
             'ourAssets/images/animal.png',
