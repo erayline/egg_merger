@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class EggObject {
   int baseEarning = 1;
-  int level = 1;
+  int level = 0;
 }
 
 class EmptyEgg extends StatelessWidget {
@@ -86,9 +86,48 @@ class EggObjectModel extends ChangeNotifier {
     return sonuc;
   }
 
+  int counter=4;
   EggObjectModel(){
-    
+    Timer.periodic(Duration(seconds: 1), (timer) {
+        counter--;
+        if(counter == 0){
+          counter = 4;
+        }
+        notifyListeners();
+      });
+    Timer.periodic(Duration(seconds: 4), (timer) {
+        for (int n = 0; n < 20; n++) {
+          if (EggIndexList[n].level == 0) {
+            EggIndexList[n].level += 1;
+            break;
+          }
+        }
+        notifyListeners();
+      });
   }
+
+  // Timer _timer1;
+  // void initSpawner(int sec){
+  //   _timer1.periodic(Duration(seconds: 1), (timer) {
+  //       counter--;
+  //       if(counter == 0){
+  //         counter = sec;
+  //       }
+  //       notifyListeners();
+  //     });
+  //   Timer _timer2 = Timer.periodic(Duration(seconds: sec), (timer) {
+  //       for (int n = 0; n < 20; n++) {
+  //         if (EggIndexList[n].level == 0) {
+  //           EggIndexList[n].level += 1;
+  //           break;
+  //         }
+  //       }
+  //       notifyListeners();
+  //     });
+  // }
+  // void disposeSpawner(){
+  //   _timer1.cancel();
+  // }
 
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.
