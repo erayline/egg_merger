@@ -1,26 +1,37 @@
 !Yapılacaklar listesi (sırayla takip et)
 
 
+
+
 #MVP KISMI
 
 #ilk adımlar
 
-done-> UI geliştir
-
-done-> birleştirme mekaniğini kodla
-
-done-> boş yumurta oluştur, level 0 iken gözükecek.
-done-> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
-
 -> create the spawn mechanics
-^--> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
-done^--> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
-done^^-->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
+---> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
+---> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
+--->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
+-->spawner timer'ındaki sayı doğru düzgün değişsin.
+
+->create money mechanics
+-->return 3^level * goldpan
 
 ->Figmadan dizaynını tamamla
+--->geliştirmeler menüsü
+--->presij menüsü
+--->tüm istatistikler menüsü
+----->birinci kısımda tüm kilidi açılmış yumurtalar bulunacak.
+----->ikinci kısımda şimdiye kadar yapılmış birleştirmeler, kazanılan toplam para vs vs. koyabildiğimiz kadar.
+
 
 ->geliştirmeler menüsü kodlanacak
 
+->prestij menüsü kodlanacak
+
 ->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
 
-->prestij menüsü kodlanacak
+DANZO
+done-> UI geliştir
+done-> birleştirme mekaniğini kodla
+done-> boş yumurta oluştur, level 0 iken gözükecek.
+done-> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
