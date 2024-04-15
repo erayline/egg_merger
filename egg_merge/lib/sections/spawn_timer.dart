@@ -1,13 +1,9 @@
 import 'dart:async';
-
-import 'package:egg_merge/sections/eggObjectModel.dart';
-import 'package:egg_merge/sections/rootInfos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class UygulamaModeli extends ChangeNotifier {
-  Timer? _timer;
   int counter = 10;
 }
 
@@ -27,7 +23,7 @@ class _spawnTimerState extends State<spawnTimer> {
       color: Color.fromARGB(255, 255, 205, 41),
       child: Row(
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             width: 56,
           ),
           Expanded(
@@ -41,7 +37,7 @@ class _spawnTimerState extends State<spawnTimer> {
             'ourAssets/images/animal.png',
             width: 50,
           ),
-          SizedBox(
+          const SizedBox(
             width: 6,
           ),
         ],

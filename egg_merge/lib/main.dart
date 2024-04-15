@@ -1,5 +1,4 @@
 import 'package:egg_merge/sections/bottom_bar.dart';
-import 'package:egg_merge/sections/eggClass.dart';
 import 'package:egg_merge/sections/game_section.dart';
 import 'package:egg_merge/sections/level_bar.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
@@ -7,7 +6,6 @@ import 'package:egg_merge/sections/spawn_timer.dart';
 import 'package:egg_merge/sections/upperBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'sections/rootInfos.dart';
 
 
 void main() {
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
         ChangeNotifierProvider<UygulamaModeli>(create: (context)=>UygulamaModeli()),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'My App',
         home: MyHomePage(),
@@ -64,7 +62,7 @@ class _HomePageState extends State<HomePage> {
         ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
         ChangeNotifierProvider<UygulamaModeli>(create: (context)=>UygulamaModeli()),
       ],
-      child: Scaffold(
+      child: const Scaffold(
         body: SafeArea(
           
           child: Column(
