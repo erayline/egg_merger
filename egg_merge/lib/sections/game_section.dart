@@ -1,4 +1,3 @@
-import 'package:egg_merge/sections/eggClass.dart';
 import 'package:egg_merge/sections/rootInfos.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
@@ -116,8 +115,8 @@ class _gameRow_3State extends State<gameRow_3> {
                   value.printDragTargetEggWidget(8),
                 ],
               );
-       },
-    );
+            },
+        );
   }
 }
 

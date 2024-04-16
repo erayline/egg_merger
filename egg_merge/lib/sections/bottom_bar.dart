@@ -1,3 +1,4 @@
+import 'package:egg_merge/sections/upgrademenu.dart';
 import 'package:flutter/material.dart';
 
 class bottomBar extends StatefulWidget {
@@ -43,56 +44,6 @@ class _bottomBarState extends State<bottomBar> {
             highlightColor: Colors.transparent,),
             
         ],
-      ),
-    );
-  }
-}
-
-class clickableWidget extends StatefulWidget {
-  const clickableWidget({super.key});
-
-  @override
-  State<clickableWidget> createState() => _clickableWidgetState();
-}
-
-class _clickableWidgetState extends State<clickableWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-            onPressed: (){},
-            icon: Image.asset('ourAssets/images/upgrade.png'),
-            highlightColor: Colors.transparent,);
-  }
-}
-
-
-
-
-
-
-
-class UpgradeMenu extends StatefulWidget {
-  const UpgradeMenu({super.key});
-
-  @override
-  State<UpgradeMenu> createState() => _UpgradeMenuState();
-}
-
-class _UpgradeMenuState extends State<UpgradeMenu> {
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      child: Container(
-        height: 500,
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 235, 134, 40),
-        ),
-        child: ListView(children: [
-          Text('ilk'),
-          Text('iki'),
-          Text('üç'),
-        ],),
       ),
     );
   }

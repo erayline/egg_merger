@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
+
 class EggObject {
   int level = 0;
 }
@@ -23,6 +24,7 @@ class EmptyEgg extends StatelessWidget {
   }
 }
 
+//IMAGE STRINGLERI
 List<String> ImageRoutes = [
   "ourAssets/images/animal.png",
   "ourAssets/images/easter.png",
@@ -34,6 +36,7 @@ List<String> ImageRoutes = [
 ];
 
 class EggObjectModel extends ChangeNotifier {
+//YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [
     EggObject(),
     EggObject(),
@@ -58,18 +61,17 @@ class EggObjectModel extends ChangeNotifier {
   ];
 
 
+  //PARA URETME FONKSIYONU
+
+
+
+  //OYUN ICI DEGISKENLER
+
+  //BU IKISI PARA URETIMINDEN SORUMLU
   int produceMoney(int index) {
     num sonuc = pow(3, EggIndexList[index].level - 1);
     return sonuc.toInt();
   }
-
-  double counter = 3.0;
-  double spawnerPercent = 0;
-
-  double textYukariPozisyon = 0;
-  double textSolPozisyon = 0;
-
-
   int calculateMoneyPerSec() {
     int result = 0;
     for (int n = 0; n < 20; n++) {
@@ -79,29 +81,34 @@ class EggObjectModel extends ChangeNotifier {
     }
     return result;
   }
+  
   int totalMoney = 0;
   int moneyPerSec = 0;
 
+  double counter = 5.0;
+  double spawnerPercent = 0;
+
+  //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
     //PRODUCİNG MONEY HERE
+
+    //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
       moneyPerSec = calculateMoneyPerSec();
       totalMoney += moneyPerSec;
-      notifyListeners();
-    });
-    //SPAWNER COUNTER ANİMATİON
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      spawnerPercent = 1 - counter.toDouble() / 3;
+
+
+      spawnerPercent = 1 - counter.toDouble() / 5;
       counter -= 1;
       if (counter == 0) {
-        Future.delayed(Duration(seconds: 1), () {
-          counter = 3;
+        Future.delayed(Duration(milliseconds: 1000), () {
+          counter = 5;
         });
       }
       notifyListeners();
     });
     //SPAWNİNG AN EGG AND CHECKİNG
-    Timer.periodic(Duration(seconds: 4), (timer) {
+    Timer.periodic(Duration(milliseconds: 6000), (timer) {
       for (int n = 0; n < 20; n++) {
         if (EggIndexList[n].level == 0) {
           EggIndexList[n].level += 1;

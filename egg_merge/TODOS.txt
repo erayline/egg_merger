@@ -8,15 +8,18 @@
 #ilk adımlar
 
 
+->arkaplan siyah yapılacak safezone üstü
+->upgrade logosu değişecek
+->geliştirmeler menüsü kodlanacak
+
+-> 20 adet yumurta oluşturulacak.
+
+
 ->Figmadan dizaynını tamamla
---->geliştirmeler menüsü
 --->presij menüsü
 --->tüm istatistikler menüsü
 ----->birinci kısımda tüm kilidi açılmış yumurtalar bulunacak.
 ----->ikinci kısımda şimdiye kadar yapılmış birleştirmeler, kazanılan toplam para vs vs. koyabildiğimiz kadar.
-
-
-->geliştirmeler menüsü kodlanacak
 
 ->prestij menüsü kodlanacak
 
@@ -35,3 +38,4 @@ done-->spawner timer'ındaki sayı doğru düzgün değişsin.
 
 done->create money mechanics
 done-->return 3^level * goldpan
+done--->geliştirmeler menüsü
