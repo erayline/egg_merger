@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 
 class UpgradeStats{
   int base_egg_level = 1;
-  double base_egg_level_increase_cost = 400.0;
+  int base_egg_level_increase_cost = 400;
   void setNewBaseEggLevel(){
-    base_egg_level_increase_cost *=1.3;
+    base_egg_level_increase_cost *=2;
   }
 }
 
@@ -33,13 +33,15 @@ class EmptyEgg extends StatelessWidget {
 
 //IMAGE STRINGLERI
 List<String> ImageRoutes = [
-  "ourAssets/images/animal.png",
-  "ourAssets/images/easter.png",
-  "ourAssets/images/egg.png",
-  "ourAssets/images/hen.png",
-  "ourAssets/images/money.png",
-  "ourAssets/images/upgrade.png",
-  "ourAssets/images/chicken-wings.png",
+  "ourAssets/images/eggs/1.png",
+  "ourAssets/images/eggs/2.png",
+  "ourAssets/images/eggs/3.png",
+  "ourAssets/images/eggs/4.png",
+  "ourAssets/images/eggs/5.png",
+  "ourAssets/images/eggs/6.png",
+  "ourAssets/images/eggs/7.png",
+  "ourAssets/images/eggs/8.png",
+  "ourAssets/images/eggs/9.png",
 ];
 
 
@@ -76,6 +78,13 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.base_egg_level++;
     totalMoney-=upgrade_stats_object.base_egg_level_increase_cost.toInt();
     upgrade_stats_object.setNewBaseEggLevel();
+
+    for(int n= 0;n<20;n++){
+      if(EggIndexList[n].level<upgrade_stats_object.base_egg_level && EggIndexList[n].level != 0){
+        EggIndexList[n].level = upgrade_stats_object.base_egg_level;
+      }
+    }
+
     notifyListeners();
   }
 

@@ -120,7 +120,9 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    value.increaseBaseEgg();
+                    if(value.totalMoney >= value.upgrade_stats_object.base_egg_level_increase_cost){
+                      value.increaseBaseEgg();
+                    }
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.black),

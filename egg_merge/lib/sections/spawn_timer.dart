@@ -30,8 +30,7 @@ class _spawnTimerState extends State<spawnTimer> {
       color: Color.fromARGB(255, 255, 205, 41),
       child: Row(
         children: <Widget>[
-          Consumer<EggObjectModel>(
-              builder: (context, value, child) {
+          Consumer<EggObjectModel>(builder: (context, value, child) {
                 return LinearPercentIndicator(
                   // animation: true,
                   // animateFromLastPercent: true,
@@ -46,10 +45,11 @@ class _spawnTimerState extends State<spawnTimer> {
           const SizedBox(
             width: 56,
           ),
-          Image.asset(
-            'ourAssets/images/animal.png',
-            width: 50,
-          ),
+          Consumer<EggObjectModel>(builder: (context, value, child) {
+          return Image.asset(
+              ImageRoutes[value.upgrade_stats_object.base_egg_level].toString(),
+              width: 50,
+            );}),
           const SizedBox(
             width: 6,
           ),
