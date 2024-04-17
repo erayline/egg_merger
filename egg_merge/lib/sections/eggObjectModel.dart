@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
+class UpgradeStats{
+  int base_egg_level = 1;
+  int base_egg_level_increase_cost = 400;
+}
 
 class EggObject {
   int level = 0;
@@ -61,9 +65,18 @@ class EggObjectModel extends ChangeNotifier {
   ];
 
 
-  //PARA URETME FONKSIYONU
 
+  UpgradeStats upgrade_stats_object = new UpgradeStats();
 
+  void increaseBaseEgg(){
+    upgrade_stats_object.base_egg_level++;
+    upgrade_stats_object.base_egg_level_increase_cost++;
+    print(upgrade_stats_object.base_egg_level.toString());
+    print(upgrade_stats_object.base_egg_level_increase_cost.toString());
+    totalMoney-=100;
+    print(totalMoney.toString());
+    notifyListeners();
+  }
 
   //OYUN ICI DEGISKENLER
 
@@ -97,7 +110,6 @@ class EggObjectModel extends ChangeNotifier {
       moneyPerSec = calculateMoneyPerSec();
       totalMoney += moneyPerSec;
 
-
       spawnerPercent = 1 - counter.toDouble() / 5;
       counter -= 1;
       if (counter == 0) {
@@ -118,6 +130,7 @@ class EggObjectModel extends ChangeNotifier {
       notifyListeners();
     });
   }
+
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.
   Widget printDragTargetEggWidget(int thisObjectIndex) {

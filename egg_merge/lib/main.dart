@@ -57,12 +57,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<EggObjectModel>(create: (context)=>EggObjectModel()),
-        ChangeNotifierProvider<UygulamaModeli>(create: (context)=>UygulamaModeli()),
-      ],
-      child: const Scaffold(
+    return const Scaffold(
         body: SafeArea(
           
           child: Column(
@@ -75,8 +70,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),
-    );
+      );
     
   }
 }

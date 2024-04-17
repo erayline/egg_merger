@@ -1,8 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UpgradeMenu extends StatefulWidget {
   const UpgradeMenu({super.key});
@@ -14,6 +16,7 @@ class UpgradeMenu extends StatefulWidget {
 class _UpgradeMenuState extends State<UpgradeMenu> {
   @override
   Widget build(BuildContext context) {
+    
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -67,8 +70,6 @@ class _UpgradeMenuButtonState extends State<UpgradeMenuButton> {
   }
 }
 
-
-
 class IncreaseBaseEggWidget extends StatefulWidget {
   const IncreaseBaseEggWidget({super.key});
 
@@ -78,52 +79,72 @@ class IncreaseBaseEggWidget extends StatefulWidget {
 
 class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
   @override
+
+
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
-      height: 70,
-      child: Row(
-        //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Container(
-            // ikon ve ilerleme
-            width: 100,
-            height: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0), color: Colors.black),
-            child: Row(
-              children: <Widget>[
-                Image.asset(
-                  "ourAssets/images/upgradeMenuIcons/egg.png",
-                  width: 40,
-                  height: 40,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  '1/30',
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
+      return Container(
+        color: Color.fromARGB(255, 228, 204, 255),
+        height: 70,
+        child: Row(
+          //içerik soldan sağa
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+              // ikon ve ilerleme
+              width: 100,
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.black),
+              child: Row(
+                children: <Widget>[
+                  Image.asset(
+                    "ourAssets/images/upgradeMenuIcons/egg.png",
+                    width: 40,
+                    height: 40,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '${value.upgrade_stats_object.base_egg_level}/30',
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
             ),
-          ),
-          Text('Increase \nbase egg.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '5000',))
-        ],
-      ),
-    );
+            Text('Increase \nbase egg.'),
+            SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    value.increaseBaseEgg();
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      )),
+                  child: Text(
+                      "${value.upgrade_stats_object.base_egg_level_increase_cost} \$")),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
-
-
 
 class DecreaseSpawnTimeWidget extends StatefulWidget {
   const DecreaseSpawnTimeWidget({super.key});
 
   @override
-  State<DecreaseSpawnTimeWidget> createState() => _DecreaseSpawnTimeWidgetState();
+  State<DecreaseSpawnTimeWidget> createState() =>
+      _DecreaseSpawnTimeWidgetState();
 }
 
 class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
@@ -160,24 +181,26 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
             ),
           ),
           Text(' Decrease \nspawn time.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '0',))
+          GestureDetector(
+              onTap: () {},
+              child: UpgradeMenuButton(
+                title: '0',
+              ))
         ],
       ),
     );
   }
 }
 
-
-
 class ChanceToSpawn2EggWidget extends StatefulWidget {
   const ChanceToSpawn2EggWidget({super.key});
 
   @override
-  State<ChanceToSpawn2EggWidget> createState() => _ChanceToSpawn2EggWidgetState();
+  State<ChanceToSpawn2EggWidget> createState() =>
+      _ChanceToSpawn2EggWidgetState();
 }
 
 class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -211,14 +234,16 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
             ),
           ),
           Text(' Chance to \nspawn 2 egg.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '0',))
+          GestureDetector(
+              onTap: () {},
+              child: UpgradeMenuButton(
+                title: '0',
+              ))
         ],
       ),
     );
   }
 }
-
-
 
 class ChanceToEarnWingWidget extends StatefulWidget {
   const ChanceToEarnWingWidget({super.key});
@@ -261,20 +286,23 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
             ),
           ),
           Text('wing chance\n  at merge.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '0',))
+          GestureDetector(
+              onTap: () {},
+              child: UpgradeMenuButton(
+                title: '0',
+              ))
         ],
       ),
     );
   }
 }
 
-
-
 class ExpandEggStoreHouseWidget extends StatefulWidget {
   const ExpandEggStoreHouseWidget({super.key});
 
   @override
-  State<ExpandEggStoreHouseWidget> createState() => _ExpandEggStoreHouseWidgetState();
+  State<ExpandEggStoreHouseWidget> createState() =>
+      _ExpandEggStoreHouseWidgetState();
 }
 
 class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
@@ -311,22 +339,27 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
             ),
           ),
           Text('Increase \n storage.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '0',))
+          GestureDetector(
+              onTap: () {},
+              child: UpgradeMenuButton(
+                title: '0',
+              ))
         ],
       ),
     );
   }
 }
 
-
 class MoreOfflineEarningRateWidget extends StatefulWidget {
   const MoreOfflineEarningRateWidget({super.key});
 
   @override
-  State<MoreOfflineEarningRateWidget> createState() => _MoreOfflineEarningRateWidgetState();
+  State<MoreOfflineEarningRateWidget> createState() =>
+      _MoreOfflineEarningRateWidgetState();
 }
 
-class _MoreOfflineEarningRateWidgetState extends State<MoreOfflineEarningRateWidget> {
+class _MoreOfflineEarningRateWidgetState
+    extends State<MoreOfflineEarningRateWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -360,22 +393,14 @@ class _MoreOfflineEarningRateWidgetState extends State<MoreOfflineEarningRateWid
             ),
           ),
           Text('    Increase\noffline earning.'),
-          GestureDetector(onTap: () {}, child: UpgradeMenuButton(title: '0',))
+          GestureDetector(
+              onTap: () {},
+              child: UpgradeMenuButton(
+                title: '0',
+              ))
         ],
       ),
-    );;
+    );
+    ;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
