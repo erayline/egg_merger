@@ -47,7 +47,7 @@ class _spawnTimerState extends State<spawnTimer> {
           ),
           Consumer<EggObjectModel>(builder: (context, value, child) {
           return Image.asset(
-              ImageRoutes[value.upgrade_stats_object.base_egg_level].toString(),
+              ImageRoutes[value.upgrade_stats_object.base_egg_level-1].toString(),
               width: 50,
             );}),
           const SizedBox(

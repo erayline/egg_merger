@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class UpgradeStats{
+class UpgradeStats {
   int base_egg_level = 1;
   int base_egg_level_increase_cost = 400;
-  void setNewBaseEggLevel(){
-    base_egg_level_increase_cost *=2;
+  void setNewBaseEggLevel() {
+    base_egg_level_increase_cost *= 2;
   }
 }
 
@@ -44,7 +44,6 @@ List<String> ImageRoutes = [
   "ourAssets/images/eggs/9.png",
 ];
 
-
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [
@@ -70,17 +69,16 @@ class EggObjectModel extends ChangeNotifier {
     EggObject(),
   ];
 
-
-
   UpgradeStats upgrade_stats_object = new UpgradeStats();
 
-  void increaseBaseEgg(){
+  void increaseBaseEgg() {
     upgrade_stats_object.base_egg_level++;
-    totalMoney-=upgrade_stats_object.base_egg_level_increase_cost.toInt();
+    totalMoney -= upgrade_stats_object.base_egg_level_increase_cost.toInt();
     upgrade_stats_object.setNewBaseEggLevel();
 
-    for(int n= 0;n<20;n++){
-      if(EggIndexList[n].level<upgrade_stats_object.base_egg_level && EggIndexList[n].level != 0){
+    for (int n = 0; n < 20; n++) {
+      if (EggIndexList[n].level < upgrade_stats_object.base_egg_level &&
+          EggIndexList[n].level != 0) {
         EggIndexList[n].level = upgrade_stats_object.base_egg_level;
       }
     }
@@ -95,6 +93,7 @@ class EggObjectModel extends ChangeNotifier {
     num sonuc = pow(3, EggIndexList[index].level - 1);
     return sonuc.toInt();
   }
+
   int calculateMoneyPerSec() {
     int result = 0;
     for (int n = 0; n < 20; n++) {
@@ -104,7 +103,7 @@ class EggObjectModel extends ChangeNotifier {
     }
     return result;
   }
-  
+
   int totalMoney = 0;
   int moneyPerSec = 0;
 
@@ -114,12 +113,13 @@ class EggObjectModel extends ChangeNotifier {
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
     //PRODUCİNG MONEY HERE
-
-    //SPAWNER COUNTER ANİMATİON
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
+    Timer.periodic(Duration(milliseconds: 1500), (timer) {
       moneyPerSec = calculateMoneyPerSec();
       totalMoney += moneyPerSec;
-
+      notifyListeners();
+    });
+    //SPAWNER COUNTER ANİMATİON
+    Timer.periodic(Duration(milliseconds: 1000), (timer) {
       spawnerPercent = 1 - counter.toDouble() / 7;
       counter -= 1;
       if (counter == 0) {
@@ -131,18 +131,17 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNİNG AN EGG AND CHECKİNG
     Timer.periodic(Duration(milliseconds: 8000), (timer) {
-      Future.delayed(Duration(seconds: 1),(){
-      for (int n = 0; n < 20; n++) {
-        if (EggIndexList[n].level == 0) {
-          EggIndexList[n].level += upgrade_stats_object.base_egg_level;
-          break;
+      Future.delayed(Duration(seconds: 1), () {
+        for (int n = 0; n < 20; n++) {
+          if (EggIndexList[n].level == 0) {
+            EggIndexList[n].level += upgrade_stats_object.base_egg_level;
+            break;
+          }
         }
-      }
       });
       notifyListeners();
     });
   }
-
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.
   Widget printDragTargetEggWidget(int thisObjectIndex) {
@@ -203,11 +202,15 @@ class EggObjectModel extends ChangeNotifier {
         // index bulunduğumuz widgetin listedeki konumu gelen bilgi ise karşı tarafın bulunduğu konum
         onAcceptWithDetails: (DragTargetDetails<Object?> details) {
           int draggedObjectData = details.data as int;
-          if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level && draggedObjectData != thisObjectIndex) {
+          if (value.EggIndexList[draggedObjectData].level ==
+                  value.EggIndexList[thisObjectIndex].level &&
+              draggedObjectData != thisObjectIndex) {
             value.EggIndexList[thisObjectIndex].level++;
             value.EggIndexList[draggedObjectData].level = 0;
-          } else if (value.EggIndexList[thisObjectIndex].level == 0 && value.EggIndexList[draggedObjectData].level != 0) {
-            value.EggIndexList[thisObjectIndex].level = value.EggIndexList[draggedObjectData].level;
+          } else if (value.EggIndexList[thisObjectIndex].level == 0 &&
+              value.EggIndexList[draggedObjectData].level != 0) {
+            value.EggIndexList[thisObjectIndex].level =
+                value.EggIndexList[draggedObjectData].level;
             value.EggIndexList[draggedObjectData].level = 0;
           }
           value.notifyListeners();
