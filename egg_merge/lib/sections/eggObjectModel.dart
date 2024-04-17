@@ -8,7 +8,10 @@ import 'package:provider/provider.dart';
 
 class UpgradeStats{
   int base_egg_level = 1;
-  int base_egg_level_increase_cost = 400;
+  double base_egg_level_increase_cost = 400.0;
+  void setNewBaseEggLevel(){
+    base_egg_level_increase_cost *=1.3;
+  }
 }
 
 class EggObject {
@@ -70,11 +73,8 @@ class EggObjectModel extends ChangeNotifier {
 
   void increaseBaseEgg(){
     upgrade_stats_object.base_egg_level++;
-    upgrade_stats_object.base_egg_level_increase_cost++;
-    print(upgrade_stats_object.base_egg_level.toString());
-    print(upgrade_stats_object.base_egg_level_increase_cost.toString());
-    totalMoney-=100;
-    print(totalMoney.toString());
+    totalMoney-=upgrade_stats_object.base_egg_level_increase_cost.toInt();
+    upgrade_stats_object.setNewBaseEggLevel();
     notifyListeners();
   }
 
