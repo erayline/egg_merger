@@ -42,6 +42,7 @@ List<String> ImageRoutes = [
   "ourAssets/images/chicken-wings.png",
 ];
 
+
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [
@@ -98,7 +99,7 @@ class EggObjectModel extends ChangeNotifier {
   int totalMoney = 0;
   int moneyPerSec = 0;
 
-  double counter = 5.0;
+  double counter = 7.0;
   double spawnerPercent = 0;
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
@@ -110,23 +111,25 @@ class EggObjectModel extends ChangeNotifier {
       moneyPerSec = calculateMoneyPerSec();
       totalMoney += moneyPerSec;
 
-      spawnerPercent = 1 - counter.toDouble() / 5;
+      spawnerPercent = 1 - counter.toDouble() / 7;
       counter -= 1;
       if (counter == 0) {
         Future.delayed(Duration(milliseconds: 1000), () {
-          counter = 5;
+          counter = 7;
         });
       }
       notifyListeners();
     });
     //SPAWNİNG AN EGG AND CHECKİNG
-    Timer.periodic(Duration(milliseconds: 6000), (timer) {
+    Timer.periodic(Duration(milliseconds: 8000), (timer) {
+      Future.delayed(Duration(seconds: 1),(){
       for (int n = 0; n < 20; n++) {
         if (EggIndexList[n].level == 0) {
-          EggIndexList[n].level += 1;
+          EggIndexList[n].level += upgrade_stats_object.base_egg_level;
           break;
         }
       }
+      });
       notifyListeners();
     });
   }
