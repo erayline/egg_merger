@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
+        color: Colors.black,
         title: 'My App',
         home: MyHomePage(),
       ),
@@ -58,6 +59,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.black,
         body: SafeArea(
           
           child: Column(

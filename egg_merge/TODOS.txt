@@ -9,10 +9,11 @@
 
 
 ->arkaplan siyah yapılacak safezone üstü
-->upgrade logosu değişecek
+->numara şekillendirme kodlanacak
+-> 20 adet yumurta oluşturulacak.
+done->upgrade logosu değişecek
 ->geliştirmeler menüsü kodlanacak
 
--> 20 adet yumurta oluşturulacak.
 
 
 ->Figmadan dizaynını tamamla

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class UpgradeStats {
   int base_egg_level = 1;
-  int base_egg_level_increase_cost = 400;
+  int base_egg_level_increase_cost = 200;
   void setNewBaseEggLevel() {
     base_egg_level_increase_cost *= 2;
   }
@@ -32,17 +32,7 @@ class EmptyEgg extends StatelessWidget {
 }
 
 //IMAGE STRINGLERI
-List<String> ImageRoutes = [
-  "ourAssets/images/eggs/1.png",
-  "ourAssets/images/eggs/2.png",
-  "ourAssets/images/eggs/3.png",
-  "ourAssets/images/eggs/4.png",
-  "ourAssets/images/eggs/5.png",
-  "ourAssets/images/eggs/6.png",
-  "ourAssets/images/eggs/7.png",
-  "ourAssets/images/eggs/8.png",
-  "ourAssets/images/eggs/9.png",
-];
+List<String> ImageRoutes=[];
 
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
@@ -112,6 +102,11 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
+    for(int n=1;n<=18;n++){
+      ImageRoutes.add("ourAssets/images/eggs/${n}.png");
+    }
+
+
     //PRODUCİNG MONEY HERE
     Timer.periodic(Duration(milliseconds: 1500), (timer) {
       moneyPerSec = calculateMoneyPerSec();
