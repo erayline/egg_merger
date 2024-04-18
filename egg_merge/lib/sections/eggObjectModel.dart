@@ -97,7 +97,7 @@ class EggObjectModel extends ChangeNotifier {
   int totalMoney = 0;
   int moneyPerSec = 0;
 
-  double counter = 5.0;
+  double counter = 4.0;
   double spawnerPercent = 0;
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
@@ -115,11 +115,11 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      spawnerPercent = 1 - counter.toDouble() / 7;
+      spawnerPercent = 1 - counter.toDouble() / 4;
       counter -= 1;
       if (counter == 0) {
         Future.delayed(Duration(milliseconds: 1000), () {
-          counter = 5;
+          counter = 4;
         });
       }
       notifyListeners();
