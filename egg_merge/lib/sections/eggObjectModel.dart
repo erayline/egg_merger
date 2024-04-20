@@ -19,7 +19,7 @@ class UpgradeStats {
   int spawn_time_decreaser_amount = 1;
   double spawn_time = 400.0;
   double spawn_time_counter = 400.0;
-  int spawn_time_decreaser_cost = 1;
+  int spawn_time_decreaser_cost = 1000;
 }
 
 class EggObject {
@@ -88,7 +88,7 @@ class EggObjectModel extends ChangeNotifier {
     totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
     upgrade_stats_object.spawn_time_counter -= 10.0;
     upgrade_stats_object.spawn_time -= 10.0;
-    upgrade_stats_object.spawn_time_decreaser_cost *= 3;
+    upgrade_stats_object.spawn_time_decreaser_cost *= 2;
     upgrade_stats_object.spawn_time_decreaser_amount += 1;
   }
   //OYUN ICI DEGISKENLER

@@ -190,7 +190,9 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
               child: ElevatedButton(
                   onPressed: () {
                     if(value.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
-                      value.buy_decrease_spawn_time();
+                      if(value.upgrade_stats_object.spawn_time_decreaser_amount<30){
+                        value.buy_decrease_spawn_time();
+                      }
                     }
                   },
                   style: ButtonStyle(
