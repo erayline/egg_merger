@@ -41,7 +41,7 @@ class _spawnTimerState extends State<spawnTimer> {
                 );
               },
             ),
-          
+
           const SizedBox(
             width: 56,
           ),

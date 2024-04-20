@@ -13,10 +13,10 @@ class UpgradeStats {
     base_egg_level_increase_cost *= 2;
   }
 
-
-  double spawn_time = 4.0;
-  double spawn_time_counter = 4.0;
-  int spawn_time_decreaser_cost = 5000;
+  int spawn_time_decreaser_amount = 1;
+  double spawn_time = 40.0;
+  double spawn_time_counter = 40.0;
+  int spawn_time_decreaser_cost = 5;
 }
 
 class EggObject {
@@ -37,7 +37,7 @@ class EmptyEgg extends StatelessWidget {
 }
 
 //IMAGE STRINGLERI
-List<String> ImageRoutes=[];
+List<String> ImageRoutes = [];
 
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
@@ -81,6 +81,12 @@ class EggObjectModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void buy_decrease_spawn_time() {
+    upgrade_stats_object.spawn_time_counter -= 1;
+    upgrade_stats_object.spawn_time -= 1;
+    upgrade_stats_object.spawn_time_decreaser_cost *= 3;
+    upgrade_stats_object.spawn_time_decreaser_amount += 1;
+  }
   //OYUN ICI DEGISKENLER
 
   //BU IKISI PARA URETIMINDEN SORUMLU
@@ -107,10 +113,9 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
-    for(int n=1;n<=18;n++){
+    for (int n = 1; n <= 18; n++) {
       ImageRoutes.add("ourAssets/images/eggs/${n}.png");
     }
-
 
     //PRODUCİNG MONEY HERE
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
@@ -119,28 +124,24 @@ class EggObjectModel extends ChangeNotifier {
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      spawnerPercent = 1.0 - upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time;
-      upgrade_stats_object.spawn_time_counter -= 1;
-      if (upgrade_stats_object.spawn_time_counter == 0) {
-        Future.delayed(Duration(milliseconds: 1000), () {
-          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
-        });
+    Timer.periodic(Duration(milliseconds: 100), (timer) {
+      spawnerPercent = 1.0 -
+          upgrade_stats_object.spawn_time_counter /
+              upgrade_stats_object.spawn_time;
+      upgrade_stats_object.spawn_time_counter -=1;
+      if (upgrade_stats_object.spawn_time_counter <= 0) {
+          upgrade_stats_object.spawn_time_counter =
+              upgrade_stats_object.spawn_time;
+            for (int n = 0; n < 20; n++) {
+              if (EggIndexList[n].level == 0) {
+                EggIndexList[n].level += upgrade_stats_object.base_egg_level;
+                break;
+              }
+            }
       }
       notifyListeners();
     });
     //SPAWNİNG AN EGG AND CHECKİNG
-    Timer.periodic(Duration(milliseconds: 5000), (timer) {
-      Future.delayed(Duration(seconds: 1), () {
-        for (int n = 0; n < 20; n++) {
-          if (EggIndexList[n].level == 0) {
-            EggIndexList[n].level += upgrade_stats_object.base_egg_level;
-            break;
-          }
-        }
-      });
-      notifyListeners();
-    });
   }
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.

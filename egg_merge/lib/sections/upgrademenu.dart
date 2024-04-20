@@ -152,6 +152,7 @@ class DecreaseSpawnTimeWidget extends StatefulWidget {
 class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
   @override
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
     return Container(
       color: Color.fromARGB(255, 228, 204, 255),
       height: 70,
@@ -176,21 +177,36 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                   width: 10,
                 ),
                 Text(
-                  '1/30',
+                  "${value.upgrade_stats_object.spawn_time_decreaser_amount}/30",
                   style: TextStyle(color: Colors.white),
                 )
               ],
             ),
           ),
           Text(' Decrease \nspawn time.'),
-          GestureDetector(
-              onTap: () {},
-              child: UpgradeMenuButton(
-                title: '0',
-              ))
+          SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    if(value.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
+                      value.buy_decrease_spawn_time();
+                    }
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      )),
+                  child: Text(
+                      "${value.upgrade_stats_object.spawn_time_decreaser_cost} \$")),
+            ),
         ],
       ),
     );
+    });
   }
 }
 
