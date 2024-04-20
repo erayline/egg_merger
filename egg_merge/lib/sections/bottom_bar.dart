@@ -1,3 +1,4 @@
+import 'package:egg_merge/sections/prestigeMenu.dart';
 import 'package:egg_merge/sections/upgrademenu.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,12 @@ class _bottomBarState extends State<bottomBar> {
             highlightColor: Colors.transparent,),
 
             IconButton(
-            onPressed: (){},
+            onPressed: (){
+              showDialog(
+                context: context,
+                builder: (context) => const PrestigeMenu(),
+              );
+            },
             icon: Image.asset('ourAssets/images/egg.png'),
             highlightColor: Colors.transparent,),
 
