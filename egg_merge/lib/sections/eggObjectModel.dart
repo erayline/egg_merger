@@ -9,14 +9,17 @@ import 'package:provider/provider.dart';
 class UpgradeStats {
   int base_egg_level = 1;
   int base_egg_level_increase_cost = 20000;
+
   void setNewBaseEggLevel() {
     base_egg_level_increase_cost *= 2;
   }
 
+
+  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 1;
-  double spawn_time = 40.0;
-  double spawn_time_counter = 40.0;
-  int spawn_time_decreaser_cost = 5;
+  double spawn_time = 400.0;
+  double spawn_time_counter = 400.0;
+  int spawn_time_decreaser_cost = 1;
 }
 
 class EggObject {
@@ -82,8 +85,9 @@ class EggObjectModel extends ChangeNotifier {
   }
 
   void buy_decrease_spawn_time() {
-    upgrade_stats_object.spawn_time_counter -= 1;
-    upgrade_stats_object.spawn_time -= 1;
+    totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
+    upgrade_stats_object.spawn_time_counter -= 10.0;
+    upgrade_stats_object.spawn_time -= 10.0;
     upgrade_stats_object.spawn_time_decreaser_cost *= 3;
     upgrade_stats_object.spawn_time_decreaser_amount += 1;
   }
@@ -108,7 +112,6 @@ class EggObjectModel extends ChangeNotifier {
   int totalMoney = 0;
   int moneyPerSec = 0;
 
-  double counter = 4.0;
   double spawnerPercent = 0;
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
@@ -124,11 +127,11 @@ class EggObjectModel extends ChangeNotifier {
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
-    Timer.periodic(Duration(milliseconds: 100), (timer) {
+    Timer.periodic(Duration(milliseconds: 10), (timer) {
       spawnerPercent = 1.0 -
           upgrade_stats_object.spawn_time_counter /
               upgrade_stats_object.spawn_time;
-      upgrade_stats_object.spawn_time_counter -=1;
+      upgrade_stats_object.spawn_time_counter -=1; // bu da spawner değişkenlerine bağlı
       if (upgrade_stats_object.spawn_time_counter <= 0) {
           upgrade_stats_object.spawn_time_counter =
               upgrade_stats_object.spawn_time;
