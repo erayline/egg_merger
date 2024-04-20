@@ -12,6 +12,11 @@ class UpgradeStats {
   void setNewBaseEggLevel() {
     base_egg_level_increase_cost *= 2;
   }
+
+
+  double spawn_time = 4.0;
+  double spawn_time_counter = 4.0;
+  int spawn_time_decreaser_cost = 5000;
 }
 
 class EggObject {
@@ -115,17 +120,17 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      spawnerPercent = 1 - counter.toDouble() / 4;
-      counter -= 1;
-      if (counter == 0) {
+      spawnerPercent = 1.0 - upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time;
+      upgrade_stats_object.spawn_time_counter -= 1;
+      if (upgrade_stats_object.spawn_time_counter == 0) {
         Future.delayed(Duration(milliseconds: 1000), () {
-          counter = 4;
+          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
         });
       }
       notifyListeners();
     });
     //SPAWNİNG AN EGG AND CHECKİNG
-    Timer.periodic(Duration(milliseconds: 6000), (timer) {
+    Timer.periodic(Duration(milliseconds: 5000), (timer) {
       Future.delayed(Duration(seconds: 1), () {
         for (int n = 0; n < 20; n++) {
           if (EggIndexList[n].level == 0) {
