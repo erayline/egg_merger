@@ -22,11 +22,12 @@ class _UpgradeMenuState extends State<UpgradeMenu> {
       child: Container(
           height: 500,
           decoration: BoxDecoration(
+            border: Border.all(width:3),
             borderRadius: BorderRadius.circular(5.0),
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color.fromARGB(255, 219, 183, 122),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             //liste
             children: <Widget>[
               IncreaseBaseEggWidget(),
@@ -84,7 +85,8 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
       return Container(
-        color: Color.fromARGB(255, 228, 204, 255),
+        decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+        
         height: 70,
         child: Row(
           //içerik soldan sağa
