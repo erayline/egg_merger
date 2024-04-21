@@ -156,7 +156,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
     return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -226,7 +226,7 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -278,7 +278,7 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -331,7 +331,7 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -385,7 +385,7 @@ class _MoreOfflineEarningRateWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 228, 204, 255),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
       child: Row(
         //içerik soldan sağa
