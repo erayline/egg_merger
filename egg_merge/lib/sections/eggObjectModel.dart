@@ -21,6 +21,11 @@ class UpgradeStats {
   int spawn_time_decreaser_cost = 1000;
 }
 
+class InGameStatsObject{
+  int totalMoney = 0;
+  int moneyPerSec = 0;
+}
+
 class EggObject {
   int level = 0;
 }
@@ -46,10 +51,12 @@ class EggObjectModel extends ChangeNotifier {
   List<EggObject> EggIndexList = [];
 
   UpgradeStats upgrade_stats_object = new UpgradeStats();
+  InGameStatsObject ingame_stats_object = new InGameStatsObject();
+
 
   void increaseBaseEgg() {
     upgrade_stats_object.base_egg_level++;
-    totalMoney -= upgrade_stats_object.base_egg_level_increase_cost.toInt();
+    ingame_stats_object.totalMoney -= upgrade_stats_object.base_egg_level_increase_cost.toInt();
     upgrade_stats_object.setNewBaseEggLevel();
 
     for (int n = 0; n < 20; n++) {
@@ -63,7 +70,7 @@ class EggObjectModel extends ChangeNotifier {
   }
 
   void buy_decrease_spawn_time() {
-    totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
+    ingame_stats_object.totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
     upgrade_stats_object.spawn_time_counter -= 10.0;
     upgrade_stats_object.spawn_time -= 10.0;
     upgrade_stats_object.spawn_time_decreaser_cost *= 2;
@@ -87,8 +94,7 @@ class EggObjectModel extends ChangeNotifier {
     return result;
   }
 
-  int totalMoney = 0;
-  int moneyPerSec = 0;
+
 
   double spawnerPercent = 0;
 
@@ -104,8 +110,8 @@ class EggObjectModel extends ChangeNotifier {
 
     //PRODUCİNG MONEY HERE
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      moneyPerSec = calculateMoneyPerSec();
-      totalMoney += moneyPerSec;
+      ingame_stats_object.moneyPerSec = calculateMoneyPerSec();
+      ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
@@ -114,6 +120,7 @@ class EggObjectModel extends ChangeNotifier {
       for(int n=0;n<20;n++){
         if(EggIndexList[n].level==0){
           willSpawnKontrol=true;
+          break;
         }
       }
       if(willSpawnKontrol){

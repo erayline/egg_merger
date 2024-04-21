@@ -122,7 +122,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    if(value.totalMoney >= value.upgrade_stats_object.base_egg_level_increase_cost){
+                    if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.base_egg_level_increase_cost){
                       value.increaseBaseEgg();
                     }
                   },
@@ -191,7 +191,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    if(value.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
+                    if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
                       if(value.upgrade_stats_object.spawn_time_decreaser_amount<30){
                         value.buy_decrease_spawn_time();
                       }
