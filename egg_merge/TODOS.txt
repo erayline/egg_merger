@@ -5,17 +5,19 @@
 
 #MVP KISMI
 
-#ilk adımlar
+
+
+
+-> prestij mantığını kodla
 
 
 ->numara şekillendirme kodlanacak
--> 20 adet yumurta oluşturulacak.
-->Figmadan dizaynını tamamla
---->presij menüsü
+
+
+->açılmış yumurtalar menüsü dizayn artı kodlama
 
 
 
---->tüm istatistikler menüsü
 ----->birinci kısımda tüm kilidi açılmış yumurtalar bulunacak.
 ----->ikinci kısımda şimdiye kadar yapılmış birleştirmeler, kazanılan toplam para vs vs. koyabildiğimiz kadar.
 
@@ -49,3 +51,5 @@ done--->geliştirmeler menüsü
 done->arkaplan siyah yapılacak safezone üstü
 done->upgrade logosu değişecek
 done->geliştirmeler menüsü kodlanacak
+done->Figmadan dizaynını tamamla
+done--->presij menüsü
