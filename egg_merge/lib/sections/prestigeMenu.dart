@@ -37,7 +37,7 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
                   children: <Widget>[
                     Text('You have:'),
                     Text(
-                      '30 golden pen',
+                      '${value.ingame_stats_object.currentPrestigePoint} golden pen',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     SizedBox(
@@ -55,7 +55,7 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
                   color: Color.fromARGB(255, 127, 127, 127)),
               child: Center(
                   child: Text(
-                '%300 boost',
+                '%${value.ingame_stats_object.currentPrestigePoint*10} boost',
                 style: TextStyle(fontWeight: FontWeight.w700),
               )),
             ),
@@ -77,7 +77,9 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
               ),
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  value.ingame_stats_object.prestigeFunction(value.EggIndexList);
+                },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 168, 255, 139)),

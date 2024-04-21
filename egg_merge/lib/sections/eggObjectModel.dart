@@ -27,11 +27,21 @@ class InGameStatsObject{
 
 
   int allTimeMoney=0;
-  int currentPrestigePoint=0;
   int willGainAmountPrestigePoint=0;
+  int currentPrestigePoint=0;
 
   void calculatePrestigePoint(){
-    willGainAmountPrestigePoint = sqrt(allTimeMoney)~/1000; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
+    willGainAmountPrestigePoint = sqrt(allTimeMoney)~/100; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
+  }
+  void prestigeFunction(List<EggObject> eggIndexList){
+    currentPrestigePoint += willGainAmountPrestigePoint;
+    totalMoney = 0;
+    moneyPerSec = 0;
+    allTimeMoney=0;
+    willGainAmountPrestigePoint=0;
+    for(int n=0;n<20;n++){
+      eggIndexList[n].level = 0;
+    }
   }
 }
 
@@ -123,7 +133,7 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
       //prestige calculation
-      ingame_stats_object.calculatePrestigePoint;
+      ingame_stats_object.calculatePrestigePoint();
 
       notifyListeners();
     });
