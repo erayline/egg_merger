@@ -1,4 +1,6 @@
+import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PrestigeMenu extends StatefulWidget {
   const PrestigeMenu({super.key});
@@ -10,6 +12,7 @@ class PrestigeMenu extends StatefulWidget {
 class _PrestigeMenuState extends State<PrestigeMenu> {
   @override
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
     return Dialog(
       backgroundColor: Color.fromARGB(255, 1, 1, 0),
       child: Container(
@@ -68,7 +71,7 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
                   color: Color.fromARGB(255, 255, 236, 33)),
               child: Center(
                 child: Text(
-                  '+3',
+                  '+${value.ingame_stats_object.willGainAmountPrestigePoint}',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -89,5 +92,6 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
         ),
       ),
     );
+    });
   }
 }

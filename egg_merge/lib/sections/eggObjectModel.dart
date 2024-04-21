@@ -24,6 +24,15 @@ class UpgradeStats {
 class InGameStatsObject{
   int totalMoney = 0;
   int moneyPerSec = 0;
+
+
+  int allTimeMoney=0;
+  int currentPrestigePoint=0;
+  int willGainAmountPrestigePoint=0;
+
+  void calculatePrestigePoint(){
+    willGainAmountPrestigePoint = sqrt(allTimeMoney)~/1000; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
+  }
 }
 
 class EggObject {
@@ -112,6 +121,10 @@ class EggObjectModel extends ChangeNotifier {
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
       ingame_stats_object.moneyPerSec = calculateMoneyPerSec();
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
+      ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
+      //prestige calculation
+      ingame_stats_object.calculatePrestigePoint;
+
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
@@ -132,8 +145,8 @@ class EggObjectModel extends ChangeNotifier {
               EggIndexList[n].level += upgrade_stats_object.base_egg_level;
               break;
             }
-          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
           }
+          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
         }
       }
       notifyListeners();
