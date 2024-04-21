@@ -14,7 +14,6 @@ class UpgradeStats {
     base_egg_level_increase_cost *= 3;
   }
 
-
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 1;
   double spawn_time = 400.0;
@@ -44,28 +43,7 @@ List<String> ImageRoutes = [];
 
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
-  List<EggObject> EggIndexList = [
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-    EggObject(),
-  ];
+  List<EggObject> EggIndexList = [];
 
   UpgradeStats upgrade_stats_object = new UpgradeStats();
 
@@ -116,6 +94,10 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
+    for (int n = 0; n < 20; n++) {
+      EggIndexList.add(EggObject());
+    }
+
     for (int n = 1; n <= 18; n++) {
       ImageRoutes.add("ourAssets/images/eggs/${n}.png");
     }
@@ -128,19 +110,24 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 10), (timer) {
-      spawnerPercent = 1.0 -
-          upgrade_stats_object.spawn_time_counter /
-              upgrade_stats_object.spawn_time;
-      upgrade_stats_object.spawn_time_counter -=1; // bu da spawner değişkenlerine bağlı
-      if (upgrade_stats_object.spawn_time_counter <= 0) {
-          upgrade_stats_object.spawn_time_counter =
-              upgrade_stats_object.spawn_time;
-            for (int n = 0; n < 20; n++) {
-              if (EggIndexList[n].level == 0) {
-                EggIndexList[n].level += upgrade_stats_object.base_egg_level;
-                break;
-              }
+      bool willSpawnKontrol = false;
+      for(int n=0;n<20;n++){
+        if(EggIndexList[n].level==0){
+          willSpawnKontrol=true;
+        }
+      }
+      if(willSpawnKontrol){
+        spawnerPercent = 1.0 - upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time;
+        upgrade_stats_object.spawn_time_counter -= 1; // bu da spawner değişkenlerine bağlı
+        if (upgrade_stats_object.spawn_time_counter <= 0) {
+          for (int n = 0; n < 20; n++) {
+            if (EggIndexList[n].level == 0) {
+              EggIndexList[n].level += upgrade_stats_object.base_egg_level;
+              break;
             }
+          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
+          }
+        }
       }
       notifyListeners();
     });
