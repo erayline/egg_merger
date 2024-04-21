@@ -11,7 +11,7 @@ class UpgradeStats {
   int base_egg_level_increase_cost = 20000;
 
   void setNewBaseEggLevel() {
-    base_egg_level_increase_cost *= 2;
+    base_egg_level_increase_cost *= 3;
   }
 
 

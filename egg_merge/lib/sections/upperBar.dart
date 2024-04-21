@@ -16,6 +16,7 @@ class _upperBarState extends State<upperBar> {
     return Container(
       color: Color.fromARGB(255, 223, 151, 109),
       height: 60,
+      width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[

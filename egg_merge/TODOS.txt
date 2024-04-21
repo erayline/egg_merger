@@ -8,16 +8,13 @@
 #ilk adımlar
 
 
-->arkaplan siyah yapılacak safezone üstü
 ->numara şekillendirme kodlanacak
 -> 20 adet yumurta oluşturulacak.
-done->upgrade logosu değişecek
-->geliştirmeler menüsü kodlanacak
-
-
-
 ->Figmadan dizaynını tamamla
 --->presij menüsü
+
+
+
 --->tüm istatistikler menüsü
 ----->birinci kısımda tüm kilidi açılmış yumurtalar bulunacak.
 ----->ikinci kısımda şimdiye kadar yapılmış birleştirmeler, kazanılan toplam para vs vs. koyabildiğimiz kadar.
@@ -25,6 +22,15 @@ done->upgrade logosu değişecek
 ->prestij menüsü kodlanacak
 
 ->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
+
+
+
+
+
+
+
+
+
 
 DANZO
 done-> UI geliştir
@@ -40,3 +46,6 @@ done-->spawner timer'ındaki sayı doğru düzgün değişsin.
 done->create money mechanics
 done-->return 3^level * goldpan
 done--->geliştirmeler menüsü
+done->arkaplan siyah yapılacak safezone üstü
+done->upgrade logosu değişecek
+done->geliştirmeler menüsü kodlanacak
