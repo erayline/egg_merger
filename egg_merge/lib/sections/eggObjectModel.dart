@@ -22,11 +22,11 @@ class UpgradeStats {
 }
 
 class InGameStatsObject{
-  int totalMoney = 0;
-  int moneyPerSec = 0;
+  num totalMoney = 0;
+  num moneyPerSec = 0;
 
 
-  int allTimeMoney=0;
+  num allTimeMoney=0;
   int willGainAmountPrestigePoint=0;
   int currentPrestigePoint=0;
 
@@ -98,13 +98,13 @@ class EggObjectModel extends ChangeNotifier {
   //OYUN ICI DEGISKENLER
 
   //BU IKISI PARA URETIMINDEN SORUMLU
-  int produceMoney(int index) {
-    num sonuc = pow(3, EggIndexList[index].level - 1);
-    return sonuc.toInt();
+  num produceMoney(int index) {
+    num sonuc = pow(3, EggIndexList[index].level - 1) + pow(3, EggIndexList[index].level - 1)*(ingame_stats_object.currentPrestigePoint.toDouble()/10);
+    return sonuc;
   }
 
-  int calculateMoneyPerSec() {
-    int result = 0;
+  num calculateMoneyPerSec() {
+    num result = 0;
     for (int n = 0; n < 20; n++) {
       if (EggIndexList[n].level > 0) {
         result += produceMoney(n);
@@ -198,7 +198,7 @@ class EggObjectModel extends ChangeNotifier {
                               height: 50,
                               color: Colors.transparent,
                               child: Text(
-                                produceMoney(thisObjectIndex).toString(),
+                                produceMoney(thisObjectIndex).toStringAsFixed(0),
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 72, 168, 75),
                                   fontWeight: FontWeight.bold,
