@@ -8,7 +8,6 @@
 
 
 
--> prestij mantığını kodla
 
 
 ->numara şekillendirme kodlanacak
@@ -53,3 +52,4 @@ done->upgrade logosu değişecek
 done->geliştirmeler menüsü kodlanacak
 done->Figmadan dizaynını tamamla
 done--->presij menüsü
+done-> prestij mantığını kodla
