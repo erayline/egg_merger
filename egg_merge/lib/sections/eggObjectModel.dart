@@ -21,6 +21,17 @@ class UpgradeStats {
   int spawn_time_decreaser_cost = 1000;
 }
 
+void resetUpgradeStats(UpgradeStats upgradeStats){
+  upgradeStats.base_egg_level = 1;
+  upgradeStats.base_egg_level_increase_cost = 20000;
+
+  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
+  upgradeStats.spawn_time_decreaser_amount = 1;
+  upgradeStats.spawn_time = 400.0;
+  upgradeStats.spawn_time_counter = 400.0;
+  upgradeStats.spawn_time_decreaser_cost = 1000;
+}
+
 class InGameStatsObject{
   num totalMoney = 0;
   num moneyPerSec = 0;
@@ -36,12 +47,15 @@ class InGameStatsObject{
   void calculatePrestigePoint(){
     willGainAmountPrestigePoint = sqrt(allTimeMoney)~/100; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
   }
-  void prestigeFunction(List<EggObject> eggIndexList){
+  void prestigeFunction(List<EggObject> eggIndexList,UpgradeStats upgradeStats){
     currentPrestigePoint += willGainAmountPrestigePoint;
     totalMoney = 0;
     moneyPerSec = 0;
     allTimeMoney=0;
     willGainAmountPrestigePoint=0;
+
+    resetUpgradeStats(upgradeStats);
+
     for(int n=0;n<20;n++){
       eggIndexList[n].level = 0;
     }
@@ -138,19 +152,21 @@ class EggObjectModel extends ChangeNotifier {
       //prestige calculation
       ingame_stats_object.calculatePrestigePoint();
 
+
+      //all time egg leveli burada hesaplıyorum.
+      for(int n=0;n<20;n++){
+        if(EggIndexList[n].level >ingame_stats_object.allTimeEggLevel){
+          ingame_stats_object.allTimeEggLevel =EggIndexList[n].level;
+        }
+      }
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 10), (timer) {
       bool willSpawnKontrol = false;
       for(int n=0;n<20;n++){
-      //all time egg leveli burada hesaplıyorum.
-        if(EggIndexList[n].level >ingame_stats_object.allTimeEggLevel){
-          ingame_stats_object.allTimeEggLevel =EggIndexList[n].level;
-          notifyListeners();
-        }
 
-
+        //dolu mu boş mu layler ona göre
         if(EggIndexList[n].level==0){
           willSpawnKontrol=true;
           break;
