@@ -26,6 +26,9 @@ class InGameStatsObject{
   num moneyPerSec = 0;
 
 
+  int allTimeEggLevel=0;
+
+
   num allTimeMoney=0;
   int willGainAmountPrestigePoint=0;
   int currentPrestigePoint=0;
@@ -141,6 +144,13 @@ class EggObjectModel extends ChangeNotifier {
     Timer.periodic(Duration(milliseconds: 10), (timer) {
       bool willSpawnKontrol = false;
       for(int n=0;n<20;n++){
+      //all time egg leveli burada hesaplıyorum.
+        if(EggIndexList[n].level >ingame_stats_object.allTimeEggLevel){
+          ingame_stats_object.allTimeEggLevel =EggIndexList[n].level;
+          notifyListeners();
+        }
+
+
         if(EggIndexList[n].level==0){
           willSpawnKontrol=true;
           break;

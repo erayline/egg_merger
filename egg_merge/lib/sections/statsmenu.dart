@@ -17,16 +17,24 @@ class _StatsMenuState extends State<StatsMenu> {
         backgroundColor: Colors.transparent,
         child: Container(
             width: 200,
-            height: 400,
-            color: Colors.green,
+            height: 500,
+            decoration: BoxDecoration(border: Border.all(width: 3),color: Color.fromARGB(255, 57, 119, 59),),
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3, // 10 sütun
                   mainAxisSpacing: 10.0, // Satırlar arası boşluk
                   crossAxisSpacing: 10.0, // Sütunlar arası boşluk
-                ),itemCount: 18,
+                ),
+                itemCount: 18,
                 itemBuilder: (context, index) {
-                  return Center(child: Image.asset(ImageRoutes[index].toString()));
+                  return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(ImageRoutes[index].toString(),
+                            color: (index <
+                                    value.ingame_stats_object.allTimeEggLevel)
+                                ? null:Colors.black),
+                      ));
                 })),
       );
     });
