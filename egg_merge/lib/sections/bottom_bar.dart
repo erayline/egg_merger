@@ -1,4 +1,5 @@
 import 'package:egg_merge/sections/prestigeMenu.dart';
+import 'package:egg_merge/sections/statsmenu.dart';
 import 'package:egg_merge/sections/upgrademenu.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,12 @@ class _bottomBarState extends State<bottomBar> {
             highlightColor: Colors.transparent,),
 
             IconButton(
-            onPressed: (){},
+            onPressed: (){
+              showDialog(
+                context: context,
+                builder: (context) => const StatsMenu(),
+              );
+            },
             icon: Image.asset('ourAssets/images/easter.png'),
             highlightColor: Colors.transparent,),
 
