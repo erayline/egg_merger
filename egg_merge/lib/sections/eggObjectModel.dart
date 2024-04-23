@@ -11,7 +11,7 @@ class UpgradeStats {
   int base_egg_level_increase_cost = 20000;
 
   void setNewBaseEggLevel() {
-    base_egg_level_increase_cost *= 3;
+    base_egg_level_increase_cost *= 4;
   }
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.

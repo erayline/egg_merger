@@ -35,7 +35,7 @@ class _spawnTimerState extends State<spawnTimer> {
                   // animation: true,
                   // animateFromLastPercent: true,
                   progressColor: Color.fromARGB(255, 20, 174, 92),
-                  width: 200,
+                  width: 320,
                   lineHeight: 30,
                   percent: value.spawnerPercent,
                 );
@@ -43,7 +43,7 @@ class _spawnTimerState extends State<spawnTimer> {
             ),
 
           const SizedBox(
-            width: 56,
+            width: 6,
           ),
           Consumer<EggObjectModel>(builder: (context, value, child) {
           return Image.asset(
