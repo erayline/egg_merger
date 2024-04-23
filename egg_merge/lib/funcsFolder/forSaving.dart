@@ -12,13 +12,11 @@ in that function you are going to save everything.
 import 'dart:math';
 
 import 'package:egg_merge/sections/eggObjectModel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class EggObject {
-  int level = 0;
-}
-List<EggObject> EggIndexList = [];
+
 
 
 class UpgradeStats {
@@ -79,8 +77,10 @@ void buy_decrease_spawn_time(UpgradeStats upgrade_stats_object,InGameStatsObject
   }
 
 
-void saveTheGame(SharedPreferences storage){
+Future<void> saveTheGame() async {
+  SharedPreferences sharedStorage = await SharedPreferences.getInstance();
 
+  sharedStorage.setInt("deneme", 31);
 }
 
 

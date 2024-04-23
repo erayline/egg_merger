@@ -1,16 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:egg_merge/funcsFolder/forSaving.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-
-
-
-
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EmptyEgg extends StatelessWidget {
   const EmptyEgg({super.key});
@@ -25,7 +23,6 @@ class EmptyEgg extends StatelessWidget {
   }
 }
 
-
 class EggObject {
   int level = 0;
 }
@@ -35,13 +32,14 @@ class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [];
 
-
   UpgradeStats upgrade_stats_object = new UpgradeStats();
   InGameStatsObject ingame_stats_object = new InGameStatsObject();
 
-  void increaseBaseEgg(UpgradeStats upgrade_stats_object,InGameStatsObject ingame_stats_object) {
+  void increaseBaseEgg(UpgradeStats upgrade_stats_object,
+      InGameStatsObject ingame_stats_object) {
     upgrade_stats_object.base_egg_level++;
-    ingame_stats_object.totalMoney -= upgrade_stats_object.base_egg_level_increase_cost.toInt();
+    ingame_stats_object.totalMoney -=
+        upgrade_stats_object.base_egg_level_increase_cost.toInt();
     upgrade_stats_object.setNewBaseEggLevel();
 
     for (int n = 0; n < 20; n++) {
@@ -53,14 +51,27 @@ class EggObjectModel extends ChangeNotifier {
 
     notifyListeners();
   }
-  
-
-  
   //OYUN ICI DEGISKENLER
+
+  late Map<String, Object> data = {};
+
+  void loadTheGame() async {
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+
+    upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 4.0;
+
+    var dataString = storage.getString("data");
+    data = dataString != null
+        ? Map<String, Object>.from(jsonDecode(dataString))
+        : {};
+  }
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   num produceMoney(int index) {
-    num sonuc = pow(3, EggIndexList[index].level - 1) + pow(3, EggIndexList[index].level - 1)*(ingame_stats_object.currentPrestigePoint.toDouble()/10);
+    num sonuc = pow(3, EggIndexList[index].level - 1) +
+        pow(3, EggIndexList[index].level - 1) *
+            (ingame_stats_object.currentPrestigePoint.toDouble() / 10);
     return sonuc;
   }
 
@@ -73,8 +84,6 @@ class EggObjectModel extends ChangeNotifier {
     }
     return result;
   }
-
-
 
   double spawnerPercent = 0;
 
@@ -96,11 +105,12 @@ class EggObjectModel extends ChangeNotifier {
       //prestige calculation
       ingame_stats_object.calculatePrestigePoint();
 
+      //save the fame function is should be here
 
       //all time egg leveli burada hesaplıyorum.
-      for(int n=0;n<20;n++){
-        if(EggIndexList[n].level >ingame_stats_object.allTimeEggLevel){
-          ingame_stats_object.allTimeEggLevel =EggIndexList[n].level;
+      for (int n = 0; n < 20; n++) {
+        if (EggIndexList[n].level > ingame_stats_object.allTimeEggLevel) {
+          ingame_stats_object.allTimeEggLevel = EggIndexList[n].level;
         }
       }
       notifyListeners();
@@ -108,17 +118,19 @@ class EggObjectModel extends ChangeNotifier {
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 10), (timer) {
       bool willSpawnKontrol = false;
-      for(int n=0;n<20;n++){
-
+      for (int n = 0; n < 20; n++) {
         //dolu mu boş mu layler ona göre
-        if(EggIndexList[n].level==0){
-          willSpawnKontrol=true;
+        if (EggIndexList[n].level == 0) {
+          willSpawnKontrol = true;
           break;
         }
       }
-      if(willSpawnKontrol){
-        spawnerPercent = 1.0 - upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time;
-        upgrade_stats_object.spawn_time_counter -= 1; // bu da spawner değişkenlerine bağlı
+      if (willSpawnKontrol) {
+        spawnerPercent = 1.0 -
+            upgrade_stats_object.spawn_time_counter /
+                upgrade_stats_object.spawn_time;
+        upgrade_stats_object.spawn_time_counter -=
+            1; // bu da spawner değişkenlerine bağlı
         if (upgrade_stats_object.spawn_time_counter <= 0) {
           for (int n = 0; n < 20; n++) {
             if (EggIndexList[n].level == 0) {
@@ -126,7 +138,8 @@ class EggObjectModel extends ChangeNotifier {
               break;
             }
           }
-          upgrade_stats_object.spawn_time_counter = upgrade_stats_object.spawn_time;
+          upgrade_stats_object.spawn_time_counter =
+              upgrade_stats_object.spawn_time;
         }
       }
       notifyListeners();
@@ -168,7 +181,8 @@ class EggObjectModel extends ChangeNotifier {
                               height: 50,
                               color: Colors.transparent,
                               child: Text(
-                                produceMoney(thisObjectIndex).toStringAsFixed(0),
+                                produceMoney(thisObjectIndex)
+                                    .toStringAsFixed(0),
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 72, 168, 75),
                                   fontWeight: FontWeight.bold,

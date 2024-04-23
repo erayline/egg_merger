@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({super.key});
-
   @override
   State<bottomBar> createState() => _bottomBarState();
 }
@@ -34,6 +33,8 @@ class _bottomBarState extends State<bottomBar> {
             },
             icon: Image.asset('ourAssets/images/easter.png'),
             highlightColor: Colors.transparent,),
+
+      
 
             IconButton(
             onPressed: (){
