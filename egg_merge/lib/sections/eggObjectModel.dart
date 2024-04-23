@@ -55,17 +55,29 @@ class EggObjectModel extends ChangeNotifier {
 
   late Map<String, Object> data = {};
 
+
+
+
+
+  //oyunu kaydetme fonksiyonumuz
+  void saveTheGame() async{
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+    storage.setInt("base_egg_level", upgrade_stats_object.base_egg_level);
+  }
+
+  //oyunu yükleme fonksiyonumuz
   void loadTheGame() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
 
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
-    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 4.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 400.0;
 
     var dataString = storage.getString("data");
     data = dataString != null
         ? Map<String, Object>.from(jsonDecode(dataString))
         : {};
   }
+  
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   num produceMoney(int index) {
@@ -89,6 +101,9 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
+    loadTheGame();//oyunu bir yüklüyoruz burada.
+
+
     for (int n = 0; n < 20; n++) {
       EggIndexList.add(EggObject());
     }
@@ -106,7 +121,9 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.calculatePrestigePoint();
 
       //save the fame function is should be here
+      saveTheGame();
 
+      
       //all time egg leveli burada hesaplıyorum.
       for (int n = 0; n < 20; n++) {
         if (EggIndexList[n].level > ingame_stats_object.allTimeEggLevel) {

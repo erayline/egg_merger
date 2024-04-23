@@ -77,13 +77,6 @@ void buy_decrease_spawn_time(UpgradeStats upgrade_stats_object,InGameStatsObject
   }
 
 
-Future<void> saveTheGame() async {
-  SharedPreferences sharedStorage = await SharedPreferences.getInstance();
-
-  sharedStorage.setInt("deneme", 31);
-}
-
-
 void resetUpgradeStats(UpgradeStats upgradeStats){
   upgradeStats.base_egg_level = 1;
   upgradeStats.base_egg_level_increase_cost = 20000;
