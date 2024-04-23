@@ -7,56 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class UpgradeStats {
-  int base_egg_level = 1;
-  int base_egg_level_increase_cost = 20000;
-
-  void setNewBaseEggLevel() {
-    base_egg_level_increase_cost *= 4;
-  }
-
-  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
-  int spawn_time_decreaser_amount = 1;
-  double spawn_time = 400.0;
-  double spawn_time_counter = 400.0;
-  int spawn_time_decreaser_cost = 1000;
-}
 
 
 
-class InGameStatsObject{
-  num totalMoney = 0;
-  num moneyPerSec = 0;
 
-
-  int allTimeEggLevel=0;
-
-
-  num allTimeMoney=0;
-  int willGainAmountPrestigePoint=0;
-  int currentPrestigePoint=0;
-
-  void calculatePrestigePoint(){
-    willGainAmountPrestigePoint = sqrt(allTimeMoney)~/100; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
-  }
-  void prestigeFunction(List<EggObject> eggIndexList,UpgradeStats upgradeStats){
-    currentPrestigePoint += willGainAmountPrestigePoint;
-    totalMoney = 0;
-    moneyPerSec = 0;
-    allTimeMoney=0;
-    willGainAmountPrestigePoint=0;
-
-    resetUpgradeStats(upgradeStats);
-
-    for(int n=0;n<20;n++){
-      eggIndexList[n].level = 0;
-    }
-  }
-}
-
-class EggObject {
-  int level = 0;
-}
 
 class EmptyEgg extends StatelessWidget {
   const EmptyEgg({super.key});
@@ -71,18 +25,21 @@ class EmptyEgg extends StatelessWidget {
   }
 }
 
+
+class EggObject {
+  int level = 0;
+}
 //IMAGE STRINGLERI
-List<String> ImageRoutes = [];
 
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [];
 
+
   UpgradeStats upgrade_stats_object = new UpgradeStats();
   InGameStatsObject ingame_stats_object = new InGameStatsObject();
 
-
-  void increaseBaseEgg() {
+  void increaseBaseEgg(UpgradeStats upgrade_stats_object,InGameStatsObject ingame_stats_object) {
     upgrade_stats_object.base_egg_level++;
     ingame_stats_object.totalMoney -= upgrade_stats_object.base_egg_level_increase_cost.toInt();
     upgrade_stats_object.setNewBaseEggLevel();
@@ -96,14 +53,9 @@ class EggObjectModel extends ChangeNotifier {
 
     notifyListeners();
   }
+  
 
-  void buy_decrease_spawn_time() {
-    ingame_stats_object.totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
-    upgrade_stats_object.spawn_time_counter -= 10.0;
-    upgrade_stats_object.spawn_time -= 10.0;
-    upgrade_stats_object.spawn_time_decreaser_cost *= 2;
-    upgrade_stats_object.spawn_time_decreaser_amount += 1;
-  }
+  
   //OYUN ICI DEGISKENLER
 
   //BU IKISI PARA URETIMINDEN SORUMLU

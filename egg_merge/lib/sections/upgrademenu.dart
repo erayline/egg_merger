@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:egg_merge/funcsFolder/forSaving.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
               child: ElevatedButton(
                   onPressed: () {
                     if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.base_egg_level_increase_cost){
-                      value.increaseBaseEgg();
+                      value.increaseBaseEgg(value.upgrade_stats_object,value.ingame_stats_object);
                     }
                   },
                   style: ButtonStyle(
@@ -193,7 +194,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                   onPressed: () {
                     if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
                       if(value.upgrade_stats_object.spawn_time_decreaser_amount<30){
-                        value.buy_decrease_spawn_time();
+                        buy_decrease_spawn_time(value.upgrade_stats_object,value.ingame_stats_object);
                       }
                     }
                   },
