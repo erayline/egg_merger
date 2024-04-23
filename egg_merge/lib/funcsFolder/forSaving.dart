@@ -1,0 +1,13 @@
+/*
+shared preferences road
+
+first create a sharedpreferences object in model.
+
+then create a function that takes that object plus other classes that you store thing.
+
+in that function you are going to save everything.
+
+a
+
+
+*/

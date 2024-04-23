@@ -7,10 +7,26 @@
 
 
 
-
-
-
 ->numara şekillendirme kodlanacak
+
+
+
+
+->shared preferences kısmı kodlanacak
+--> model init edilirken önceden kaydettiklerimiz yüklenecek.
+--> model init edildiğinde Timer'larımızdan birinin içinde sürekli kaydetmesi adına bir fonksiyon yazacağım ve bu fonksiyon modelin dışında tanımlanacak fonksiyonlar adında bir sayfa açmalısın artık.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ->açılmış yumurtalar menüsü dizayn artı kodlama
