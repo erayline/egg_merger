@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:egg_merge/funcsFolder/forSaving.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,16 +22,7 @@ class UpgradeStats {
   int spawn_time_decreaser_cost = 1000;
 }
 
-void resetUpgradeStats(UpgradeStats upgradeStats){
-  upgradeStats.base_egg_level = 1;
-  upgradeStats.base_egg_level_increase_cost = 20000;
 
-  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
-  upgradeStats.spawn_time_decreaser_amount = 1;
-  upgradeStats.spawn_time = 400.0;
-  upgradeStats.spawn_time_counter = 400.0;
-  upgradeStats.spawn_time_decreaser_cost = 1000;
-}
 
 class InGameStatsObject{
   num totalMoney = 0;
