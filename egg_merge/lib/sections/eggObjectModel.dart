@@ -137,7 +137,7 @@ class EggObjectModel extends ChangeNotifier {
       bool willSpawnKontrol = false;
       for (int n = 0; n < 20; n++) {
         //dolu mu boş mu layler ona göre
-        if (EggIndexList[n].level == 0) {
+        if (EggIndexList[n].level == 0){ 
           willSpawnKontrol = true;
           break;
         }
@@ -254,3 +254,4 @@ class EmptyPlaceHolderWidget extends StatelessWidget {
     );
   }
 }
+
