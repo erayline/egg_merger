@@ -56,7 +56,7 @@ class EggObjectModel extends ChangeNotifier {
   late Map<String, Object> data = {};
 
   //oyunu kaydetme fonksiyonumuz
-  void saveTheGame() async{
+  void saveTheGame() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
     storage.setInt("base_egg_level", upgrade_stats_object.base_egg_level);
   }
@@ -73,7 +73,6 @@ class EggObjectModel extends ChangeNotifier {
         ? Map<String, Object>.from(jsonDecode(dataString))
         : {};
   }
-  
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   num produceMoney(int index) {
@@ -97,8 +96,7 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
-    loadTheGame();//oyunu bir yüklüyoruz burada.
-
+    loadTheGame(); //oyunu bir yüklüyoruz burada.
 
     for (int n = 0; n < 20; n++) {
       EggIndexList.add(EggObject());
@@ -119,7 +117,6 @@ class EggObjectModel extends ChangeNotifier {
       //save the fame function is should be here
       saveTheGame();
 
-      
       //all time egg leveli burada hesaplıyorum.
       for (int n = 0; n < 20; n++) {
         if (EggIndexList[n].level > ingame_stats_object.allTimeEggLevel) {
@@ -133,7 +130,7 @@ class EggObjectModel extends ChangeNotifier {
       bool willSpawnKontrol = false;
       for (int n = 0; n < 20; n++) {
         //dolu mu boş mu layler ona göre
-        if (EggIndexList[n].level == 0){ 
+        if (EggIndexList[n].level == 0) {
           willSpawnKontrol = true;
           break;
         }
@@ -169,47 +166,46 @@ class EggObjectModel extends ChangeNotifier {
             return EmptyPlaceHolderWidget();
           } else {
             return Container(
-              width: 50,
-              height: 50,
+              width: 55,
+              height: 55,
               color: Colors.transparent,
               child: Draggable<int>(
                 data: thisObjectIndex,
                 childWhenDragging: EmptyPlaceHolderWidget(),
                 feedback: Container(
-                  width: 50,
-                  height: 50,
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  width: 65,
+                  height: 65,
                   child: Image.asset(ImageRoutes[
                       value.EggIndexList[thisObjectIndex].level - 1]),
                 ),
                 child: Container(
-                  width: 50,
-                  height: 50,
+                  width: 55,
+                  height: 55,
                   child: Stack(
                     children: <Widget>[
                       Image.asset(ImageRoutes[
                           value.EggIndexList[thisObjectIndex].level - 1]),
-                      Positioned(
-                          child: Container(
-                              width: 50,
-                              height: 50,
-                              color: Colors.transparent,
-                              child: Text(
-                                produceMoney(thisObjectIndex)
-                                    .toStringAsFixed(0),
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 72, 168, 75),
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                      offset: Offset(0.0,
-                                          0.0), // Gölgeyi sağa ve aşağı kaydır
-                                      blurRadius: 6.0, // Gölge bulanıklığı
-                                      color: Color.fromRGBO(
-                                          0, 0, 0, 0.472), // Gölge rengi
-                                    ),
-                                  ],
+                      Container(
+                          width: 50,
+                          height: 50,
+                          color: Colors.transparent,
+                          child: Text(
+                            produceMoney(thisObjectIndex).toStringAsFixed(0),
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 72, 168, 75),
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(
+                                      0.0, 0.0), // Gölgeyi sağa ve aşağı kaydır
+                                  blurRadius: 6.0, // Gölge bulanıklığı
+                                  color: Color.fromRGBO(
+                                      0, 0, 0, 0.472), // Gölge rengi
                                 ),
-                              ))),
+                              ],
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -244,10 +240,9 @@ class EmptyPlaceHolderWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 55,
+      height: 55,
       color: Colors.black12,
     );
   }
 }
-
