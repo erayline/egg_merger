@@ -1,4 +1,3 @@
-import 'package:egg_merge/sections/rootInfos.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

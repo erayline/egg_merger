@@ -1,4 +1,3 @@
-import 'package:egg_merge/sections/rootInfos.dart';
 import 'package:flutter/material.dart';
 
 class levelBar extends StatefulWidget {
@@ -14,7 +13,7 @@ class _levelBarState extends State<levelBar> {
     return Container(
       width: MediaQuery.of(context).size.width,
       color: Color.fromARGB(255, 255, 205, 41),
-      child: Center(child: Text('level $currentLevel')),
+      child: Center(child: Text('level 1')),
     );
   }
 }

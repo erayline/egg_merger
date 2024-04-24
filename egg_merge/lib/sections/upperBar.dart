@@ -1,7 +1,6 @@
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'rootInfos.dart';
 
 class upperBar extends StatefulWidget {
   const upperBar({super.key});
@@ -85,7 +84,7 @@ class _upperWingBarState extends State<upperWingBar> {
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
           Image.asset('ourAssets/images/chicken-wings.png',width: 30,),
-          Expanded(child: Center(child: Text(wingA.toString()))),
+          Expanded(child: Center(child: Text("13"))),
           SizedBox(width: 36,),
         ],),
       ),
