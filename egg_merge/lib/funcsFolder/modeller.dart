@@ -21,40 +21,53 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UpgradeStats {
   int base_egg_level = 1;
-  int base_egg_level_increase_cost = 20000;
+  BigInt base_egg_level_increase_cost = BigInt.from(20000);
 
   void setNewBaseEggLevel() {
-    base_egg_level_increase_cost *= 4;
+    base_egg_level_increase_cost *= BigInt.from(4);
   }
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 1;
   double spawn_time = 400.0;
   double spawn_time_counter = 400.0;
-  int spawn_time_decreaser_cost = 1000;
+  BigInt spawn_time_decreaser_cost = BigInt.from(1000);
 }
 
 
 class InGameStatsObject{
-  num totalMoney = 0;
-  num moneyPerSec = 0;
 
+  BigInt totalMoney = BigInt.from(1);
+  BigInt moneyPerSec = BigInt.from(1);
 
+  BigInt allTimeMoney = BigInt.from(1);
   int allTimeEggLevel=0;
 
 
-  num allTimeMoney=0;
   int willGainAmountPrestigePoint=0;
   int currentPrestigePoint=0;
 
   void calculatePrestigePoint(){
-    willGainAmountPrestigePoint = sqrt(allTimeMoney)~/100; // buradaki oran değiştirilebilir şimdilik iki dedim bakalım nasıl olacak.
+    if(BigInt.zero<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(6)){
+      willGainAmountPrestigePoint =0;
+    }else if(BigInt.from(10).pow(6)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(10)){
+      willGainAmountPrestigePoint= pow(5, 2).toInt();
+    }else if(BigInt.from(10).pow(10)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(14)){
+      willGainAmountPrestigePoint= pow(5, 4).toInt();
+    }else if(BigInt.from(10).pow(14)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(18)){
+      willGainAmountPrestigePoint=pow(5, 6).toInt();
+    }else if(BigInt.from(10).pow(18)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(22)){
+      willGainAmountPrestigePoint= pow(5, 8).toInt();
+    }else if(BigInt.from(10).pow(22)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(26)){
+      willGainAmountPrestigePoint= pow(5, 10).toInt();
+    }
+
   }
   void prestigeFunction(List<EggObject> eggIndexList,UpgradeStats upgradeStats){
     currentPrestigePoint += willGainAmountPrestigePoint;
-    totalMoney = 0;
-    moneyPerSec = 0;
-    allTimeMoney=0;
+    totalMoney = BigInt.zero;
+    moneyPerSec = BigInt.zero;
+    allTimeMoney=BigInt.zero;
     willGainAmountPrestigePoint=0;
 
     resetUpgradeStats(upgradeStats);
@@ -72,18 +85,18 @@ void buy_decrease_spawn_time(UpgradeStats upgrade_stats_object,InGameStatsObject
     ingame_stats_object.totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
     upgrade_stats_object.spawn_time_counter -= 10.0;
     upgrade_stats_object.spawn_time -= 10.0;
-    upgrade_stats_object.spawn_time_decreaser_cost *= 2;
+    upgrade_stats_object.spawn_time_decreaser_cost *= BigInt.from(2);
     upgrade_stats_object.spawn_time_decreaser_amount += 1;
   }
 
 
 void resetUpgradeStats(UpgradeStats upgradeStats){
   upgradeStats.base_egg_level = 1;
-  upgradeStats.base_egg_level_increase_cost = 20000;
+  upgradeStats.base_egg_level_increase_cost = BigInt.from(2000);
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   upgradeStats.spawn_time_decreaser_amount = 1;
   upgradeStats.spawn_time = 400.0;
   upgradeStats.spawn_time_counter = 400.0;
-  upgradeStats.spawn_time_decreaser_cost = 1000;
+  upgradeStats.spawn_time_decreaser_cost = BigInt.from(1000);
 }

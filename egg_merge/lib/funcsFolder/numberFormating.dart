@@ -1,14 +1,20 @@
 import 'dart:math';
 
-String bigIntToString() {
-  int numara = 2114130043645000;
-  int numaraHolder=numara;
+
+
+
+String bigIntToString(BigInt numara) {
+
+  BigInt numaraHolder=numara;
+
   int basamak = 0;
+
   String numbersUnit = "";
   String result="none";
-  for (int n = 0; n < 50; n++) {if (numara > 0) {basamak++;}numara ~/= 10;}
-  numara=numaraHolder;
+  for (int n = 0; n < 50; n++) {if (numara > BigInt.from(0)) {basamak++;}numara ~/= BigInt.from(10);}
   
+  numara=numaraHolder;
+
   if(0<=basamak&&basamak<4){
     numbersUnit="";
   }else if(4<=basamak&&basamak<7){
@@ -43,16 +49,29 @@ String bigIntToString() {
   
   
   if(basamak>=4){
-    int birinciSayi=numara~/pow(10,(basamak-1));
-    int ikinciSayi=(numara%pow(10,(basamak-1)))~/pow(10,(basamak-2));
-    int ucuncuSayi=(numara%pow(10,(basamak-2)))~/pow(10,(basamak-3));
-    int dorduncuSayi=(numara%pow(10,(basamak-3)))~/pow(10,(basamak-4));
+    int birinciSayi = 0;
+
+    BigInt kopyNumara = numara;
+    for(int n=0;n<basamak-1;n++){
+      kopyNumara~/=BigInt.from(pow(10,(1)));
+    }
+    birinciSayi = kopyNumara.toInt();
+    kopyNumara=numara;
+
+
+
+
+    int ikinciSayi=((numara%BigInt.from(10).pow(basamak-1)~/BigInt.from(10).pow(basamak-2))).toInt();
+    int ucuncuSayi=((numara%BigInt.from(10).pow(basamak-2)~/BigInt.from(10).pow(basamak-3))).toInt();
+    int dorduncuSayi=((numara%BigInt.from(10).pow(basamak-3)~/BigInt.from(10).pow(basamak-4))).toInt();
+
+
     if(basamak%3==1){
-      result = "$birinciSayi.$ikinciSayi$ucuncuSayi$dorduncuSayi $numbersUnit";
+      result = "$birinciSayi.$ikinciSayi$ucuncuSayi$dorduncuSayi$numbersUnit";
     }else if(basamak%3==2){
-      result = "$birinciSayi$ikinciSayi.$ucuncuSayi$dorduncuSayi $numbersUnit";
+      result = "$birinciSayi$ikinciSayi.$ucuncuSayi$dorduncuSayi$numbersUnit";
     }else if(basamak%3==0){
-      result = "$birinciSayi$ikinciSayi$ucuncuSayi.$dorduncuSayi $numbersUnit";
+      result = "$birinciSayi$ikinciSayi$ucuncuSayi.$dorduncuSayi$numbersUnit";
     }
   }else{
     result="$numara";

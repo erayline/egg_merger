@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:egg_merge/funcsFolder/modeller.dart';
+import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class EggObjectModel extends ChangeNotifier {
       InGameStatsObject ingame_stats_object) {
     upgrade_stats_object.base_egg_level++;
     ingame_stats_object.totalMoney -=
-        upgrade_stats_object.base_egg_level_increase_cost.toInt();
+        upgrade_stats_object.base_egg_level_increase_cost;
     upgrade_stats_object.setNewBaseEggLevel();
 
     for (int n = 0; n < 20; n++) {
@@ -75,15 +76,14 @@ class EggObjectModel extends ChangeNotifier {
   }
 
   //BU IKISI PARA URETIMINDEN SORUMLU
-  num produceMoney(int index) {
-    num sonuc = pow(3, EggIndexList[index].level - 1) +
-        pow(3, EggIndexList[index].level - 1) *
-            (ingame_stats_object.currentPrestigePoint.toDouble() / 10);
+  BigInt produceMoney(int index) {
+    BigInt sonuc = BigInt.from(11).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)~/(BigInt.from(10));
+
     return sonuc;
   }
 
-  num calculateMoneyPerSec() {
-    num result = 0;
+  BigInt calculateMoneyPerSec() {
+    BigInt result = BigInt.zero;
     for (int n = 0; n < 20; n++) {
       if (EggIndexList[n].level > 0) {
         result += produceMoney(n);
@@ -190,7 +190,7 @@ class EggObjectModel extends ChangeNotifier {
                           height: 60,
                           color: Colors.transparent,
                           child: Text(
-                            produceMoney(thisObjectIndex).toStringAsFixed(0),
+                            bigIntToString(produceMoney(thisObjectIndex)),
                             style: const TextStyle(
                               color: Color.fromARGB(255, 72, 168, 75),
                               fontWeight: FontWeight.bold,

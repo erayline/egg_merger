@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:egg_merge/funcsFolder/modeller.dart';
+import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
             ),
             Text('Increase \nbase egg.'),
             SizedBox(
-              width: 100,
+              width: 105,
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
@@ -135,7 +136,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
                   child: Text(
-                      "${value.upgrade_stats_object.base_egg_level_increase_cost} \$")),
+                      "${bigIntToString(value.upgrade_stats_object.base_egg_level_increase_cost)} \$")),
             ),
           ],
         ),
@@ -188,7 +189,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
           ),
           Text(' Decrease \nspawn time.'),
           SizedBox(
-              width: 100,
+              width: 105,
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
@@ -206,7 +207,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
                   child: Text(
-                      "${value.upgrade_stats_object.spawn_time_decreaser_cost} \$")),
+                      "${bigIntToString(value.upgrade_stats_object.spawn_time_decreaser_cost)} \$")),
             ),
         ],
       ),
