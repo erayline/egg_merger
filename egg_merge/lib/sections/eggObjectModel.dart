@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:egg_merge/funcsFolder/forSaving.dart';
+import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -54,10 +54,6 @@ class EggObjectModel extends ChangeNotifier {
   //OYUN ICI DEGISKENLER
 
   late Map<String, Object> data = {};
-
-
-
-
 
   //oyunu kaydetme fonksiyonumuz
   void saveTheGame() async{
