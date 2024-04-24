@@ -166,29 +166,28 @@ class EggObjectModel extends ChangeNotifier {
             return EmptyPlaceHolderWidget();
           } else {
             return Container(
-              width: 55,
-              height: 55,
-              color: Colors.transparent,
+              decoration: BoxDecoration(color: Colors.transparent,),
+              width: 60,
+              height: 60,
               child: Draggable<int>(
                 data: thisObjectIndex,
                 childWhenDragging: EmptyPlaceHolderWidget(),
                 feedback: Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  width: 65,
-                  height: 65,
+                  width: 60,
+                  height: 60,
                   child: Image.asset(ImageRoutes[
                       value.EggIndexList[thisObjectIndex].level - 1]),
                 ),
                 child: Container(
-                  width: 55,
-                  height: 55,
+                  width: 60,
+                  height: 60,
                   child: Stack(
                     children: <Widget>[
                       Image.asset(ImageRoutes[
-                          value.EggIndexList[thisObjectIndex].level - 1]),
+                          value.EggIndexList[thisObjectIndex].level - 1],width: 60,height: 60,),
                       Container(
-                          width: 50,
-                          height: 50,
+                          width: 60,
+                          height: 60,
                           color: Colors.transparent,
                           child: Text(
                             produceMoney(thisObjectIndex).toStringAsFixed(0),
@@ -240,9 +239,9 @@ class EmptyPlaceHolderWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      width: 55,
-      height: 55,
-      color: Colors.black12,
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.0),color: Colors.black12),
     );
   }
 }
