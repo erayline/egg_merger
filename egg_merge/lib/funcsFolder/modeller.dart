@@ -29,8 +29,8 @@ class UpgradeStats {
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 1;
-  double spawn_time = 400.0;
-  double spawn_time_counter = 400.0;
+  double spawn_time = 40.0;
+  double spawn_time_counter = 40.0;
   BigInt spawn_time_decreaser_cost = BigInt.from(1000);
 }
 
@@ -83,8 +83,8 @@ List<String> ImageRoutes = [];
 
 void buy_decrease_spawn_time(UpgradeStats upgrade_stats_object,InGameStatsObject ingame_stats_object) {
     ingame_stats_object.totalMoney -= upgrade_stats_object.spawn_time_decreaser_cost;
-    upgrade_stats_object.spawn_time_counter -= 10.0;
-    upgrade_stats_object.spawn_time -= 10.0;
+    upgrade_stats_object.spawn_time_counter -= 1.0;
+    upgrade_stats_object.spawn_time -= 1.0;
     upgrade_stats_object.spawn_time_decreaser_cost *= BigInt.from(2);
     upgrade_stats_object.spawn_time_decreaser_amount += 1;
   }
@@ -96,7 +96,7 @@ void resetUpgradeStats(UpgradeStats upgradeStats){
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   upgradeStats.spawn_time_decreaser_amount = 1;
-  upgradeStats.spawn_time = 400.0;
-  upgradeStats.spawn_time_counter = 400.0;
+  upgradeStats.spawn_time = 40.0;
+  upgradeStats.spawn_time_counter = 40.0;
   upgradeStats.spawn_time_decreaser_cost = BigInt.from(1000);
 }

@@ -67,7 +67,7 @@ class EggObjectModel extends ChangeNotifier {
     final SharedPreferences storage = await SharedPreferences.getInstance();
 
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
-    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 400.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 40.0;
 
     var dataString = storage.getString("data");
     data = dataString != null
@@ -77,7 +77,7 @@ class EggObjectModel extends ChangeNotifier {
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   BigInt produceMoney(int index) {
-    BigInt sonuc = BigInt.from(11).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)~/(BigInt.from(10));
+    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)~/(BigInt.from(10));
 
     return sonuc;
   }
@@ -102,7 +102,7 @@ class EggObjectModel extends ChangeNotifier {
       EggIndexList.add(EggObject());
     }
 
-    for (int n = 1; n <= 18; n++) {
+    for (int n = 1; n <= 27; n++) {
       ImageRoutes.add("ourAssets/images/eggs/${n}.png");
     }
 
@@ -126,7 +126,7 @@ class EggObjectModel extends ChangeNotifier {
       notifyListeners();
     });
     //SPAWNER COUNTER ANİMATİON
-    Timer.periodic(Duration(milliseconds: 10), (timer) {
+    Timer.periodic(Duration(milliseconds: 100), (timer) {
       bool willSpawnKontrol = false;
       for (int n = 0; n < 20; n++) {
         //dolu mu boş mu layler ona göre
@@ -139,6 +139,7 @@ class EggObjectModel extends ChangeNotifier {
         spawnerPercent = 1.0 -
             upgrade_stats_object.spawn_time_counter /
                 upgrade_stats_object.spawn_time;
+
         upgrade_stats_object.spawn_time_counter -=
             1; // bu da spawner değişkenlerine bağlı
         if (upgrade_stats_object.spawn_time_counter <= 0) {

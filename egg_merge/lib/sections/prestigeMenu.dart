@@ -78,7 +78,9 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  value.ingame_stats_object.prestigeFunction(value.EggIndexList,value.upgrade_stats_object);
+                  if(value.ingame_stats_object.willGainAmountPrestigePoint>0){
+                    value.ingame_stats_object.prestigeFunction(value.EggIndexList,value.upgrade_stats_object);
+                  }
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

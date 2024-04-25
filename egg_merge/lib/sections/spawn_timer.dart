@@ -3,6 +3,7 @@ import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -30,16 +31,22 @@ class _spawnTimerState extends State<spawnTimer> {
       width: MediaQuery.of(context).size.width,
       color: Color.fromARGB(255, 255, 205, 41),
       child: Row(
+        mainAxisAlignment:MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Consumer<EggObjectModel>(builder: (context, value, child) {
-                return LinearPercentIndicator(
-                  // animation: true,
-                  // animateFromLastPercent: true,
-                  progressColor: Color.fromARGB(255, 20, 174, 92),
-                  width: 320,
-                  lineHeight: 30,
-                  percent: value.spawnerPercent,
-                );
+
+            return 
+                // CircularPercentIndicator(radius: 20,fillColor: Colors.black,progressColor: Colors.blue,percent: value.spawnerPercent,backgroundColor: Colors.black,);
+
+            Text('${value.upgrade_stats_object.spawn_time_counter}/${value.upgrade_stats_object.spawn_time}');
+                // return LinearPercentIndicator(
+                //   animation: true,
+                //   animateFromLastPercent: true,
+                //   progressColor: Color.fromARGB(255, 20, 174, 92),
+                //   width: 320,
+                //   lineHeight: 30,
+                //   percent: value.spawnerPercent,
+                // );
               },
             ),
 
