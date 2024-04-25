@@ -54,12 +54,34 @@ class EggObjectModel extends ChangeNotifier {
   }
   //OYUN ICI DEGISKENLER
 
+
+
+
   late Map<String, Object> data = {};
 
   //oyunu kaydetme fonksiyonumuz
   void saveTheGame() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
     storage.setInt("base_egg_level", upgrade_stats_object.base_egg_level);
+    // storage.setString("base_egg_level_increase_cost", upgrade_stats_object.base_egg_level_increase_cost); // burası string to biginte dönüşecek.
+    storage.setDouble("spawn_time", upgrade_stats_object.spawn_time);
+    storage.setDouble("spawn_time_counter", upgrade_stats_object.spawn_time_counter);
+    storage.setInt("spawn_time_decreaser_amount",upgrade_stats_object.spawn_time_decreaser_amount);
+    // storage.setString("spawn_time_decreaser_cost", upgrade_stats_object.spawn_time_decreaser_cost); // burası string to biginte dönüşecek.
+
+    //alltimemoney
+    //totalMoney
+    //moneypersec
+    storage.setInt("current_prestige_amount",ingame_stats_object.currentPrestigePoint);
+    storage.setInt("allTimeEggLevel", ingame_stats_object.allTimeEggLevel);
+    storage.setInt("willGainAmountPrestigePoint", ingame_stats_object.willGainAmountPrestigePoint);
+    
+    String eggLevelsString="";
+    for(int n=0;n<20;n++){
+      eggLevelsString+=EggIndexList[n].level.toString() + "."; // from 0 to 19 
+    }
+    storage.setString("EggIndexListString", eggLevelsString);
+
   }
 
   //oyunu yükleme fonksiyonumuz
@@ -68,12 +90,28 @@ class EggObjectModel extends ChangeNotifier {
 
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
     upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 40.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time_counter") ?? 40.0;
+    upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
+    ingame_stats_object.currentPrestigePoint= storage.getInt("current_prestige_amount") ?? 0;
+    ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
+    ingame_stats_object.willGainAmountPrestigePoint= storage.getInt("willGainAmountPrestigePoint") ?? 0;
+
+
+    String eggIndexListString0=storage.getString("EggIndexListString")??"0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.";
+    List<String> eggIndexListString1=eggIndexListString0.split(".");
+    for(int n=0;n<20;n++){
+      EggIndexList[n].level = int.parse(eggIndexListString1[n]);
+    }
+
 
     var dataString = storage.getString("data");
     data = dataString != null
         ? Map<String, Object>.from(jsonDecode(dataString))
         : {};
   }
+
+
+
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   BigInt produceMoney(int index) {
