@@ -70,7 +70,7 @@ class EggObjectModel extends ChangeNotifier {
     // storage.setString("spawn_time_decreaser_cost", upgrade_stats_object.spawn_time_decreaser_cost); // burası string to biginte dönüşecek.
 
     //alltimemoney
-    //totalMoney
+    storage.setString("totalMoney", ingame_stats_object.totalMoney.toString());
     //moneypersec
     storage.setInt("current_prestige_amount",ingame_stats_object.currentPrestigePoint);
     storage.setInt("allTimeEggLevel", ingame_stats_object.allTimeEggLevel);
@@ -95,7 +95,7 @@ class EggObjectModel extends ChangeNotifier {
     ingame_stats_object.currentPrestigePoint= storage.getInt("current_prestige_amount") ?? 0;
     ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
     ingame_stats_object.willGainAmountPrestigePoint= storage.getInt("willGainAmountPrestigePoint") ?? 0;
-
+    ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
 
     String eggIndexListString0=storage.getString("EggIndexListString")??"0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.";
     List<String> eggIndexListString1=eggIndexListString0.split(".");
