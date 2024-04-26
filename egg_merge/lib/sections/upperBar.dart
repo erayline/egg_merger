@@ -77,6 +77,8 @@ class upperWingBar extends StatefulWidget {
 class _upperWingBarState extends State<upperWingBar> {
   @override
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>( builder: (context, value, child) {
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Container(
@@ -85,11 +87,12 @@ class _upperWingBarState extends State<upperWingBar> {
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
           Image.asset('ourAssets/images/chicken-wings.png',width: 30,),
-          Expanded(child: Center(child: Text("13"))),
+          Expanded(child: Center(child: Text("${value.ingame_stats_object.goldenWing}"))),
           SizedBox(width: 30,),
         ],),
       ),
     );
+    },);
   }
 }
 

@@ -1,6 +1,5 @@
 import 'package:egg_merge/sections/bottom_bar.dart';
 import 'package:egg_merge/sections/game_section.dart';
-import 'package:egg_merge/sections/level_bar.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:egg_merge/sections/spawn_timer.dart';
 import 'package:egg_merge/sections/upperBar.dart';
@@ -75,7 +74,6 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               upperBar(),
-              levelBar(),
               inGame(),
               spawnTimer(),
               bottomBar(),

@@ -90,8 +90,8 @@ class EggObjectModel extends ChangeNotifier {
 
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
     upgrade_stats_object.base_egg_level_increase_cost = BigInt.parse(storage.getString("base_egg_level_increase_cost").toString());
-    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 40.0;
-    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 40.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 4.0;
+    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 4.0;
     upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
     upgrade_stats_object.spawn_time_decreaser_cost = BigInt.parse(storage.getString("spawn_time_decreaser_cost").toString());
 
@@ -182,7 +182,7 @@ class EggObjectModel extends ChangeNotifier {
                 upgrade_stats_object.spawn_time;
 
         upgrade_stats_object.spawn_time_counter -=
-            1; // bu da spawner değişkenlerine bağlı
+            0.1; // bu da spawner değişkenlerine bağlı
         if (upgrade_stats_object.spawn_time_counter <= 0) {
           for (int n = 0; n < 20; n++) {
             if (EggIndexList[n].level == 0) {
@@ -256,6 +256,8 @@ class EggObjectModel extends ChangeNotifier {
         },
         // index bulunduğumuz widgetin listedeki konumu gelen bilgi ise karşı tarafın bulunduğu konum
         onAcceptWithDetails: (DragTargetDetails<Object?> details) {
+          ingame_stats_object.levelUpController();
+          
           int draggedObjectData = details.data as int;
           if (value.EggIndexList[draggedObjectData].level ==
                   value.EggIndexList[thisObjectIndex].level &&
