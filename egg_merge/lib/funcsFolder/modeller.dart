@@ -37,6 +37,14 @@ class UpgradeStats {
 
 class InGameStatsObject{
 
+  void resetMergeLevel(){
+    merge_level_current=1;
+    merge_level_required = 5;
+    merge_level_merged = 0;
+    merge_level_up_reward = 5;
+    merge_level_percent = 0.0;
+  }
+
   int merge_level_current=1;
   int merge_level_required = 5;
   int merge_level_merged = 0;
@@ -101,6 +109,7 @@ class InGameStatsObject{
     willGainAmountPrestigePoint=0;
     allTimeEggLevel=1;
     resetUpgradeStats(upgradeStats);
+    resetMergeLevel();
 
     for(int n=0;n<20;n++){
       eggIndexList[n].level = 0;

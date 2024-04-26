@@ -105,13 +105,18 @@ class adBox extends StatefulWidget {
 
 class _adBoxState extends State<adBox> {
   @override
+  
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>( builder: (context, value, child) {
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Container(
         height: 40,width: 40,
         color: Color.fromARGB(255, 20, 174, 92),
+        child: Center(child: Text(value.ingame_stats_object.merge_level_current.toString(),style: TextStyle(fontWeight: FontWeight.w500,fontSize: 25.0,color: Colors.amber,)),
       ),
-    );
+    ));
+    },);
   }
 }

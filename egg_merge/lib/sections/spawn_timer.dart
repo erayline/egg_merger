@@ -53,6 +53,8 @@ class _spawnTimerState extends State<spawnTimer> {
               LinearPercentIndicator(
                 animation: true,
                 animateFromLastPercent: true,
+                center: Text("${value.ingame_stats_object.merge_level_merged}/${value.ingame_stats_object.merge_level_required}"),
+                
                 progressColor: Color.fromARGB(255, 20, 174, 92),
                 width: 150,
                 lineHeight: 30,

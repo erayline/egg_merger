@@ -267,12 +267,12 @@ class EggObjectModel extends ChangeNotifier {
         },
         // index bulunduğumuz widgetin listedeki konumu gelen bilgi ise karşı tarafın bulunduğu konum
         onAcceptWithDetails: (DragTargetDetails<Object?> details) {
-          ingame_stats_object.levelUpController();
           
           int draggedObjectData = details.data as int;
           if (value.EggIndexList[draggedObjectData].level ==
                   value.EggIndexList[thisObjectIndex].level &&
               draggedObjectData != thisObjectIndex) {
+          ingame_stats_object.levelUpController();
             value.EggIndexList[thisObjectIndex].level++;
             value.EggIndexList[draggedObjectData].level = 0;
           } else if (value.EggIndexList[thisObjectIndex].level == 0 &&
