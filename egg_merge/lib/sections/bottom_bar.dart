@@ -21,10 +21,10 @@ class _bottomBarState extends State<bottomBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-            IconButton(
-            onPressed: (){},
-            icon: Icon(Icons.settings_applications,size: 50,),
-            highlightColor: Colors.transparent,),
+            // IconButton(
+            // onPressed: (){},
+            // icon: Icon(Icons.settings_applications,size: 50,),
+            // highlightColor: Colors.transparent,),
 
             IconButton(
             onPressed: (){

@@ -22,6 +22,7 @@ class _UpgradeMenuState extends State<UpgradeMenu> {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
+          width: 1000,
           height: 500,
           decoration: BoxDecoration(
             border: Border.all(width:3),
@@ -92,24 +93,22 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
         height: 70,
         child: Row(
           //içerik soldan sağa
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               // ikon ve ilerleme
-              width: 100,
+              width: 80,
               height: 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                   color: Colors.black),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Image.asset(
                     "ourAssets/images/upgradeMenuIcons/egg.png",
-                    width: 40,
-                    height: 40,
-                  ),
-                  SizedBox(
-                    width: 10,
+                    width: 30,
+                    height: 30,
                   ),
                   Text(
                     '${value.upgrade_stats_object.base_egg_level}/30',
@@ -162,11 +161,11 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
       height: 70,
       child: Row(
         //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 100,
+              width: 80,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -174,8 +173,8 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
               children: <Widget>[
                 Image.asset(
                   "ourAssets/images/upgradeMenuIcons/chicken.png",
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 ),
                 SizedBox(
                   width: 10,
@@ -232,11 +231,11 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
       height: 70,
       child: Row(
         //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 100,
+            width: 80,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -244,8 +243,8 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
               children: <Widget>[
                 Image.asset(
                   "ourAssets/images/upgradeMenuIcons/eggs.png",
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 ),
                 SizedBox(
                   width: 10,
@@ -284,11 +283,11 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
       height: 70,
       child: Row(
         //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 100,
+            width: 80,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -296,8 +295,8 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
               children: <Widget>[
                 Image.asset(
                   "ourAssets/images/chicken-wings.png",
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 ),
                 SizedBox(
                   width: 10,
@@ -337,11 +336,11 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
       height: 70,
       child: Row(
         //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 100,
+            width: 80,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -349,8 +348,8 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
               children: <Widget>[
                 Image.asset(
                   "ourAssets/images/upgradeMenuIcons/barn.png",
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 ),
                 SizedBox(
                   width: 10,
@@ -391,11 +390,11 @@ class _MoreOfflineEarningRateWidgetState
       height: 70,
       child: Row(
         //içerik soldan sağa
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 100,
+            width: 80,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -403,8 +402,8 @@ class _MoreOfflineEarningRateWidgetState
               children: <Widget>[
                 Image.asset(
                   "ourAssets/images/upgradeMenuIcons/sleep.png",
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 ),
                 SizedBox(
                   width: 10,
