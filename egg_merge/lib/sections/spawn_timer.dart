@@ -27,33 +27,36 @@ class _spawnTimerState extends State<spawnTimer> {
           width: MediaQuery.of(context).size.width,
           color: Color.fromARGB(255, 255, 205, 41),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  CircularPercentIndicator(
-                    radius: 17,
-                    fillColor: Colors.transparent,
-                    progressColor: Colors.blue,
-                    percent: value.spawnerPercent,
-                  ),
-                  Text(
-                      '${value.upgrade_stats_object.spawn_time_counter.toStringAsFixed(1)}/${value.upgrade_stats_object.spawn_time.toStringAsFixed(1)}'),
-                  Image.asset(
-                    ImageRoutes[value.upgrade_stats_object.base_egg_level - 1]
-                        .toString(),
-                    width: 50,
-                  ),
-                ],
+              Container(
+                width: 180,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Image.asset(
+                      ImageRoutes[value.upgrade_stats_object.base_egg_level - 1]
+                          .toString(),
+                      width: 50,
+                    ),
+                    CircularPercentIndicator(
+                      radius: 17,
+                      fillColor: Colors.transparent,
+                      progressColor: Colors.blue,
+                      percent: value.spawnerPercent,
+                    ),
+                    Text(
+                        '${value.upgrade_stats_object.spawn_time_counter.toStringAsFixed(1)}/${value.upgrade_stats_object.spawn_time.toStringAsFixed(1)}'),
+                  ],
+                ),
               ),
               LinearPercentIndicator(
                 animation: true,
                 animateFromLastPercent: true,
                 progressColor: Color.fromARGB(255, 20, 174, 92),
-                width: 130,
+                width: 150,
                 lineHeight: 30,
-                percent: value.spawnerPercent,
+                percent: value.ingame_stats_object.merge_level_percent,
               ), //buraya level
             ],
           ),

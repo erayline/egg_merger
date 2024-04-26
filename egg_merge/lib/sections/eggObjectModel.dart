@@ -68,6 +68,12 @@ class EggObjectModel extends ChangeNotifier {
     storage.setDouble("spawn_time_counter", upgrade_stats_object.spawn_time_counter);
     storage.setInt("spawn_time_decreaser_amount",upgrade_stats_object.spawn_time_decreaser_amount);
     storage.setString("spawn_time_decreaser_cost", upgrade_stats_object.spawn_time_decreaser_cost.toString());
+
+    storage.setInt("merge_level_current",ingame_stats_object.merge_level_current);
+    storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
+    storage.setInt("merge_level_merged",ingame_stats_object.merge_level_merged);
+    storage.setInt("merge_level_up_reward",ingame_stats_object.merge_level_up_reward);
+
     storage.setInt("current_prestige_amount",ingame_stats_object.currentPrestigePoint);
     storage.setInt("allTimeEggLevel", ingame_stats_object.allTimeEggLevel);
     storage.setInt("willGainAmountPrestigePoint", ingame_stats_object.willGainAmountPrestigePoint);
@@ -94,6 +100,12 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 4.0;
     upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
     upgrade_stats_object.spawn_time_decreaser_cost = BigInt.parse(storage.getString("spawn_time_decreaser_cost").toString());
+
+    ingame_stats_object.merge_level_current=storage.getInt("merge_level_current") ?? 1;
+    ingame_stats_object.merge_level_required=storage.getInt("merge_level_required") ?? 5;
+    ingame_stats_object.merge_level_merged=storage.getInt("merge_level_merged") ?? 0;
+    ingame_stats_object.merge_level_up_reward=storage.getInt("merge_level_up_reward") ?? 5;
+
 
     ingame_stats_object.currentPrestigePoint= storage.getInt("current_prestige_amount") ?? 0;
     ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
@@ -181,8 +193,8 @@ class EggObjectModel extends ChangeNotifier {
             upgrade_stats_object.spawn_time_counter /
                 upgrade_stats_object.spawn_time;
 
-        upgrade_stats_object.spawn_time_counter -=
-            0.1; // bu da spawner değişkenlerine bağlı
+        upgrade_stats_object.spawn_time_counter-=0.1;
+        if(upgrade_stats_object.spawn_time_counter<0){upgrade_stats_object.spawn_time_counter=0.0;}; // bu da spawner değişkenlerine bağlı
         if (upgrade_stats_object.spawn_time_counter <= 0) {
           for (int n = 0; n < 20; n++) {
             if (EggIndexList[n].level == 0) {
@@ -234,15 +246,14 @@ class EggObjectModel extends ChangeNotifier {
                           child: Text(
                             bigIntToString(produceMoney(thisObjectIndex)),
                             style: const TextStyle(
-                              color: Color.fromARGB(255, 72, 168, 75),
+                              color: Color.fromARGB(255, 255, 255, 255),
                               fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(
                                   offset: Offset(
                                       0.0, 0.0), // Gölgeyi sağa ve aşağı kaydır
                                   blurRadius: 6.0, // Gölge bulanıklığı
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.472), // Gölge rengi
+                                  color: Color.fromRGBO(0, 0, 0, 0.827), // Gölge rengi
                                 ),
                               ],
                             ),

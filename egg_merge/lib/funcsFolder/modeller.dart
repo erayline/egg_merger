@@ -51,16 +51,18 @@ class InGameStatsObject{
   void levelUp(){
     merge_level_current+=1;
     merge_level_merged = 0;
-    merge_level_required = merge_level_required + 7*merge_level_current;
+    merge_level_required = merge_level_required + 1*merge_level_current;
     goldenWing+=merge_level_up_reward;
-    merge_level_up_reward = merge_level_up_reward + 10*merge_level_current;
+    merge_level_up_reward = 7 * merge_level_current;
   }
   double merge_level_percent=0.0;
   void levelUpController(){
-    merge_level_percent += merge_level_current.toDouble()/merge_level_required.toDouble();
     merge_level_merged+=1;
+    merge_level_percent = merge_level_merged.toDouble()/merge_level_required.toDouble();
+    if(merge_level_percent>1.0){merge_level_percent=1.0;}
     if(willLevelUp()) {
       levelUp();
+      merge_level_percent=0.0;
     }
   }
 
