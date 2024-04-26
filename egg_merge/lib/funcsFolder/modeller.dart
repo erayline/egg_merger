@@ -49,7 +49,7 @@ class InGameStatsObject{
 
   void calculatePrestigePoint(){
     if(BigInt.zero<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(6)){
-      willGainAmountPrestigePoint =0;
+      willGainAmountPrestigePoint =1;
     }else if(BigInt.from(10).pow(6)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(10)){
       willGainAmountPrestigePoint= pow(5, 2).toInt();
     }else if(BigInt.from(10).pow(10)<=allTimeMoney && allTimeMoney<= BigInt.from(10).pow(14)){
@@ -69,7 +69,7 @@ class InGameStatsObject{
     moneyPerSec = BigInt.zero;
     allTimeMoney=BigInt.zero;
     willGainAmountPrestigePoint=0;
-
+    allTimeEggLevel=1;
     resetUpgradeStats(upgradeStats);
 
     for(int n=0;n<20;n++){

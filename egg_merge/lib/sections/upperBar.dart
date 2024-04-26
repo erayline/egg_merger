@@ -44,9 +44,9 @@ class upperMoneyBarState extends State<upperMoneyBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(6, 7, 0, 7),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Container(
-        height: 40,width: 180,
+        height: 40,width: MediaQuery.of(context).size.width*4/12,
         color: Color.fromARGB(255, 20, 174, 92),
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
@@ -59,7 +59,7 @@ class upperMoneyBarState extends State<upperMoneyBar> {
               ],
             ));
           },),
-          SizedBox(width: 36,),
+          SizedBox(width: 30,),
         ],),
       ),
     );
@@ -78,15 +78,15 @@ class _upperWingBarState extends State<upperWingBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(6, 7, 0, 7),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Container(
-        height: 40,width: 140,
+        height: 40,width: MediaQuery.of(context).size.width*4/12,
         color: Color.fromARGB(255, 20, 174, 92),
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
           Image.asset('ourAssets/images/chicken-wings.png',width: 30,),
           Expanded(child: Center(child: Text("13"))),
-          SizedBox(width: 36,),
+          SizedBox(width: 30,),
         ],),
       ),
     );
@@ -104,7 +104,7 @@ class _adBoxState extends State<adBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(6, 7, 7, 7),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Container(
         height: 40,width: 40,
         color: Color.fromARGB(255, 20, 174, 92),
