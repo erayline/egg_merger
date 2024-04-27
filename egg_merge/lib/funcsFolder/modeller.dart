@@ -25,8 +25,8 @@ class UpgradeStats {
 
   //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 0;
-  double spawn_time = 5.0;
-  double spawn_time_counter = 5.0;
+  double spawn_time = 4.5;
+  double spawn_time_counter = 4.5;
   BigInt spawn_time_decreaser_cost = BigInt.from(1000);
   void setNewSpawnTimerDecreaserCost(){
     spawn_time_decreaser_cost *= BigInt.from(2);
@@ -116,16 +116,16 @@ class InGameStatsObject {
       willGainAmountPrestigePoint = pow(5, 2).toInt();
     } else if (BigInt.from(10).pow(10) <= allTimeMoney &&
         allTimeMoney <= BigInt.from(10).pow(14)) {
-      willGainAmountPrestigePoint = pow(5, 3).toInt();
+      willGainAmountPrestigePoint = pow(5, 3).toInt()*2;
     } else if (BigInt.from(10).pow(14) <= allTimeMoney &&
         allTimeMoney <= BigInt.from(10).pow(18)) {
-      willGainAmountPrestigePoint = pow(5, 4).toInt();
+      willGainAmountPrestigePoint = pow(5, 4).toInt()*3;
     } else if (BigInt.from(10).pow(18) <= allTimeMoney &&
         allTimeMoney <= BigInt.from(10).pow(22)) {
-      willGainAmountPrestigePoint = pow(5, 5).toInt();
+      willGainAmountPrestigePoint = pow(5, 5).toInt()*4;
     } else if (BigInt.from(10).pow(22) <= allTimeMoney &&
         allTimeMoney <= BigInt.from(10).pow(26)) {
-      willGainAmountPrestigePoint = pow(5, 6).toInt();
+      willGainAmountPrestigePoint = pow(5, 6).toInt()*5;
     }
   }
 

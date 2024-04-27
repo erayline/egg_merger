@@ -105,8 +105,8 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.double_egg_increaser_cost = BigInt.parse(storage.getString("double_egg_cost").toString());
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
     upgrade_stats_object.base_egg_level_increase_cost = BigInt.parse(storage.getString("base_egg_level_increase_cost").toString());
-    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 5.0;
-    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 5.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? UpgradeStats().spawn_time;
+    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? UpgradeStats().spawn_time_counter;
     upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
     upgrade_stats_object.spawn_time_decreaser_cost = BigInt.parse(storage.getString("spawn_time_decreaser_cost").toString());
 
@@ -255,8 +255,8 @@ class EggObjectModel extends ChangeNotifier {
                                 Shadow(
                                   offset: Offset(
                                       0.0, 0.0), // Gölgeyi sağa ve aşağı kaydır
-                                  blurRadius: 6.0, // Gölge bulanıklığı
-                                  color: Color.fromRGBO(0, 0, 0, 0.827), // Gölge rengi
+                                  blurRadius: 14.0, // Gölge bulanıklığı
+                                  color: Color.fromRGBO(124, 0, 0, 0.824), // Gölge rengi
                                 ),
                               ],
                             ),
