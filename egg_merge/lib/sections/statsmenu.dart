@@ -26,7 +26,7 @@ class _StatsMenuState extends State<StatsMenu> {
                   mainAxisSpacing: 10.0, // Satırlar arası boşluk
                   crossAxisSpacing: 10.0, // Sütunlar arası boşluk
                 ),
-                itemCount: 27,
+                itemCount: 46,
                 itemBuilder: (context, index) {
                   return Center(
                       child: Padding(

@@ -7,6 +7,7 @@ import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -62,13 +63,16 @@ class EggObjectModel extends ChangeNotifier {
   //oyunu kaydetme fonksiyonumuz
   void saveTheGame() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
+    //UPGRADE STATS
     storage.setInt("base_egg_level", upgrade_stats_object.base_egg_level);
     storage.setString("base_egg_level_increase_cost",upgrade_stats_object.base_egg_level_increase_cost.toString());
     storage.setDouble("spawn_time", upgrade_stats_object.spawn_time);
     storage.setDouble("spawn_time_counter", upgrade_stats_object.spawn_time_counter);
     storage.setInt("spawn_time_decreaser_amount",upgrade_stats_object.spawn_time_decreaser_amount);
     storage.setString("spawn_time_decreaser_cost", upgrade_stats_object.spawn_time_decreaser_cost.toString());
-
+    storage.setString("double_egg_cost", upgrade_stats_object.double_egg_increaser_cost.toString());
+    storage.setInt("double_egg_amount",upgrade_stats_object.double_egg_increaser_amount);
+    //INGAME STATS
     storage.setInt("merge_level_current",ingame_stats_object.merge_level_current);
     storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
     storage.setInt("merge_level_merged",ingame_stats_object.merge_level_merged);
@@ -80,8 +84,10 @@ class EggObjectModel extends ChangeNotifier {
 
     storage.setString("totalMoney", ingame_stats_object.totalMoney.toString());
     storage.setString("allTimeMoney", ingame_stats_object.allTimeMoney.toString());
+    storage.setInt("golden_wing", ingame_stats_object.goldenWing);
 
-    
+    storage.setDouble("merge_level_up_percent", ingame_stats_object.merge_level_percent);
+
     String eggLevelsString="";
     for(int n=0;n<20;n++){
       eggLevelsString+=EggIndexList[n].level.toString() + "."; // from 0 to 19 
@@ -94,23 +100,28 @@ class EggObjectModel extends ChangeNotifier {
   void loadTheGame() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
 
+    //UPGRADE STATS
+    upgrade_stats_object.double_egg_increaser_amount = storage.getInt("double_egg_amount")??0;
+    upgrade_stats_object.double_egg_increaser_cost = BigInt.parse(storage.getString("double_egg_cost").toString());
     upgrade_stats_object.base_egg_level = storage.getInt("base_egg_level") ?? 1;
     upgrade_stats_object.base_egg_level_increase_cost = BigInt.parse(storage.getString("base_egg_level_increase_cost").toString());
-    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 4.0;
-    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 4.0;
+    upgrade_stats_object.spawn_time = storage.getDouble("spawn_time") ?? 5.0;
+    upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? 5.0;
     upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
     upgrade_stats_object.spawn_time_decreaser_cost = BigInt.parse(storage.getString("spawn_time_decreaser_cost").toString());
 
+    //Ingame stats
     ingame_stats_object.merge_level_current=storage.getInt("merge_level_current") ?? 1;
     ingame_stats_object.merge_level_required=storage.getInt("merge_level_required") ?? 5;
     ingame_stats_object.merge_level_merged=storage.getInt("merge_level_merged") ?? 0;
     ingame_stats_object.merge_level_up_reward=storage.getInt("merge_level_up_reward") ?? 5;
-
+    ingame_stats_object.merge_level_percent = storage.getDouble("merge_level_up_percent")??0.0;
 
     ingame_stats_object.currentPrestigePoint= storage.getInt("current_prestige_amount") ?? 0;
     ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
     ingame_stats_object.willGainAmountPrestigePoint= storage.getInt("willGainAmountPrestigePoint") ?? 0;
 
+    ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
     ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
     ingame_stats_object.allTimeMoney = BigInt.parse(storage.getString("allTimeMoney").toString());
 
@@ -155,7 +166,7 @@ class EggObjectModel extends ChangeNotifier {
       EggIndexList.add(EggObject());
     }
 
-    for (int n = 1; n <= 27; n++) {
+    for (int n = 1; n <= 46; n++) {
       ImageRoutes.add("ourAssets/images/eggs/${n}.png");
     }
 
@@ -164,6 +175,7 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.moneyPerSec = calculateMoneyPerSec();
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
+      
       //prestige calculation
       ingame_stats_object.calculatePrestigePoint();
 
@@ -180,28 +192,19 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 100), (timer) {
-      bool willSpawnKontrol = false;
-      for (int n = 0; n < 20; n++) {
-        //dolu mu boş mu layler ona göre
-        if (EggIndexList[n].level == 0) {
-          willSpawnKontrol = true;
-          break;
-        }
-      }
-      if (willSpawnKontrol) {
-        spawnerPercent = 1.0 -
-            upgrade_stats_object.spawn_time_counter /
-                upgrade_stats_object.spawn_time;
 
+      if (isThereEmptySpace(EggIndexList)) {
+        spawnerPercent = 1.0 - double.parse((upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time).toStringAsFixed(2));
         upgrade_stats_object.spawn_time_counter-=0.1;
         if(upgrade_stats_object.spawn_time_counter<0){upgrade_stats_object.spawn_time_counter=0.0;}; // bu da spawner değişkenlerine bağlı
+
         if (upgrade_stats_object.spawn_time_counter <= 0) {
-          for (int n = 0; n < 20; n++) {
-            if (EggIndexList[n].level == 0) {
-              EggIndexList[n].level += upgrade_stats_object.base_egg_level;
-              break;
-            }
+          spawnOneEgg(upgrade_stats_object, EggIndexList);
+          //spawn ikinciyi.
+          if(willItHappen(upgrade_stats_object.double_egg_increaser_amount)){
+            spawnOneEgg(upgrade_stats_object, EggIndexList);
           }
+
           upgrade_stats_object.spawn_time_counter =
               upgrade_stats_object.spawn_time;
         }
@@ -267,18 +270,19 @@ class EggObjectModel extends ChangeNotifier {
         },
         // index bulunduğumuz widgetin listedeki konumu gelen bilgi ise karşı tarafın bulunduğu konum
         onAcceptWithDetails: (DragTargetDetails<Object?> details) {
-          
           int draggedObjectData = details.data as int;
-          if (value.EggIndexList[draggedObjectData].level ==
-                  value.EggIndexList[thisObjectIndex].level &&
-              draggedObjectData != thisObjectIndex) {
-          ingame_stats_object.levelUpController();
+
+          //WİLL MERGE
+          if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level 
+            && draggedObjectData != thisObjectIndex) {
+            ingame_stats_object.levelUpController();
+            wingAtMerge(willItHappen(value.upgrade_stats_object.wing_at_merge_amount), value.ingame_stats_object);
             value.EggIndexList[thisObjectIndex].level++;
             value.EggIndexList[draggedObjectData].level = 0;
-          } else if (value.EggIndexList[thisObjectIndex].level == 0 &&
-              value.EggIndexList[draggedObjectData].level != 0) {
-            value.EggIndexList[thisObjectIndex].level =
-                value.EggIndexList[draggedObjectData].level;
+          } 
+          // WİLL CHANGE POSİTİON
+          else if (value.EggIndexList[thisObjectIndex].level == 0 && value.EggIndexList[draggedObjectData].level != 0) {
+            value.EggIndexList[thisObjectIndex].level = value.EggIndexList[draggedObjectData].level;
             value.EggIndexList[draggedObjectData].level = 0;
           }
           value.notifyListeners();

@@ -69,7 +69,7 @@ class _UpgradeMenuButtonState extends State<UpgradeMenuButton> {
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0)),
               )),
-          child: Text("${widget.title} \$")),
+          child: Text("${widget.title}")),
     );
   }
 }
@@ -97,7 +97,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
           children: <Widget>[
             Container(
               // ikon ve ilerleme
-              width: 80,
+              width: 90,
               height: 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
@@ -117,13 +117,13 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
                 ],
               ),
             ),
-            Text('Increase \nbase egg.'),
+            Text('+ Base\nEgg',textAlign: TextAlign.center,),
             SizedBox(
-              width: 105,
+              width: 115,
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.base_egg_level_increase_cost){
+                    if(canIBuy(value.ingame_stats_object.totalMoney, value.upgrade_stats_object.base_egg_level_increase_cost)){
                       value.increaseBaseEgg(value.upgrade_stats_object,value.ingame_stats_object);
                     }
                   },
@@ -165,7 +165,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-              width: 80,
+              width: 90,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -186,13 +186,13 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
               ],
             ),
           ),
-          Text(' Decrease \nspawn time.'),
+          Text('- Spawn\nTime',textAlign: TextAlign.center,),
           SizedBox(
-              width: 105,
+              width: 115,
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-                    if(value.ingame_stats_object.totalMoney >= value.upgrade_stats_object.spawn_time_decreaser_cost){
+                    if(canIBuy(value.ingame_stats_object.totalMoney,value.upgrade_stats_object.spawn_time_decreaser_cost)){
                       if(value.upgrade_stats_object.spawn_time_decreaser_amount<30){
                         buy_decrease_spawn_time(value.upgrade_stats_object,value.ingame_stats_object);
                       }
@@ -226,6 +226,8 @@ class ChanceToSpawn2EggWidget extends StatefulWidget {
 class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
   @override
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
+
     return Container(
       decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
@@ -235,7 +237,7 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 80,
+            width: 90,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -250,21 +252,39 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
                   width: 10,
                 ),
                 Text(
-                  '1/30',
+                  '${value.upgrade_stats_object.double_egg_increaser_amount}/50',
                   style: TextStyle(color: Colors.white),
                 )
               ],
             ),
           ),
-          Text(' Chance to \nspawn 2 egg.'),
-          GestureDetector(
-              onTap: () {},
-              child: UpgradeMenuButton(
-                title: '0',
-              ))
+          Text('% Spawn\n2 egg',textAlign: TextAlign.center,),
+          SizedBox(
+              width: 115,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    if(canIBuy(value.ingame_stats_object.totalMoney,value.upgrade_stats_object.double_egg_increaser_cost)){
+                      if(value.upgrade_stats_object.double_egg_increaser_amount<50){
+                        value.upgrade_stats_object.double_egg_increaser_amount++;
+                        value.upgrade_stats_object.setNewDoubleEggCost();
+                      }
+                    }
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      )),
+                  child: Text(
+                      "${bigIntToString(value.upgrade_stats_object.double_egg_increaser_cost)} \$")),
+            ),
         ],
       ),
     );
+    },);
   }
 }
 
@@ -278,6 +298,8 @@ class ChanceToEarnWingWidget extends StatefulWidget {
 class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
   @override
   Widget build(BuildContext context) {
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
+
     return Container(
       decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
       height: 70,
@@ -287,7 +309,7 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 80,
+            width: 90,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -302,21 +324,39 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
                   width: 10,
                 ),
                 Text(
-                  '1/30',
+                  '${value.upgrade_stats_object.wing_at_merge_amount}/30',
                   style: TextStyle(color: Colors.white),
                 )
               ],
             ),
           ),
-          Text('wing chance\n  at merge.'),
-          GestureDetector(
-              onTap: () {},
-              child: UpgradeMenuButton(
-                title: '0',
-              ))
+          Text('% Wing\nAt merge',textAlign: TextAlign.center,),
+          SizedBox(
+              width: 115,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    if(canIBuy(value.ingame_stats_object.totalMoney,value.upgrade_stats_object.wing_at_merge_cost)){
+                      if(value.upgrade_stats_object.wing_at_merge_amount<30){
+                        value.upgrade_stats_object.wing_at_merge_amount++;
+                        value.upgrade_stats_object.setNewWingAtMergeCost();
+                      }
+                    }
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      )),
+                  child: Text(
+                      "${bigIntToString(value.upgrade_stats_object.wing_at_merge_cost)} \$")),
+            ),
         ],
       ),
     );
+    },);
   }
 }
 
@@ -340,7 +380,7 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 80,
+            width: 90,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -361,7 +401,7 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
               ],
             ),
           ),
-          Text('Increase \n storage.'),
+          Text('Will be\nadded:)',textAlign: TextAlign.center,),
           GestureDetector(
               onTap: () {},
               child: UpgradeMenuButton(
@@ -394,7 +434,7 @@ class _MoreOfflineEarningRateWidgetState
         children: <Widget>[
           Container(
             // ikon ve ilerleme
-            width: 80,
+            width: 90,
             height: 50,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), color: Colors.black),
@@ -415,7 +455,7 @@ class _MoreOfflineEarningRateWidgetState
               ],
             ),
           ),
-          Text('    Increase\noffline earning.'),
+          Text('Will be\nadded:)',textAlign: TextAlign.center,),
           GestureDetector(
               onTap: () {},
               child: UpgradeMenuButton(
