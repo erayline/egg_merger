@@ -79,6 +79,7 @@ class EggObjectModel extends ChangeNotifier {
     storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
     storage.setInt("merge_level_merged",ingame_stats_object.merge_level_merged);
     storage.setInt("merge_level_up_reward",ingame_stats_object.merge_level_up_reward);
+    storage.setString("all_all_time_merge", ingame_stats_object.all_time_merge.toString());
 
     storage.setInt("current_prestige_amount",ingame_stats_object.currentPrestigePoint);
     storage.setInt("allTimeEggLevel", ingame_stats_object.allTimeEggLevel);
@@ -114,6 +115,7 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.wing_at_merge_amount = storage.getInt("wing_at_merge_amount") ?? 0;
     upgrade_stats_object.wing_at_merge_cost= BigInt.parse(storage.getString("wing_at_merge_cost").toString());
 
+    ingame_stats_object.all_time_merge = BigInt.parse(storage.getString("all_all_time_merge").toString());
     //Ingame stats
     ingame_stats_object.merge_level_current=storage.getInt("merge_level_current") ?? 1;
     ingame_stats_object.merge_level_required=storage.getInt("merge_level_required") ?? 5;
@@ -279,6 +281,7 @@ class EggObjectModel extends ChangeNotifier {
           //WİLL MERGE
           if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level 
             && draggedObjectData != thisObjectIndex) {
+              ingame_stats_object.increaseAllTimeMergeCount();
             ingame_stats_object.levelUpController();
             wingAtMerge(willItHappen(value.upgrade_stats_object.wing_at_merge_amount), value.ingame_stats_object);
             value.EggIndexList[thisObjectIndex].level++;

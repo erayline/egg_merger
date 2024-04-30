@@ -69,6 +69,10 @@ class InGameStatsObject {
   int merge_level_required = 5;
   int merge_level_merged = 0;
   int merge_level_up_reward = 5;
+  BigInt all_time_merge=BigInt.from(0);
+  void increaseAllTimeMergeCount(){
+    all_time_merge += BigInt.one;
+  }
 
   bool willLevelUp() {
     if (merge_level_merged < merge_level_required) {
