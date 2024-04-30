@@ -266,6 +266,7 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
                   onPressed: () {
                     if(canIBuy(value.ingame_stats_object.totalMoney,value.upgrade_stats_object.double_egg_increaser_cost)){
                       if(value.upgrade_stats_object.double_egg_increaser_amount<50){
+                        value.ingame_stats_object.totalMoney-=value.upgrade_stats_object.double_egg_increaser_cost;
                         value.upgrade_stats_object.double_egg_increaser_amount++;
                         value.upgrade_stats_object.setNewDoubleEggCost();
                       }
@@ -338,6 +339,7 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
                   onPressed: () {
                     if(canIBuy(value.ingame_stats_object.totalMoney,value.upgrade_stats_object.wing_at_merge_cost)){
                       if(value.upgrade_stats_object.wing_at_merge_amount<30){
+                        value.ingame_stats_object.totalMoney -=value.upgrade_stats_object.wing_at_merge_cost;
                         value.upgrade_stats_object.wing_at_merge_amount++;
                         value.upgrade_stats_object.setNewWingAtMergeCost();
                       }

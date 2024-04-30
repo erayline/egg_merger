@@ -72,6 +72,8 @@ class EggObjectModel extends ChangeNotifier {
     storage.setString("spawn_time_decreaser_cost", upgrade_stats_object.spawn_time_decreaser_cost.toString());
     storage.setString("double_egg_cost", upgrade_stats_object.double_egg_increaser_cost.toString());
     storage.setInt("double_egg_amount",upgrade_stats_object.double_egg_increaser_amount);
+    storage.setInt("wing_at_merge_amount",upgrade_stats_object.wing_at_merge_amount);
+    storage.setString("wing_at_merge_cost",upgrade_stats_object.wing_at_merge_cost.toString());
     //INGAME STATS
     storage.setInt("merge_level_current",ingame_stats_object.merge_level_current);
     storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
@@ -109,6 +111,8 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.spawn_time_counter = storage.getDouble("spawn_time_counter") ?? UpgradeStats().spawn_time_counter;
     upgrade_stats_object.spawn_time_decreaser_amount = storage.getInt("spawn_time_decreaser_amount") ?? 0;
     upgrade_stats_object.spawn_time_decreaser_cost = BigInt.parse(storage.getString("spawn_time_decreaser_cost").toString());
+    upgrade_stats_object.wing_at_merge_amount = storage.getInt("wing_at_merge_amount") ?? 0;
+    upgrade_stats_object.wing_at_merge_cost= BigInt.parse(storage.getString("wing_at_merge_cost").toString());
 
     //Ingame stats
     ingame_stats_object.merge_level_current=storage.getInt("merge_level_current") ?? 1;

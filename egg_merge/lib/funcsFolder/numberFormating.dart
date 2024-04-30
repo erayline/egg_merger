@@ -43,6 +43,16 @@ String bigIntToString(BigInt numara) {
     numbersUnit="U";
   }else if(40<=basamak&&basamak<43){
     numbersUnit="D";
+  }else if(43<=basamak&&basamak<46){//buradan başlanacak
+    numbersUnit="Td";
+  }else if(46<=basamak&&basamak<49){
+    numbersUnit="qd";
+  }else if(49<=basamak&&basamak<52){
+    numbersUnit="Qd";
+  }else if(52<=basamak&&basamak<55){
+    numbersUnit="sd";
+  }else if(55<=basamak&&basamak<58){
+    numbersUnit="SD";
   }else{
     numbersUnit="WTF";
   }

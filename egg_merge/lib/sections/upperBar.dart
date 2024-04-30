@@ -50,7 +50,7 @@ class upperMoneyBarState extends State<upperMoneyBar> {
         color: Color.fromARGB(255, 20, 174, 92),
         child: Row(children: <Widget>[
           SizedBox(width: 6,),
-          Image.asset('ourAssets/images/money.png',width: 30,),
+          Image.asset('ourAssets/images/money.png',width: 20,),
           Consumer<EggObjectModel>(builder:(context, value, child) {
             return Expanded(child: Column(
               children: [
