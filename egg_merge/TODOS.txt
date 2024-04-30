@@ -7,24 +7,9 @@
 
 
 
-->numara şekillendirme kodlanacak
 
-
-
-
-->shared preferences kısmı kodlanacak
---> model init edilirken önceden kaydettiklerimiz yüklenecek.
---> model init edildiğinde Timer'larımızdan birinin içinde sürekli kaydetmesi adına bir fonksiyon yazacağım ve bu fonksiyon modelin dışında tanımlanacak fonksiyonlar adında bir sayfa açmalısın artık.
-
-
-
-
-
-
-
-
-
-
+number one priority:
+learn how to rout pages.
 
 
 
@@ -50,6 +35,13 @@
 
 
 DANZO
+->numara şekillendirme kodlanacak
+
+->shared preferences kısmı kodlanacak
+--> model init edilirken önceden kaydettiklerimiz yüklenecek.
+--> model init edildiğinde Timer'larımızdan birinin içinde sürekli kaydetmesi adına bir fonksiyon yazacağım ve bu fonksiyon modelin dışında tanımlanacak fonksiyonlar adında bir sayfa açmalısın artık.
+
+
 done-> UI geliştir
 done-> birleştirme mekaniğini kodla
 done-> boş yumurta oluştur, level 0 iken gözükecek.

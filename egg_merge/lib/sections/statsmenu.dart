@@ -20,23 +20,42 @@ class _StatsMenuState extends State<StatsMenu> {
             width: 200,
             height: 500,
             decoration: BoxDecoration(border: Border.all(width: 3),color: Color.fromARGB(255, 57, 119, 59),),
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, // 10 sütun
-                  mainAxisSpacing: 10.0, // Satırlar arası boşluk
-                  crossAxisSpacing: 10.0, // Sütunlar arası boşluk
+            child: DefaultTabController(
+              length: 2,
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.black,
+                  toolbarHeight: 0.0,
+                  automaticallyImplyLeading: false,
+                  bottom: const TabBar(dividerHeight: 0.0,indicatorColor: Colors.white,tabs: [
+                    Tab(icon: Text('Eggs',style: TextStyle(color: Colors.white),)),
+                    Tab(icon: Text('Stats',style: TextStyle(color: Colors.white)))
+                  ],)
                 ),
-                itemCount: 46,
-                itemBuilder: (context, index) {
-                  return Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(ImageRoutes[index].toString(),
-                            color: (index <
-                                    value.ingame_stats_object.allTimeEggLevel)
-                                ? null:Colors.black),
-                      ));
-                })),
+                body: Container(
+                  decoration: BoxDecoration(color: Color.fromARGB(255, 57, 119, 59),),
+                  child: TabBarView(children: [GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3, // 10 sütun
+                        mainAxisSpacing: 10.0, // Satırlar arası boşluk
+                        crossAxisSpacing: 10.0, // Sütunlar arası boşluk
+                      ),
+                      itemCount: 46,
+                      itemBuilder: (context, index) {
+                        return Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(ImageRoutes[index].toString(),
+                                  color: (index <
+                                          value.ingame_stats_object.allTimeEggLevel)
+                                      ? null:Colors.black),
+                            ));
+                      }),
+                      Text('sa')],),
+                ),
+                
+              ),
+            )),
       );
     });
   }

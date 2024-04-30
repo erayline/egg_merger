@@ -138,7 +138,7 @@ class InGameStatsObject {
     willGainAmountPrestigePoint = 0;
     allTimeEggLevel = 1;
     resetUpgradeStats(upgradeStats);
-    resetMergeLevel();
+    // resetMergeLevel();
     resetDoubleEggUpgrd(upgradeStats);
     resetWingAtMergeUpgrd(upgradeStats);
 
