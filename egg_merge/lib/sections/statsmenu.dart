@@ -76,7 +76,7 @@ class _StatsMenuState extends State<StatsMenu> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Text(
-                              "All Time Money: ${bigIntToString(value.ingame_stats_object.allTimeMoney)}",
+                              "All Time Money: ${bigIntToString(value.ingame_stats_object.allAllTimeMoney)}",
                               style:
                                   TextStyle(fontSize: 20, color: Colors.white),
                             ),

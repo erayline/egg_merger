@@ -75,6 +75,7 @@ class EggObjectModel extends ChangeNotifier {
     storage.setInt("wing_at_merge_amount",upgrade_stats_object.wing_at_merge_amount);
     storage.setString("wing_at_merge_cost",upgrade_stats_object.wing_at_merge_cost.toString());
     //INGAME STATS
+
     storage.setInt("merge_level_current",ingame_stats_object.merge_level_current);
     storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
     storage.setInt("merge_level_merged",ingame_stats_object.merge_level_merged);
@@ -84,7 +85,7 @@ class EggObjectModel extends ChangeNotifier {
     storage.setInt("current_prestige_amount",ingame_stats_object.currentPrestigePoint);
     storage.setInt("allTimeEggLevel", ingame_stats_object.allTimeEggLevel);
     storage.setInt("willGainAmountPrestigePoint", ingame_stats_object.willGainAmountPrestigePoint);
-
+    storage.setString("allAllTimeMoney", ingame_stats_object.allAllTimeMoney.toString());
     storage.setString("totalMoney", ingame_stats_object.totalMoney.toString());
     storage.setString("allTimeMoney", ingame_stats_object.allTimeMoney.toString());
     storage.setInt("golden_wing", ingame_stats_object.goldenWing);
@@ -130,7 +131,7 @@ class EggObjectModel extends ChangeNotifier {
     ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
     ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
     ingame_stats_object.allTimeMoney = BigInt.parse(storage.getString("allTimeMoney").toString());
-
+    ingame_stats_object.allAllTimeMoney = BigInt.parse(storage.getString("allAllTimeMoney").toString());
 
     String eggIndexListString0=storage.getString("EggIndexListString")??"0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.";
     List<String> eggIndexListString1=eggIndexListString0.split(".");
@@ -181,7 +182,7 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.moneyPerSec = calculateMoneyPerSec();
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
-      
+      ingame_stats_object.allAllTimeMoney += ingame_stats_object.moneyPerSec;
       //prestige calculation
       ingame_stats_object.calculatePrestigePoint();
 

@@ -107,6 +107,7 @@ class InGameStatsObject {
   BigInt moneyPerSec = BigInt.from(1);
   int goldenWing = 0;
   BigInt allTimeMoney = BigInt.from(1);
+  BigInt allAllTimeMoney = BigInt.from(1);
   int allTimeEggLevel = 0;
 
   int willGainAmountPrestigePoint = 0;
