@@ -61,24 +61,72 @@ class _StatsMenuState extends State<StatsMenu> {
                           itemCount: 46,
                           itemBuilder: (context, index) {
                             return Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(ImageRoutes[index].toString(),
+                                child: IconButton(
+                              onPressed: () {
+                                if (value.ingame_stats_object.allTimeEggLevel >
+                                    index) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        child: Container(
+                                          color:
+                                              Color.fromARGB(255, 52, 52, 52),
+                                          width: 100,
+                                          height: 200,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            children: <Widget>[
+                                              Image.asset(ImageRoutes[index].toString(),width: 120,),
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: <Widget>[
+                                                  Text('${eggNames[index]}',style: TextStyle(color: Colors.white),),
+                                                  Text('Base: 1',style: TextStyle(color: Colors.white),),
+                                                  Text('Current: 1',style: TextStyle(color: Colors.white),),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+                              },
+                              icon: Image.asset(ImageRoutes[index].toString(),
                                   color: (index <
                                           value.ingame_stats_object
                                               .allTimeEggLevel)
                                       ? null
                                       : Colors.black),
+                              highlightColor: Colors.transparent,
                             ));
                           }),
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            StatsLineWidget(color: Color.fromARGB(255, 14, 82, 52), infoName: "All Time Money", infoItself: bigIntToString(value.ingame_stats_object.allAllTimeMoney)),
-                            StatsLineWidget(color: Color.fromARGB(255, 6, 36, 79), infoName: "All the Merge you did", infoItself: bigIntToString(value.ingame_stats_object.all_time_merge)),
-                            StatsLineWidget(color: Color.fromARGB(255, 129, 58, 14), infoName: "Biggest Egg level", infoItself: value.ingame_stats_object.allAllTimeEggLevel.toString()),
-                            StatsLineWidget(color: Color.fromARGB(255, 0, 0, 0), infoName: "god chicken count", infoItself: "0"),
+                            StatsLineWidget(
+                                color: Color.fromARGB(255, 14, 82, 52),
+                                infoName: "All Time Money",
+                                infoItself: bigIntToString(
+                                    value.ingame_stats_object.allAllTimeMoney)),
+                            StatsLineWidget(
+                                color: Color.fromARGB(255, 6, 36, 79),
+                                infoName: "All the Merge you did",
+                                infoItself: bigIntToString(
+                                    value.ingame_stats_object.all_time_merge)),
+                            StatsLineWidget(
+                                color: Color.fromARGB(255, 129, 58, 14),
+                                infoName: "Biggest Egg level",
+                                infoItself: value
+                                    .ingame_stats_object.allAllTimeEggLevel
+                                    .toString()),
+                            StatsLineWidget(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                infoName: "god chicken count",
+                                infoItself: "0"),
                           ],
                         ),
                       )
@@ -92,15 +140,15 @@ class _StatsMenuState extends State<StatsMenu> {
   }
 }
 
-
-
-
 class StatsLineWidget extends StatefulWidget {
   final String infoName;
   final String infoItself;
   final Color color;
   const StatsLineWidget(
-      {super.key, required this.color,required this.infoName, required this.infoItself});
+      {super.key,
+      required this.color,
+      required this.infoName,
+      required this.infoItself});
 
   @override
   State<StatsLineWidget> createState() => _StatLinesWidgetState();
@@ -116,10 +164,11 @@ class _StatLinesWidgetState extends State<StatsLineWidget> {
         color: widget.color,
         borderRadius: BorderRadius.circular(7.0),
       ),
-      child: Center(child: 
-      Text("${widget.infoName}: ${widget.infoItself}",style: TextStyle(fontSize: 12,color: Colors.white),)),
+      child: Center(
+          child: Text(
+        "${widget.infoName}: ${widget.infoItself}",
+        style: TextStyle(fontSize: 12, color: Colors.white),
+      )),
     );
   }
 }
-
-
