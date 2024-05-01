@@ -75,16 +75,10 @@ class _StatsMenuState extends State<StatsMenu> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(
-                              "All Time Money: ${bigIntToString(value.ingame_stats_object.allAllTimeMoney)}",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                            Text(
-                              "All Time Merge: ${bigIntToString(value.ingame_stats_object.all_time_merge)}",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
+                            StatsLineWidget(color: Color.fromARGB(255, 14, 82, 52), infoName: "All Time Money", infoItself: bigIntToString(value.ingame_stats_object.allAllTimeMoney)),
+                            StatsLineWidget(color: Color.fromARGB(255, 6, 36, 79), infoName: "All the Merge you did", infoItself: bigIntToString(value.ingame_stats_object.all_time_merge)),
+                            StatsLineWidget(color: Color.fromARGB(255, 129, 58, 14), infoName: "Biggest Egg level", infoItself: value.ingame_stats_object.allAllTimeEggLevel.toString()),
+                            StatsLineWidget(color: Color.fromARGB(255, 0, 0, 0), infoName: "god chicken count", infoItself: "0"),
                           ],
                         ),
                       )
@@ -98,11 +92,15 @@ class _StatsMenuState extends State<StatsMenu> {
   }
 }
 
+
+
+
 class StatsLineWidget extends StatefulWidget {
-  final String resimYolu;
-  final String ilgiliInfo;
+  final String infoName;
+  final String infoItself;
+  final Color color;
   const StatsLineWidget(
-      {super.key, required this.resimYolu, required this.ilgiliInfo});
+      {super.key, required this.color,required this.infoName, required this.infoItself});
 
   @override
   State<StatsLineWidget> createState() => _StatLinesWidgetState();
@@ -112,12 +110,16 @@ class _StatLinesWidgetState extends State<StatsLineWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60,
       height: 30,
+      width: 170,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 0, 0, 0),
+        color: widget.color,
+        borderRadius: BorderRadius.circular(7.0),
       ),
-      child: Text(widget.ilgiliInfo,style: TextStyle(color: Colors.white),),
+      child: Center(child: 
+      Text("${widget.infoName}: ${widget.infoItself}",style: TextStyle(fontSize: 12,color: Colors.white),)),
     );
   }
 }
+
+

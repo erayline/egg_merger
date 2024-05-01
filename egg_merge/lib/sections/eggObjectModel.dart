@@ -193,6 +193,9 @@ class EggObjectModel extends ChangeNotifier {
       for (int n = 0; n < 20; n++) {
         if (EggIndexList[n].level > ingame_stats_object.allTimeEggLevel) {
           ingame_stats_object.allTimeEggLevel = EggIndexList[n].level;
+          if(ingame_stats_object.allAllTimeEggLevel<ingame_stats_object.allTimeEggLevel){
+            ingame_stats_object.allAllTimeEggLevel=ingame_stats_object.allTimeEggLevel;
+          }
         }
       }
       notifyListeners();

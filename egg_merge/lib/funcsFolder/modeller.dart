@@ -109,6 +109,7 @@ class InGameStatsObject {
   BigInt allTimeMoney = BigInt.from(1);
   BigInt allAllTimeMoney = BigInt.from(1);
   int allTimeEggLevel = 0;
+  int allAllTimeEggLevel = 0;
 
   int willGainAmountPrestigePoint = 0;
   int currentPrestigePoint = 0;
