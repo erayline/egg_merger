@@ -70,20 +70,26 @@ class _StatsMenuState extends State<StatsMenu> {
                                     builder: (context) {
                                       return Dialog(
                                         child: Container(
-                                          color:
-                                              Color.fromARGB(255, 52, 52, 52),
+                                          decoration: BoxDecoration(color: Color.fromARGB(255, 48, 39, 4),border: Border.all(color: Colors.black,width: 2),),
                                           width: 100,
                                           height: 200,
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: <Widget>[
-                                              Image.asset(ImageRoutes[index].toString(),width: 120,),
                                               Column(
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: <Widget>[
-                                                  Text('${eggNames[index]}',style: TextStyle(color: Colors.white),),
-                                                  Text('Base: 1',style: TextStyle(color: Colors.white),),
-                                                  Text('Current: 1',style: TextStyle(color: Colors.white),),
+                                                Image.asset(ImageRoutes[index].toString(),width: 120,),
+
+                                                Text((index+1).toString(),style: TextStyle(fontSize: 20,color: Colors.white),)
+                                              ],),
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: <Widget>[
+                                                  Text('${eggNames[index]}',textAlign: TextAlign.center,style: TextStyle(fontSize: 20,color: Color.fromARGB(255, 255, 255, 255)),),
+                                                  Text('Base: ${bigIntToString(BigInt.from(3).pow(index))}',style: TextStyle(color: Colors.white),),
+                                                  
+                                                  Text('Current: ${bigIntToString(BigInt.from(3).pow(index) + BigInt.from(value.ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(index)*BigInt.from(value.goldenPenKatsayisi)~/(BigInt.from(100)))}',style: TextStyle(color: Colors.white),),
                                                 ],
                                               )
                                             ],
@@ -101,7 +107,8 @@ class _StatsMenuState extends State<StatsMenu> {
                                       ? null
                                       : Colors.black),
                               highlightColor: Colors.transparent,
-                            ));
+                            )
+                          );
                           }),
                       Container(
                         child: Column(

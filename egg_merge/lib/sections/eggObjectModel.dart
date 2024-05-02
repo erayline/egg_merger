@@ -146,10 +146,11 @@ class EggObjectModel extends ChangeNotifier {
         : {};
   }
 
+int goldenPenKatsayisi = 1;
 
   //BU IKISI PARA URETIMINDEN SORUMLU
   BigInt produceMoney(int index) {
-    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)~/(BigInt.from(10));
+    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100));
     return sonuc;
   }
 

@@ -55,7 +55,7 @@ class _PrestigeMenuState extends State<PrestigeMenu> {
                   color: Color.fromARGB(255, 127, 127, 127)),
               child: Center(
                   child: Text(
-                '%${value.ingame_stats_object.currentPrestigePoint*10} boost',
+                '%${value.ingame_stats_object.currentPrestigePoint} boost',
                 style: TextStyle(fontWeight: FontWeight.w700),
               )),
             ),
