@@ -75,7 +75,7 @@ class EggObjectModel extends ChangeNotifier {
     storage.setInt("wing_at_merge_amount",upgrade_stats_object.wing_at_merge_amount);
     storage.setString("wing_at_merge_cost",upgrade_stats_object.wing_at_merge_cost.toString());
     //INGAME STATS
-
+    storage.setInt("allAllTimeEggLevel",ingame_stats_object.allAllTimeEggLevel);
     storage.setInt("merge_level_current",ingame_stats_object.merge_level_current);
     storage.setInt("merge_level_required",ingame_stats_object.merge_level_required);
     storage.setInt("merge_level_merged",ingame_stats_object.merge_level_merged);
@@ -116,8 +116,9 @@ class EggObjectModel extends ChangeNotifier {
     upgrade_stats_object.wing_at_merge_amount = storage.getInt("wing_at_merge_amount") ?? 0;
     upgrade_stats_object.wing_at_merge_cost= BigInt.parse(storage.getString("wing_at_merge_cost").toString());
 
-    ingame_stats_object.all_time_merge = BigInt.parse(storage.getString("all_all_time_merge").toString());
     //Ingame stats
+    ingame_stats_object.allAllTimeEggLevel = storage.getInt("allAllTimeEggLevel")??1;
+    ingame_stats_object.all_time_merge = BigInt.parse(storage.getString("all_all_time_merge").toString());
     ingame_stats_object.merge_level_current=storage.getInt("merge_level_current") ?? 1;
     ingame_stats_object.merge_level_required=storage.getInt("merge_level_required") ?? 5;
     ingame_stats_object.merge_level_merged=storage.getInt("merge_level_merged") ?? 0;
@@ -222,6 +223,7 @@ int goldenPenKatsayisi = 1;
       }
       notifyListeners();
     });
+
     //SPAWNİNG AN EGG AND CHECKİNG
   }
 
@@ -285,7 +287,7 @@ int goldenPenKatsayisi = 1;
 
           //WİLL MERGE
           if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level 
-            && draggedObjectData != thisObjectIndex) {
+            && draggedObjectData != thisObjectIndex && value.EggIndexList[thisObjectIndex].level!=46) {
               ingame_stats_object.increaseAllTimeMergeCount();
             ingame_stats_object.levelUpController();
             wingAtMerge(willItHappen(value.upgrade_stats_object.wing_at_merge_amount), value.ingame_stats_object);

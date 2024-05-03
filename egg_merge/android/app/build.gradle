@@ -28,6 +28,7 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+
 android {
     namespace "com.example.egg_merge"
     compileSdk flutter.compileSdkVersion

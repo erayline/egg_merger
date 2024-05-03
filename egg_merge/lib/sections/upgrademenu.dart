@@ -27,7 +27,7 @@ class _UpgradeMenuState extends State<UpgradeMenu> {
           decoration: BoxDecoration(
             border: Border.all(width:3),
             borderRadius: BorderRadius.circular(5.0),
-            color: Color.fromARGB(255, 219, 183, 122),
+            color: Color.fromARGB(255, 0, 0, 0),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +111,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
                     height: 30,
                   ),
                   Text(
-                    '${value.upgrade_stats_object.base_egg_level}/30',
+                    '${value.upgrade_stats_object.base_egg_level}/46',
                     style: TextStyle(color: Colors.white),
                   )
                 ],
