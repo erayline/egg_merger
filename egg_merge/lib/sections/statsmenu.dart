@@ -70,7 +70,7 @@ class _StatsMenuState extends State<StatsMenu> {
                                     builder: (context) {
                                       return Dialog(
                                         child: Container(
-                                          decoration: BoxDecoration(color: Color.fromARGB(255, 48, 39, 4),border: Border.all(color: Colors.black,width: 2),),
+                                          decoration: BoxDecoration(color: Color.fromARGB(255, 44, 4, 48),border: Border.all(color: Colors.black,width: 2),),
                                           width: 100,
                                           height: 200,
                                           child: Row(
