@@ -175,7 +175,7 @@ int goldenPenKatsayisi = 1;
       EggIndexList.add(EggObject());
     }
 
-    for (int n = 1; n <= 46; n++) {
+    for (int n = 1; n <= gameEggCount; n++) {
       ImageRoutes.add("ourAssets/images/eggs/${n}.png");
     }
 
@@ -237,43 +237,49 @@ int goldenPenKatsayisi = 1;
           } else {
             return Container(
               decoration: BoxDecoration(color: Colors.transparent,),
-              width: 60,
-              height: 60,
+              width: 70,
+              height: 70,
               child: Draggable<int>(
                 data: thisObjectIndex,
                 childWhenDragging: EmptyPlaceHolderWidget(),
                 feedback: Container(
-                  width: 60,
-                  height: 60,
+                  width: 70,
+                  height: 70,
                   child: Image.asset(ImageRoutes[
-                      value.EggIndexList[thisObjectIndex].level - 1]),
+                      value.EggIndexList[thisObjectIndex].level - 1],),
                 ),
                 child: Container(
-                  width: 60,
-                  height: 60,
+                  width: 70,
+                  height: 70,
                   child: Stack(
                     children: <Widget>[
                       Image.asset(ImageRoutes[
-                          value.EggIndexList[thisObjectIndex].level - 1],width: 60,height: 60,),
-                      Container(
-                          width: 60,
-                          height: 60,
-                          color: Colors.transparent,
-                          child: Text(
-                            bigIntToString(produceMoney(thisObjectIndex)),
-                            style: const TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(
-                                      0.0, 0.0), // Gölgeyi sağa ve aşağı kaydır
-                                  blurRadius: 14.0, // Gölge bulanıklığı
-                                  color: Color.fromRGBO(124, 0, 0, 0.824), // Gölge rengi
-                                ),
-                              ],
-                            ),
-                          )),
+                          value.EggIndexList[thisObjectIndex].level - 1],width: 70,height: 70,),
+                      Positioned(
+                        top: 52,
+                        left: 5,
+                        child: Container(
+                            width: 70,
+                            height: 70,
+                            color: Colors.transparent,
+                            child: Text(
+                              bigIntToString(produceMoney(thisObjectIndex)),
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(
+                                        0.0, 0.0), // Gölgeyi sağa ve aşağı kaydır
+                                    blurRadius: 14.0, // Gölge bulanıklığı
+                                    color: Color.fromRGBO(124, 0, 0, 0.824), // Gölge rengi
+                                  ),
+                                ],
+                              ),
+                            )
+                          ),
+                      ),
                     ],
                   ),
                 ),
@@ -287,7 +293,7 @@ int goldenPenKatsayisi = 1;
 
           //WİLL MERGE
           if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level 
-            && draggedObjectData != thisObjectIndex && value.EggIndexList[thisObjectIndex].level!=46) {
+            && draggedObjectData != thisObjectIndex && value.EggIndexList[thisObjectIndex].level!=gameEggCount) {
               ingame_stats_object.increaseAllTimeMergeCount();
             ingame_stats_object.levelUpController();
             wingAtMerge(willItHappen(value.upgrade_stats_object.wing_at_merge_amount), value.ingame_stats_object);
@@ -312,8 +318,8 @@ class EmptyPlaceHolderWidget extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      width: 60,
-      height: 60,
+      width: 70,
+      height: 70,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.0),color: Colors.black12),
     );
   }

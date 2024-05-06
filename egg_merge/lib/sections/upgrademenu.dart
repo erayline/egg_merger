@@ -111,7 +111,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
                     height: 30,
                   ),
                   Text(
-                    '${value.upgrade_stats_object.base_egg_level}/46',
+                    '${value.upgrade_stats_object.base_egg_level}/$gameEggCount',
                     style: TextStyle(color: Colors.white),
                   )
                 ],

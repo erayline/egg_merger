@@ -15,52 +15,100 @@ import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+int gameEggCount=93;
 List<String> eggNames = [
   "Blue",
   "Bluer",
-  "River",
-  "Blody",
-  "Container", //5
-  "Ramen",
+  "Warning!",
+  "Where am I?",
+  "Red Moon", //5
+  "Eat It",
   "Blooming",
-  "Meggic",
-  "4.00\$",
-  "Beaten Egg", // 10
-  "Surprize",
-  "Meltable",
+  "Secret",
+  "Beaten One",
+  "Meltable", // 10
+  "Jumpy",
+  "100 at\na Time",
   "Confetti",
-  "Flying One",
-  "Rainbow", //15
-  "Kids Egg",
-  "Orange",
-  "Confused?",
-  "Doggie",
-  "Jumpy Egg", //20
-  "Male JokeT\nool",
-  "Juicy",
-  "Captain Egg",
-  "Eggsplosive",
+  "Mother\nOf All",
+  "Channel 8", //15
+  "Planty Egg",
+  "River",
+  "Not Gold",
+  "Moony",
+  "Holly Egg!?", //20
+  "Brown Joy",
+  "Eggzotic Sound",
+  "Biom x-3",
+  "Forest Path",
   "Wait what?", // 25
-  "Merried Egg",
-  "Antique",
-  "Eggable player", // değiştir bunu
-  "Confused 2",
-  "On My Way", //30
-  "Fatty one",
-  "Hard to make",
-  "Student meal",
-  "Confused 3",
+  "Captain Egg",
+  "Egguin",
+  "African", // değiştir bunu
+  "Listen yourself",
+  "Japan work", //30
+  "Let me\neat too",
+  "Give me egg",
+  "Stay still",
+  "where are\nthe eggs?",
   "Present", //35
   "Prince",
-  "Final point",
-  "Fancy!",
-  "Very Hot",
-  "Eggverse", //40
-  "Perv Egg",
-  "Attractive",
-  "Common Enemy",
-  "where are\nThe Eggs!?",
-  "mom when\nyou don't eat", //45
+  "Perfect Combo",
+  "Eggsplosive",
+  "mEggic",
+  "Snow Bunny", //40
+  "\$FINALLY\$",
+  "Pluto",
+  "Was it\nall lie?",
+  "Stay away",
+  "3.99\$", //45
+  "Hi you",
+  "Arctic",
+  "Fat one",
+  "Eggable\nplayer",
+  "Egg from\nspace", //50
+  "Wounds needs\ntime",
+  "Mottled",
+  "Fancy",
+  "Expensive",
+  "Studentish",//55
+  "Aurora",
+  "Expired",
+  "Final\nDestination",
+  "Not an egg",
+  "Fried Egg?", //60
+  "Kepler",
+  "Mixed",
+  "Mysterious",
+  "Flying Egg",
+  "Music reminder:)", //65
+  "Layed 1000\negg",
+  "Ocean",
+  "Peace",
+  "Love me!", //70
+  "No!?",
+  "I said it.",
+  "Musk!",
+  "Little experiment",
+  "Future d-3", // 75
+  "Corny Poopy",
+  "Below Ground",
+  "Medical",
+  "Merried Planet",
+  "SpaceShip!", //80
+  "Dreggon",
+  "To the moon!",
+  "SUMO",
+  "Katana",
+  "I am lost", // 85
+  "Literal moon", 
+  "Sweet spot", 
+  "Spotverse", 
+  "Not sun,\nYolk", 
+  "Nova",  //90
+  "It is all\negg",
+  "IT-verse",
   "Thank you\nfor playing\n<3",
 ];
 
