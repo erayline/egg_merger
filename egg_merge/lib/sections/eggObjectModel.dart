@@ -250,6 +250,7 @@ int goldenPenKatsayisi = 1;
                 ),
                 child: Container(
                   width: 70,
+                  
                   height: 70,
                   child: Stack(
                     children: <Widget>[
