@@ -12,6 +12,7 @@ in that function you are going to save everything.
 import 'dart:math';
 
 import 'package:egg_merge/sections/eggObjectModel.dart';
+import 'package:egg_merge/sections/game_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -154,6 +155,9 @@ void resetDoubleEggUpgrd(UpgradeStats upgradeStats){
 }
 
 class InGameStatsObject {
+
+  int gameProgressionLevel = 0;
+
   void resetMergeLevel() {
     merge_level_current = 1;
     merge_level_required = 5;
@@ -229,6 +233,10 @@ class InGameStatsObject {
     } else if (BigInt.from(10).pow(22) <= allTimeMoney &&
         allTimeMoney <= BigInt.from(10).pow(26)) {
       willGainAmountPrestigePoint = pow(5, 6).toInt()*5;
+    }
+    else if (BigInt.from(10).pow(26) <= allTimeMoney &&
+        allTimeMoney <= BigInt.from(10).pow(30)) {
+      willGainAmountPrestigePoint = pow(5, 8).toInt()*5;
     }
   }
 
@@ -317,3 +325,39 @@ void wingAtMerge (bool chance,InGameStatsObject inGameStatsObject){
     inGameStatsObject.goldenWing++;
   }
 }
+
+
+
+bool gameGoldenEggController(int index,List<int> sayilar){
+  for(int i = 0;i<sayilar.length;i++){
+    if(index == sayilar[i]){
+      return true;
+    }
+  }
+  return false;
+}
+
+List<int> mileStoneEggs = [15,];
+void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
+  for(int i=0;i<mileStoneEggs.length;i++){
+    if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){
+      inGameStatsObject.gameProgressionLevel = i +1;
+    }
+  }
+}
+
+
+// at merge function
+void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_stats_object,List<EggObject> EggIndexList,int thisObjectIndex,int draggedObjectData){
+
+
+  ingame_stats_object.increaseAllTimeMergeCount();
+  ingame_stats_object.levelUpController();
+  wingAtMerge(willItHappen(upgrade_stats_object.wing_at_merge_amount), ingame_stats_object);
+  EggIndexList[thisObjectIndex].level++;
+  EggIndexList[draggedObjectData].level = 0;
+  
+  checkGameProgressionLevel(ingame_stats_object);
+
+}
+

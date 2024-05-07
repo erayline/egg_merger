@@ -243,8 +243,8 @@ int goldenPenKatsayisi = 1;
                 data: thisObjectIndex,
                 childWhenDragging: EmptyPlaceHolderWidget(),
                 feedback: Container(
-                  width: 70,
-                  height: 70,
+                  width: 80,
+                  height: 80,
                   child: Image.asset(ImageRoutes[
                       value.EggIndexList[thisObjectIndex].level - 1],),
                 ),
@@ -293,13 +293,10 @@ int goldenPenKatsayisi = 1;
           int draggedObjectData = details.data as int;
 
           //WİLL MERGE
-          if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level 
-            && draggedObjectData != thisObjectIndex && value.EggIndexList[thisObjectIndex].level!=gameEggCount) {
-              ingame_stats_object.increaseAllTimeMergeCount();
-            ingame_stats_object.levelUpController();
-            wingAtMerge(willItHappen(value.upgrade_stats_object.wing_at_merge_amount), value.ingame_stats_object);
-            value.EggIndexList[thisObjectIndex].level++;
-            value.EggIndexList[draggedObjectData].level = 0;
+          if (value.EggIndexList[draggedObjectData].level == value.EggIndexList[thisObjectIndex].level && draggedObjectData != thisObjectIndex && value.EggIndexList[thisObjectIndex].level!=gameEggCount) {
+
+            atMergeFunction(ingame_stats_object, upgrade_stats_object, EggIndexList, thisObjectIndex, draggedObjectData);
+          
           } 
           // WİLL CHANGE POSİTİON
           else if (value.EggIndexList[thisObjectIndex].level == 0 && value.EggIndexList[draggedObjectData].level != 0) {
