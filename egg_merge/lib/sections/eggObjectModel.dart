@@ -60,7 +60,7 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
-    loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList);
+    loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList,god_stats_object);
 
     for (int n = 0; n < 20; n++) {
       EggIndexList.add(EggObject());
@@ -87,7 +87,7 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.calculatePrestigePoint();
 
       //save the fame function is should be here
-      saveTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList);
+      saveTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList,god_stats_object);
 
       //all time egg leveli burada hesaplıyorum.
       for (int n = 0; n < 20; n++) {
@@ -102,6 +102,9 @@ class EggObjectModel extends ChangeNotifier {
     });
     //SPAWNER COUNTER ANİMATİON
     Timer.periodic(Duration(milliseconds: 100), (timer) {
+
+    checkGameProgressionLevel(ingame_stats_object);
+
 
       if (isThereEmptySpace(EggIndexList)) {
         spawnerPercent = 1.0 - double.parse((upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time).toStringAsFixed(2));

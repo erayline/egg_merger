@@ -84,7 +84,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
       return Container(
-        decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+        decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.base_egg_level_increase_cost ? Color.fromARGB(255, 204, 255, 212) : Color.fromARGB(162, 244, 67, 54))),
         
         height: 70,
         child: Row(
@@ -153,7 +153,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.spawn_time_decreaser_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -225,7 +225,7 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
 
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.double_egg_increaser_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -298,7 +298,7 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
 
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.wing_at_merge_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -370,7 +370,7 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 207, 255, 204)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -424,7 +424,7 @@ class _MoreOfflineEarningRateWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 228, 204, 255)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 207, 255, 204)),
       height: 70,
       child: Row(
         //içerik soldan sağa

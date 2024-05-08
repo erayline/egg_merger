@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-void saveTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_stats_object,List<EggObject> EggIndexList) async {
+void saveTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_stats_object,List<EggObject> EggIndexList,GodStats god_stats_object) async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
     //UPGRADE STATS
     storage.setInt("base_egg_level", upgrade_stats_object.base_egg_level);
@@ -44,13 +45,24 @@ void saveTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
     }
     storage.setString("EggIndexListString", eggLevelsString);
 
+
+  //GODS STATES
+
+  storage.setInt("priapus_level", god_stats_object.priapus_level);
+  storage.setInt("priapus_active_time", god_stats_object.priapus_active_time);
+  storage.setInt("priapus_cost", god_stats_object.priapus_cost);
+  storage.setInt("priapus_feed_level", god_stats_object.priapus_feed_level);
+  storage.setInt("priapus_timer", god_stats_object.priapus_timer);
+  storage.setBool("priapus_timer", god_stats_object.priapus_active);
+
+
   }
 
 
 late Map<String, Object> data = {};
 
 
-void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_stats_object, List<EggObject> EggIndexList) async {
+void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_stats_object, List<EggObject> EggIndexList,GodStats god_stats_object) async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
 
     //UPGRADE STATS
@@ -95,4 +107,13 @@ void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
     data = dataString != null
         ? Map<String, Object>.from(jsonDecode(dataString))
         : {};
+    
+    //GODS STATES
+    god_stats_object.priapus_active = storage.getBool("priapus_active") ?? GodStats().priapus_active;
+    god_stats_object.priapus_active_time= storage.getInt("priapus_active_time") ?? GodStats().priapus_active_time;
+    god_stats_object.priapus_cost= storage.getInt("priapus_cost") ?? GodStats().priapus_cost;
+    god_stats_object.priapus_feed_level= storage.getInt("priapus_feed_level") ?? GodStats().priapus_feed_level;
+    god_stats_object.priapus_level= storage.getInt("priapus_level") ?? GodStats().priapus_level;
+    god_stats_object.priapus_timer= storage.getInt("priapus_timer") ?? GodStats().priapus_timer;
+
   }

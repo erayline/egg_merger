@@ -160,9 +160,25 @@ class GodControlPage extends StatefulWidget {
 class _GodControlPageState extends State<GodControlPage> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [GodUpgradeTile()],
-    );
+    return Consumer<EggObjectModel>(builder: (context, value, child) {
+      return ListView(
+        children: [
+          (value.ingame_stats_object.gameProgressionLevel > 1
+              ? GodUpgradeTile()
+              : Padding(
+                padding: const EdgeInsets.fromLTRB(0,50,0,0),
+                child: Center(
+                    child: Text(
+                    'TO UNLOCK GODS\nUNLOCK EGGS',
+                    textAlign: TextAlign.center,style: TextStyle(fontSize: 20),
+                  )),
+              )),
+          SizedBox(
+            height: 130,
+          ),
+        ],
+      );
+    });
   }
 }
 
@@ -183,24 +199,30 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Image.asset(
-                  "ourAssets/images/gods/priapus.png",
-                  width: 100,
-                  height: 100,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  child: Image.asset(
+                    "ourAssets/images/gods/priapus.png",
+                    width: 100,
+                    height: 100,
+                  ),
                 ),
                 Column(
                   children: [
                     Text(
                       'Priapus',
-                      style: TextStyle(fontSize: 23),
+                      style: TextStyle(
+                          fontSize: 23,
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'God of Wealth',
-                      style: TextStyle(fontSize: 17),
+                      style: TextStyle(fontSize: 13),
                     ),
                     Text(
                       'Level 1',
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 13),
                     ),
                   ],
                 )
@@ -212,7 +234,8 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                 LinearPercentIndicator(
                   animation: true,
                   animateFromLastPercent: true,
-                  center: Text("${value.god_stats_object.priapus_feed_level}/${100}"),
+                  center: Text(
+                      "${value.god_stats_object.priapus_feed_level}/${100}"),
                   progressColor: Color.fromARGB(255, 20, 174, 92),
                   width: 150,
                   lineHeight: 30,
@@ -225,17 +248,22 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text('Boost: '),
+                          Text(
+                            'Boost: ',
+                            style: TextStyle(fontSize: 11),
+                          ),
                           Text(
                             '10x',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 2, 156, 7)),
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text('Duration: '),
+                          Text('Duration: ', style: TextStyle(fontSize: 11)),
                           Text('5s',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
@@ -243,7 +271,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text('Cooldown: '),
+                          Text('Cooldown: ', style: TextStyle(fontSize: 11)),
                           Text('100s',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
@@ -254,23 +282,30 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0,30,0,0),
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: SizedBox(
                 width: 200,
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    if(value.ingame_stats_object.goldenWing>=value.god_stats_object.priapus_cost){
-                      value.god_stats_object.priapus_cost_increase();
-                      value.ingame_stats_object.goldenWing-=value.god_stats_object.priapus_cost;
+                    if (value.ingame_stats_object.goldenWing >=
+                        value.god_stats_object.priapus_cost) {
                       value.god_stats_object.priapus_feed_level++;
+                      value.god_stats_object.priapus_cost_increase();
+                      value.ingame_stats_object.goldenWing -=
+                          value.god_stats_object.priapus_cost;
                     }
                     //burada artış gerçekleşecek koşullardan sonra
                     print('Upgrade!');
                   },
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all((value.god_stats_object.priapus_cost<value.ingame_stats_object.goldenWing ?Color.fromARGB(255, 115, 203, 0) : Colors.red)),
-                      foregroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 0, 0, 0)),
+                      backgroundColor: MaterialStateProperty.all(
+                          (value.god_stats_object.priapus_cost <
+                                  value.ingame_stats_object.goldenWing
+                              ? Color.fromARGB(255, 115, 203, 0)
+                              : Colors.red)),
+                      foregroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 0, 0, 0)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
@@ -281,7 +316,10 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                       Text(
                         ('Upgrade  ->  ${value.god_stats_object.priapus_cost}'),
                       ),
-                      Image.asset("ourAssets/images/chicken-wings.png",width: 30,)
+                      Image.asset(
+                        "ourAssets/images/chicken-wings.png",
+                        width: 30,
+                      )
                     ],
                   ),
                 ),

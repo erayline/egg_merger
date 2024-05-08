@@ -323,7 +323,7 @@ bool gameGoldenEggController(int index,List<int> sayilar){
 
 
 //TODO: altın yumurtalara bir ayar çek az kalıyor. - bunun artışını yumurtaların katsayısını yine bulunan oyunun ulaşılan max yumurta'ya oranına göre yapabilirisin ayrıca bir tane tanrı altın tavaların kazandırdığı miktarı arttırabilir. bir iken iki iki iken üç falan yapabilir tabi bunun için kaynak harcanacak.
-List<int> mileStoneEggs = [1,24,36,41,48,57];
+List<int> mileStoneEggs = [15,25,35,40,48,57,];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){
@@ -343,8 +343,6 @@ void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_
   EggIndexList[thisObjectIndex].level++;
   EggIndexList[draggedObjectData].level = 0;
   
-  checkGameProgressionLevel(ingame_stats_object);
-
 }
 
 
