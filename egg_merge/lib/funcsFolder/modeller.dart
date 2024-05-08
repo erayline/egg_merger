@@ -337,7 +337,7 @@ bool gameGoldenEggController(int index,List<int> sayilar){
   return false;
 }
 
-List<int> mileStoneEggs = [15,];
+List<int> mileStoneEggs = [15,24,36,41,48,57];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){
