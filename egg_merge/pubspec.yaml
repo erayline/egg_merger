@@ -73,6 +73,7 @@ flutter:
   assets:
     - ourAssets/images/
     - ourAssets/images/eggs/
+    - ourAssets/images/gods/
     - ourAssets/images/upgradeMenuIcons/
   #   - images/a_dot_ham.jpeg
 

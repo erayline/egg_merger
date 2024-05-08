@@ -33,7 +33,7 @@ class _bottomBarState extends State<bottomBar> {
               highlightColor: Colors.transparent,
             ),
 
-            (value.ingame_stats_object.allAllTimeEggLevel>=15 ? 
+            (value.ingame_stats_object.gameProgressionLevel>=1 ? 
             IconButton(
               onPressed: () {
                 showDialog(
