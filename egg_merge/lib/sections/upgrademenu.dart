@@ -1,10 +1,6 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -466,6 +462,5 @@ class _MoreOfflineEarningRateWidgetState
         ],
       ),
     );
-    ;
   }
 }

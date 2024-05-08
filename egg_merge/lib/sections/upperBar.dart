@@ -56,7 +56,7 @@ class upperMoneyBarState extends State<upperMoneyBar> {
             return Expanded(child: Column(
               children: [
                 Center(child: Text(bigIntToString(value.ingame_stats_object.totalMoney))),
-                Center(child: Text(bigIntToString(value.ingame_stats_object.moneyPerSec)+"/s")),
+                Center(child: Text(bigIntToString(calculateMoneyPerSec(value.EggIndexList, value.ingame_stats_object,value.god_stats_object))+"/s",style: TextStyle(color: (value.god_stats_object.priapus_active ?Colors.amber : Colors.black),)),)
               ],
             ));
           },),

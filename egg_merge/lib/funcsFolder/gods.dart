@@ -17,10 +17,11 @@ class GodStats{
       if(priapus_timer<=0){
         priapus_active = true;
         priapus_active_time--;
+        print('active');
       }
-      if(priapus_active_time<=0){
+      if(priapus_active_time<0){
         priapus_active_time = 5;
-        priapus_timer = 100;
+        priapus_timer = 10;
         priapus_active = false;
       }
     }

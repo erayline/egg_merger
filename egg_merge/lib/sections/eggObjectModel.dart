@@ -1,20 +1,18 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 
 import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class EmptyEgg extends StatelessWidget {
+
+
+
+
+
   const EmptyEgg({super.key});
 
   @override
@@ -35,6 +33,7 @@ class EggObject {
 class EggObjectModel extends ChangeNotifier {
 //YUMURTA OBJELERININI BARINDIRIYOR INDEX'E GORE ISLEM YAPIYORUZ
   List<EggObject> EggIndexList = [];
+  
 
   UpgradeStats upgrade_stats_object = new UpgradeStats();
   InGameStatsObject ingame_stats_object = new InGameStatsObject();
@@ -77,8 +76,10 @@ class EggObjectModel extends ChangeNotifier {
       //TODO: CREATE ONE CONTROLLER FOR ALL GODS
       god_stats_object.priapus_controller_1sec();
 
+
+
       // TODO: MONEY CONTROLLER
-      ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object);
+      ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object,god_stats_object);
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allAllTimeMoney += ingame_stats_object.moneyPerSec;
@@ -163,9 +164,9 @@ class EggObjectModel extends ChangeNotifier {
                             height: 70,
                             color: Colors.transparent,
                             child: Text(
-                              bigIntToString(produceMoney(thisObjectIndex, EggIndexList, ingame_stats_object)),
-                              style: const TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                              bigIntToString(produceMoney(thisObjectIndex, EggIndexList, ingame_stats_object,god_stats_object)),
+                              style: TextStyle(
+                                color: (value.god_stats_object.priapus_active ? const Color.fromARGB(255, 230, 255, 7) : Color.fromARGB(255, 255, 255, 255)),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 13,
                                 shadows: [

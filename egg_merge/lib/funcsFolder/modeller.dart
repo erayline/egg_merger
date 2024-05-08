@@ -1,20 +1,6 @@
-/*
-shared preferences road
-
-first create a sharedpreferences object in model.
-
-then create a function that takes that object plus other classes that you store thing.
-
-in that function you are going to save everything.
-
-
-*/
 import 'dart:math';
-
+import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
-import 'package:egg_merge/sections/game_section.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 int gameEggCount=93;
@@ -121,7 +107,6 @@ class UpgradeStats {
     base_egg_level_increase_cost *= BigInt.from(4);
   }
 
-  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   int spawn_time_decreaser_amount = 0;
   double spawn_time = 4.5;
   double spawn_time_counter = 4.5;
@@ -275,7 +260,6 @@ void resetUpgradeStats(UpgradeStats upgradeStats) {
   upgradeStats.base_egg_level = 1;
   upgradeStats.base_egg_level_increase_cost = BigInt.from(20000);
 
-  //TODO EĞER OYUN KASARSA TELEFONDAYKEN BUNU 400 DEĞİL 40 yap ve aşağıdaki timer'ı da onla çarps.
   upgradeStats.spawn_time_decreaser_amount = 0;
   upgradeStats.spawn_time = UpgradeStats().spawn_time;
   upgradeStats.spawn_time_counter = UpgradeStats().spawn_time_counter;
@@ -337,11 +321,13 @@ bool gameGoldenEggController(int index,List<int> sayilar){
   return false;
 }
 
+
+//TODO: altın yumurtalara bir ayar çek az kalıyor. - bunun artışını yumurtaların katsayısını yine bulunan oyunun ulaşılan max yumurta'ya oranına göre yapabilirisin ayrıca bir tane tanrı altın tavaların kazandırdığı miktarı arttırabilir. bir iken iki iki iken üç falan yapabilir tabi bunun için kaynak harcanacak.
 List<int> mileStoneEggs = [15,24,36,41,48,57];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
-  for(int i=0;i<mileStoneEggs.length;i++){
+  for(int i=1;i<=mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){
-      inGameStatsObject.gameProgressionLevel = i +1;
+      inGameStatsObject.gameProgressionLevel = i;
     }
   }
 }
@@ -363,19 +349,24 @@ void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_
 
 
 
-  int goldenPenKatsayisi = 1;
+int goldenPenKatsayisi = 1;
 
-  BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object) {
-    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100));
+BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object) {
+  if(god_stats_object.priapus_active){
+    BigInt sonuc = BigInt.from(pow(10,god_stats_object.priapus_level))*(BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100)));
     return sonuc;
   }
 
-  BigInt calculateMoneyPerSec(List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object) {
-    BigInt result = BigInt.zero;
-    for (int n = 0; n < 20; n++) {
-      if (EggIndexList[n].level > 0) {
-        result += produceMoney(n, EggIndexList, ingame_stats_object);
-      }
+  BigInt sonuc = (BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100)));
+  return sonuc;
+}
+
+BigInt calculateMoneyPerSec(List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object) {
+  BigInt result = BigInt.zero;
+  for (int n = 0; n < 20; n++) {
+    if (EggIndexList[n].level > 0) {
+      result += produceMoney(n, EggIndexList, ingame_stats_object,god_stats_object);
     }
-    return result;
   }
+  return result;
+}
