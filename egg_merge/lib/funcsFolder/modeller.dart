@@ -361,3 +361,21 @@ void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_
 
 }
 
+
+
+  int goldenPenKatsayisi = 1;
+
+  BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object) {
+    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100));
+    return sonuc;
+  }
+
+  BigInt calculateMoneyPerSec(List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object) {
+    BigInt result = BigInt.zero;
+    for (int n = 0; n < 20; n++) {
+      if (EggIndexList[n].level > 0) {
+        result += produceMoney(n, EggIndexList, ingame_stats_object);
+      }
+    }
+    return result;
+  }

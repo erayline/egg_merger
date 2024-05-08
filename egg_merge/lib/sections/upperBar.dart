@@ -1,3 +1,4 @@
+import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class upperMoneyBarState extends State<upperMoneyBar> {
             return Expanded(child: Column(
               children: [
                 Center(child: Text(bigIntToString(value.ingame_stats_object.totalMoney))),
-                Center(child: Text(bigIntToString((value.calculateMoneyPerSec()))+"/s")),
+                Center(child: Text(bigIntToString(value.ingame_stats_object.moneyPerSec)+"/s")),
               ],
             ));
           },),

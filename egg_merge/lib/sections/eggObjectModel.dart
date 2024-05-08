@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
@@ -37,6 +38,7 @@ class EggObjectModel extends ChangeNotifier {
 
   UpgradeStats upgrade_stats_object = new UpgradeStats();
   InGameStatsObject ingame_stats_object = new InGameStatsObject();
+  GodStats god_stats_object = new GodStats();
 
   void increaseBaseEgg(UpgradeStats upgrade_stats_object,
       InGameStatsObject ingame_stats_object) {
@@ -55,29 +57,11 @@ class EggObjectModel extends ChangeNotifier {
     notifyListeners();
   }
 
-int goldenPenKatsayisi = 1;
-
-  //BU IKISI PARA URETIMINDEN SORUMLU
-  BigInt produceMoney(int index) {
-    BigInt sonuc = BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100));
-    return sonuc;
-  }
-
-  BigInt calculateMoneyPerSec() {
-    BigInt result = BigInt.zero;
-    for (int n = 0; n < 20; n++) {
-      if (EggIndexList[n].level > 0) {
-        result += produceMoney(n);
-      }
-    }
-    return result;
-  }
-
   double spawnerPercent = 0;
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
   EggObjectModel() {
-    loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList); //oyunu bir yüklüyoruz burada.
+    loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList);
 
     for (int n = 0; n < 20; n++) {
       EggIndexList.add(EggObject());
@@ -89,7 +73,12 @@ int goldenPenKatsayisi = 1;
 
     //PRODUCİNG MONEY HERE
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      ingame_stats_object.moneyPerSec = calculateMoneyPerSec();
+      //GODs CONTROLLER
+      //TODO: CREATE ONE CONTROLLER FOR ALL GODS
+      god_stats_object.priapus_controller_1sec();
+
+      // TODO: MONEY CONTROLLER
+      ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object);
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allAllTimeMoney += ingame_stats_object.moneyPerSec;
@@ -131,9 +120,12 @@ int goldenPenKatsayisi = 1;
       }
       notifyListeners();
     });
-
     //SPAWNİNG AN EGG AND CHECKİNG
   }
+
+  
+
+
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.
   Widget printDragTargetEggWidget(int thisObjectIndex) {
@@ -158,7 +150,6 @@ int goldenPenKatsayisi = 1;
                 ),
                 child: Container(
                   width: 70,
-                  
                   height: 70,
                   child: Stack(
                     children: <Widget>[
@@ -172,7 +163,7 @@ int goldenPenKatsayisi = 1;
                             height: 70,
                             color: Colors.transparent,
                             child: Text(
-                              bigIntToString(produceMoney(thisObjectIndex)),
+                              bigIntToString(produceMoney(thisObjectIndex, EggIndexList, ingame_stats_object)),
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),
                                 fontWeight: FontWeight.bold,

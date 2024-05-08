@@ -122,7 +122,7 @@ class _StatsMenuState extends State<StatsMenu> {
                                                         color: Colors.white),
                                                   ),
                                                   Text(
-                                                    'Current: ${bigIntToString(BigInt.from(3).pow(index) + BigInt.from(value.ingame_stats_object.currentPrestigePoint) * BigInt.from(3).pow(index) * BigInt.from(value.goldenPenKatsayisi) ~/ (BigInt.from(100)))}',
+                                                    'Current: ${bigIntToString(BigInt.from(3).pow(index) + BigInt.from(value.ingame_stats_object.currentPrestigePoint) * BigInt.from(3).pow(index) * BigInt.from(goldenPenKatsayisi) ~/ (BigInt.from(100)))}',
                                                     style: TextStyle(
                                                         color: Colors.white),
                                                   ),
