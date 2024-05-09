@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class EmptyEgg extends StatelessWidget {
@@ -128,7 +130,6 @@ class EggObjectModel extends ChangeNotifier {
   }
 
   
-
 
 
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.

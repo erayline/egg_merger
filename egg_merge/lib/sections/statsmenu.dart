@@ -32,17 +32,18 @@ class _StatsMenuState extends State<StatsMenu> {
                     toolbarHeight: 0.0,
                     automaticallyImplyLeading: false,
                     bottom: const TabBar(
+                      labelColor: Color.fromARGB(255, 252, 198, 0),
                       dividerHeight: 0.0,
-                      indicatorColor: Colors.white,
+                      unselectedLabelColor: Colors.white38,
+                      indicatorColor: Color.fromARGB(255, 252, 198, 0),
                       tabs: [
                         Tab(
                             icon: Text(
                           'Eggs',
-                          style: TextStyle(color: Colors.white),
                         )),
                         Tab(
                             icon: Text('Stats',
-                                style: TextStyle(color: Colors.white)))
+                                ))
                       ],
                     )),
                 body: Container(

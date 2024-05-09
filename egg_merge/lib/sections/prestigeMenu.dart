@@ -236,12 +236,12 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                 LinearPercentIndicator(
                   animation: true,
                   animateFromLastPercent: true,
-                  center: Text(
-                      "${value.god_stats_object.priapus_feed_level}/${100}"),
+                  center: ((value.god_stats_object.priapus_level != 3 ? Text(
+                      "${value.god_stats_object.priapus_feed_level}/${100}") : Text('Enjoy me'))),
                   progressColor: Color.fromARGB(255, 174, 20, 151),
                   width: 150,
                   lineHeight: 30,
-                  percent: value.god_stats_object.priapus_feed_level / 100,
+                  percent: (value.god_stats_object.priapus_level !=3 ? value.god_stats_object.priapus_feed_level / 100 : 1),
                 ),
                 Container(
                   width: 110,
