@@ -53,7 +53,7 @@ void saveTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
   storage.setInt("priapus_cost", god_stats_object.priapus_cost);
   storage.setInt("priapus_feed_level", god_stats_object.priapus_feed_level);
   storage.setInt("priapus_timer", god_stats_object.priapus_timer);
-  storage.setBool("priapus_timer", god_stats_object.priapus_active);
+  storage.setBool("priapus_active", god_stats_object.priapus_active);
 
 
   }
@@ -109,11 +109,11 @@ void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
         : {};
     
     //GODS STATES
-    god_stats_object.priapus_active = storage.getBool("priapus_active") ?? GodStats().priapus_active;
     god_stats_object.priapus_active_time= storage.getInt("priapus_active_time") ?? GodStats().priapus_active_time;
     god_stats_object.priapus_cost= storage.getInt("priapus_cost") ?? GodStats().priapus_cost;
     god_stats_object.priapus_feed_level= storage.getInt("priapus_feed_level") ?? GodStats().priapus_feed_level;
     god_stats_object.priapus_level= storage.getInt("priapus_level") ?? GodStats().priapus_level;
     god_stats_object.priapus_timer= storage.getInt("priapus_timer") ?? GodStats().priapus_timer;
+    god_stats_object.priapus_active = storage.getBool("priapus_active") ?? GodStats().priapus_active;
 
   }

@@ -201,28 +201,7 @@ class InGameStatsObject {
   int currentPrestigePoint = 0;
 
   void calculatePrestigePoint() {
-    if (BigInt.zero <= allTimeMoney && allTimeMoney <= BigInt.from(10).pow(6)) {
-      willGainAmountPrestigePoint = 0;
-    } else if (BigInt.from(10).pow(6) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(10)) {
-      willGainAmountPrestigePoint = pow(5, 2).toInt();
-    } else if (BigInt.from(10).pow(10) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(14)) {
-      willGainAmountPrestigePoint = pow(5, 3).toInt()*2;
-    } else if (BigInt.from(10).pow(14) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(18)) {
-      willGainAmountPrestigePoint = pow(5, 4).toInt()*3;
-    } else if (BigInt.from(10).pow(18) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(22)) {
-      willGainAmountPrestigePoint = pow(5, 5).toInt()*4;
-    } else if (BigInt.from(10).pow(22) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(26)) {
-      willGainAmountPrestigePoint = pow(5, 6).toInt()*5;
-    }
-    else if (BigInt.from(10).pow(26) <= allTimeMoney &&
-        allTimeMoney <= BigInt.from(10).pow(30)) {
-      willGainAmountPrestigePoint = pow(5, 8).toInt()*5;
-    }
+    willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength* 11;
   }
 
   void prestigeFunction(
@@ -323,7 +302,7 @@ bool gameGoldenEggController(int index,List<int> sayilar){
 
 
 //TODO: altın yumurtalara bir ayar çek az kalıyor. - bunun artışını yumurtaların katsayısını yine bulunan oyunun ulaşılan max yumurta'ya oranına göre yapabilirisin ayrıca bir tane tanrı altın tavaların kazandırdığı miktarı arttırabilir. bir iken iki iki iken üç falan yapabilir tabi bunun için kaynak harcanacak.
-List<int> mileStoneEggs = [15,25,35,40,48,57,];
+List<int> mileStoneEggs = [15,20,30,40,48,57,];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){

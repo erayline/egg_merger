@@ -52,8 +52,39 @@ String bigIntToString(BigInt numara) {
   }else if(52<=basamak&&basamak<55){
     numbersUnit="sd";
   }else if(55<=basamak&&basamak<58){
-    numbersUnit="SD";
-  }else{
+    numbersUnit="Sd";
+  }else if(58<=basamak&&basamak<61){
+    numbersUnit="d";
+  }else if(61<=basamak&&basamak<64){
+    numbersUnit="Nd";
+  }else if(64<=basamak&&basamak<67){
+    numbersUnit="V";
+  }else if(67<=basamak&&basamak<70){
+    numbersUnit="Uv";
+  }else if(70<=basamak&&basamak<73){
+    numbersUnit="Dv";
+  }else if(73<=basamak&&basamak<76){
+    numbersUnit="qv";
+  }else if(76<=basamak&&basamak<79){
+    numbersUnit="Qv";
+  }else if(79<=basamak&&basamak<82){
+    numbersUnit="sv";
+  }else if(82<=basamak&&basamak<85){
+    numbersUnit="Sv";
+  }else if(85<=basamak&&basamak<88){
+    numbersUnit="Ov";
+  }else if(88<=basamak&&basamak<91){
+    numbersUnit="Nv";
+  }else if(91<=basamak&&basamak<94){
+    numbersUnit="Tg";
+  }else if(94<=basamak&&basamak<97){
+    numbersUnit="Ut";
+  }else if(97<=basamak&&basamak<100){
+    numbersUnit="Dt";
+  }else if(100<=basamak&&basamak<58){
+    numbersUnit="Tt";
+  }
+  else{
     numbersUnit="WTF";
   }
   

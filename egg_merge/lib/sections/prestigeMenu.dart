@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:egg_merge/sections/eggObjectModel.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -221,7 +223,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                       style: TextStyle(fontSize: 13),
                     ),
                     Text(
-                      'Level 1',
+                      'Level ${value.god_stats_object.priapus_level}',
                       style: TextStyle(fontSize: 13),
                     ),
                   ],
@@ -236,7 +238,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                   animateFromLastPercent: true,
                   center: Text(
                       "${value.god_stats_object.priapus_feed_level}/${100}"),
-                  progressColor: Color.fromARGB(255, 20, 174, 92),
+                  progressColor: Color.fromARGB(255, 174, 20, 151),
                   width: 150,
                   lineHeight: 30,
                   percent: value.god_stats_object.priapus_feed_level / 100,
@@ -253,7 +255,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                             style: TextStyle(fontSize: 11),
                           ),
                           Text(
-                            '10x',
+                            '${pow(10,value.god_stats_object.priapus_level)}x',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 2, 156, 7)),
@@ -264,7 +266,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text('Duration: ', style: TextStyle(fontSize: 11)),
-                          Text('5s',
+                          Text('${value.god_stats_object.priapus_active_time}s',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
                       ),
@@ -272,7 +274,7 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text('Cooldown: ', style: TextStyle(fontSize: 11)),
-                          Text('100s',
+                          Text('${(0<value.god_stats_object.priapus_timer?value.god_stats_object.priapus_timer:0)}s',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
                       )
@@ -288,15 +290,23 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (value.ingame_stats_object.goldenWing >=
-                        value.god_stats_object.priapus_cost) {
-                      value.god_stats_object.priapus_feed_level++;
-                      value.god_stats_object.priapus_cost_increase();
-                      value.ingame_stats_object.goldenWing -=
-                          value.god_stats_object.priapus_cost;
+                    //kilidi açılmamışsa
+                    if(value.god_stats_object.priapus_level<1){
+                      if(value.ingame_stats_object.goldenWing>=value.god_stats_object.priapus_unlock_cost){
+                        value.god_stats_object.priapus_level++;
+                        value.ingame_stats_object.goldenWing-=value.god_stats_object.priapus_unlock_cost;
+                        return;
+                      }
+                      return;
                     }
+                    //kilidi açılmışsa
+                    if (value.ingame_stats_object.goldenWing >=
+                          value.god_stats_object.priapus_cost && value.god_stats_object.priapus_level<3) {
+                        
+                        value.god_stats_object.priapus_level_controller();
+                        value.ingame_stats_object.goldenWing -= value.god_stats_object.priapus_cost;
+                      }
                     //burada artış gerçekleşecek koşullardan sonra
-                    print('Upgrade!');
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
@@ -311,15 +321,17 @@ class _GodUpgradeTileState extends State<GodUpgradeTile> {
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        ('Upgrade  ->  ${value.god_stats_object.priapus_cost}'),
-                      ),
-                      Image.asset(
+                      (value.god_stats_object.priapus_level<1 ? Text(
+                        ('Unlock -> ${value.god_stats_object.priapus_unlock_cost}  '),
+                      ) : (value.god_stats_object.priapus_level<3 ? Text(
+                        ('Feed ->  ${value.god_stats_object.priapus_cost}  '),
+                      ): Text('MAXED'))),
+                      (value.god_stats_object.priapus_level<3 ?Image.asset(
                         "ourAssets/images/chicken-wings.png",
                         width: 30,
-                      )
+                      ) : Text(''))
                     ],
                   ),
                 ),

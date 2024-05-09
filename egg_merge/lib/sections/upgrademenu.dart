@@ -84,7 +84,7 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
       return Container(
-        decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.base_egg_level_increase_cost ? Color.fromARGB(255, 204, 255, 212) : Color.fromARGB(162, 244, 67, 54))),
+        decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.base_egg_level_increase_cost ? Color.fromARGB(255, 128, 255, 119) : Color.fromARGB(162, 244, 67, 54))),
         
         height: 70,
         child: Row(
@@ -130,8 +130,8 @@ class _IncreaseBaseEggWidgetState extends State<IncreaseBaseEggWidget> {
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
-                  child: Text(
-                      "${bigIntToString(value.upgrade_stats_object.base_egg_level_increase_cost)} \$")),
+                  child: Text((gameEggCount <= value.upgrade_stats_object.base_egg_level ? "MAXED" : "${bigIntToString(value.upgrade_stats_object.base_egg_level_increase_cost)} \$")
+                      )),
             ),
           ],
         ),
@@ -153,7 +153,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
   Widget build(BuildContext context) {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.spawn_time_decreaser_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.spawn_time_decreaser_cost ? Color.fromARGB(255, 128, 255, 119) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -201,10 +201,10 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
-                  child: Text(
-                      "${bigIntToString(value.upgrade_stats_object.spawn_time_decreaser_cost)} \$")),
+                  child: Text((30 <= value.upgrade_stats_object.spawn_time_decreaser_amount ? "MAXED" : "${bigIntToString(value.upgrade_stats_object.spawn_time_decreaser_cost)} \$")),
             ),
-        ],
+      )
+      ],
       ),
     );
     });
@@ -225,7 +225,7 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
 
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.double_egg_increaser_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.double_egg_increaser_cost ? Color.fromARGB(255, 128, 255, 119) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -275,10 +275,9 @@ class _ChanceToSpawn2EggWidgetState extends State<ChanceToSpawn2EggWidget> {
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
-                  child: Text(
-                      "${bigIntToString(value.upgrade_stats_object.double_egg_increaser_cost)} \$")),
+                  child: Text((50 <= value.upgrade_stats_object.double_egg_increaser_amount ? "MAXED" : "${bigIntToString(value.upgrade_stats_object.double_egg_increaser_cost)} \$")),
             ),
-        ],
+      )],
       ),
     );
     },);
@@ -298,7 +297,7 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
 
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.wing_at_merge_cost ? Color.fromARGB(255, 207, 255, 204) : Color.fromARGB(162, 244, 67, 54))),
+      decoration: BoxDecoration(border: Border.all(width:3),color: (value.ingame_stats_object.totalMoney>=value.upgrade_stats_object.wing_at_merge_cost ? Color.fromARGB(255, 128, 255, 119) : Color.fromARGB(162, 244, 67, 54))),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -348,10 +347,9 @@ class _ChanceToEarnWingWidgetState extends State<ChanceToEarnWingWidget> {
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0)),
                       )),
-                  child: Text(
-                      "${bigIntToString(value.upgrade_stats_object.wing_at_merge_cost)} \$")),
+                  child: Text((30 <= value.upgrade_stats_object.wing_at_merge_amount ? "MAXED" : "${bigIntToString(value.upgrade_stats_object.wing_at_merge_cost)} \$")),
             ),
-        ],
+      )],
       ),
     );
     },);
@@ -370,7 +368,7 @@ class _ExpandEggStoreHouseWidgetState extends State<ExpandEggStoreHouseWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 207, 255, 204)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 0, 113, 121)),
       height: 70,
       child: Row(
         //içerik soldan sağa
@@ -424,7 +422,7 @@ class _MoreOfflineEarningRateWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 207, 255, 204)),
+      decoration: BoxDecoration(border: Border.all(width:3),color: Color.fromARGB(255, 0, 113, 121)),
       height: 70,
       child: Row(
         //içerik soldan sağa
