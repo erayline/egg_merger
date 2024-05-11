@@ -91,8 +91,10 @@ void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
     ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
     ingame_stats_object.willGainAmountPrestigePoint= storage.getInt("willGainAmountPrestigePoint") ?? 0;
 
-    ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
-    ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
+    ingame_stats_object.goldenWing = 9999999;
+    // ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
+    ingame_stats_object.totalMoney = BigInt.from(10).pow(50);
+    // ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
     ingame_stats_object.allTimeMoney = BigInt.parse(storage.getString("allTimeMoney").toString());
     ingame_stats_object.allAllTimeMoney = BigInt.parse(storage.getString("allAllTimeMoney").toString());
 

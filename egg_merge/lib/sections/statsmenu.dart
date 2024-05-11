@@ -142,7 +142,7 @@ class _StatsMenuState extends State<StatsMenu> {
                                           value.ingame_stats_object
                                               .allTimeEggLevel)
                                       ? null
-                                      : (((index >
+                                      : (((index >=
                                               value.ingame_stats_object
                                                   .allAllTimeEggLevel && gameGoldenEggController(index, mileStoneEggs)))
                                           ? Colors.amber

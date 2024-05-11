@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
@@ -132,6 +131,7 @@ class EggObjectModel extends ChangeNotifier {
   
 
 
+
   //DragTarget oluşturuyor egglist'teki indexlerden index değeri alıyor ona göre işlem yapıyor.
   Widget printDragTargetEggWidget(int thisObjectIndex) {
     return Consumer<EggObjectModel>(builder: ((context, value, child) {
@@ -158,8 +158,12 @@ class EggObjectModel extends ChangeNotifier {
                   height: 70,
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(ImageRoutes[
-                          value.EggIndexList[thisObjectIndex].level - 1],width: 70,height: 70,),
+                      
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        child: Image.asset(ImageRoutes[
+                            value.EggIndexList[thisObjectIndex].level - 1],width: 70,height: 70,),
+                      ),
                       Positioned(
                         top: 52,
                         left: 5,

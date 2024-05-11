@@ -201,7 +201,7 @@ class InGameStatsObject {
   int currentPrestigePoint = 0;
 
   void calculatePrestigePoint() {
-    willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength;
+    willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength *3;
   }
 
   void prestigeFunction(
@@ -302,10 +302,10 @@ bool gameGoldenEggController(int index,List<int> sayilar){
 
 
 //TODO: altın yumurtalara bir ayar çek az kalıyor. - bunun artışını yumurtaların katsayısını yine bulunan oyunun ulaşılan max yumurta'ya oranına göre yapabilirisin ayrıca bir tane tanrı altın tavaların kazandırdığı miktarı arttırabilir. bir iken iki iki iken üç falan yapabilir tabi bunun için kaynak harcanacak.
-List<int> mileStoneEggs = [13,17,30,40,48,57,];
+List<int> mileStoneEggs = [13,23,30,40,48,57,62,80,83,93];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
-    if(mileStoneEggs[i]<inGameStatsObject.allAllTimeEggLevel){
+    if(mileStoneEggs[i]<=inGameStatsObject.allAllTimeEggLevel){
       inGameStatsObject.gameProgressionLevel = i+1;
     }
   }
