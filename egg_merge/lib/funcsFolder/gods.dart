@@ -46,8 +46,19 @@ class GodStats{
 
   /*
   tanrı 2
+  Chronos zaman indirimi sağlıyor
+    1.level -> her 200 saniyede 10 saniyeliğine .4 kazanç boostu sağlayacak
+    2.level -> her 150 saniyede 20 saniyeliğine .9 kazanç boostu sağlayacak
+    3. level -> her 100 saniyede 30 saniyeliğine .14 kazanç boostu sağlayacak
   */
-
+  
+  int chronos_level = 0;
+  int chronos_unlock_cost = 5000;
+  int chronos_cost = 10; // gold
+  int chronos_feed_level = 1;
+  int chronos_timer = 100;
+  int chronos_active_time =5;
+  bool chronos_active = false;
 
 
 }

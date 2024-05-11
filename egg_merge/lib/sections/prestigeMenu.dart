@@ -166,6 +166,7 @@ class _GodControlPageState extends State<GodControlPage> {
     return Consumer<EggObjectModel>(builder: (context, value, child) {
       return ListView(
         children: [
+
           (value.ingame_stats_object.gameProgressionLevel > 1
               ? GodUpgradeTileWidget(god_image: "ourAssets/images/gods/priapus.png", god_name: "Priapus", god_sub_name: "God Of Wealth", god_color: Colors.purple, god_level: value.god_stats_object.priapus_level, god_feed_level: value.god_stats_object.priapus_feed_level, god_cooldown: value.god_stats_object.priapus_timer, god_cost: value.god_stats_object.priapus_cost, golden_wing: value.ingame_stats_object.goldenWing, feed_unlock: () { 
 
@@ -193,14 +194,22 @@ class _GodControlPageState extends State<GodControlPage> {
                     child: Text(
                     'TO UNLOCK GODS\nUNLOCK EGGS',
                     textAlign: TextAlign.center,style: TextStyle(fontSize: 20),
-                  )),
+                  )
+                  ),
               )),
+
+
+              (value.ingame_stats_object.gameProgressionLevel >2 ?
+              GodUpgradeTileWidget(god_image: "ourAssets/images/gods/chronos.png", god_name: "Chronos", god_sub_name: "God of Time", god_color: Color.fromARGB(255, 255, 117, 19), god_level: value.god_stats_object.chronos_level, god_feed_level: value.god_stats_object.chronos_feed_level, god_cooldown: value.god_stats_object.chronos_timer, god_cost: value.god_stats_object.chronos_cost, golden_wing: value.ingame_stats_object.goldenWing, feed_unlock: (){}) : Text('a')),
+
           SizedBox(
             height: 130,
-          ),
-        ],
-      );
-    });
+          )
+              ],
+      
+    );
+    }
+    );
   }
 }
 
