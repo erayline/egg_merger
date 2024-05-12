@@ -170,9 +170,9 @@ class InGameStatsObject {
   void levelUp() {
     merge_level_current += 1;
     merge_level_merged = 0;
-    merge_level_required = merge_level_required + 1 * merge_level_current;
+    merge_level_required =  3 * merge_level_current;
     goldenWing += merge_level_up_reward;
-    merge_level_up_reward = 7 * merge_level_current;
+    merge_level_up_reward = 5 * merge_level_current;
   }
 
   double merge_level_percent = 0.0;

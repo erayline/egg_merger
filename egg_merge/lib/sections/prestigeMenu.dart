@@ -187,7 +187,7 @@ class _GodControlPageState extends State<GodControlPage> {
                         value.ingame_stats_object.goldenWing -= value.god_stats_object.priapus_cost;
                       }
 
-               },)
+               }, god_active_time: value.god_stats_object.priapus_active_time,)
               : Padding(
                 padding: const EdgeInsets.fromLTRB(0,50,0,0),
                 child: Center(
@@ -200,7 +200,7 @@ class _GodControlPageState extends State<GodControlPage> {
 
 
               (value.ingame_stats_object.gameProgressionLevel >2 ?
-              GodUpgradeTileWidget(god_image: "ourAssets/images/gods/chronos.png", god_name: "Chronos", god_sub_name: "God of Time", god_color: Color.fromARGB(255, 255, 117, 19), god_level: value.god_stats_object.chronos_level, god_feed_level: value.god_stats_object.chronos_feed_level, god_cooldown: value.god_stats_object.chronos_timer, god_cost: value.god_stats_object.chronos_cost, golden_wing: value.ingame_stats_object.goldenWing, feed_unlock: (){}) : Text('a')),
+              GodUpgradeTileWidget(god_image: "ourAssets/images/gods/chronos.png", god_name: "Chronos", god_sub_name: "God of Time", god_color: Color.fromARGB(255, 255, 117, 19), god_level: value.god_stats_object.chronos_level, god_feed_level: value.god_stats_object.chronos_feed_level, god_cooldown: value.god_stats_object.chronos_timer, god_cost: value.god_stats_object.chronos_cost, golden_wing: value.ingame_stats_object.goldenWing, feed_unlock: (){}, god_active_time: value.god_stats_object.chronos_active_time,) : Center(child: Text('To unlock god\nunlock eggs',style: TextStyle(fontSize: 19,color: Colors.black),))),
 
           SizedBox(
             height: 130,

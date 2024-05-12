@@ -16,12 +16,13 @@ class GodUpgradeTileWidget extends StatefulWidget {
   final int god_level;
   final int god_feed_level;
   final int god_cooldown;
+  final int god_active_time;
   final int god_cost;
   final int golden_wing;
   final Function()? feed_unlock;
 
 
-  const GodUpgradeTileWidget({super.key, required this.god_image, required this.god_name, required this.god_sub_name, required this.god_color, required this.god_level, required this.god_feed_level, required this.god_cooldown, required this.god_cost, required this.golden_wing, required this.feed_unlock});
+  const GodUpgradeTileWidget({super.key, required this.god_image, required this.god_name, required this.god_sub_name, required this.god_color, required this.god_level, required this.god_feed_level, required this.god_cooldown, required this.god_cost, required this.golden_wing, required this.feed_unlock, required this.god_active_time});
 
   @override
   State<GodUpgradeTileWidget> createState() => _GodUpgradeTileWidgetState();
@@ -91,7 +92,7 @@ class _GodUpgradeTileWidgetState extends State<GodUpgradeTileWidget> {
                             style: TextStyle(fontSize: 11),
                           ),
                           Text(
-                            '${pow(10,value.god_stats_object.priapus_level)}x',
+                            '${(pow(10,widget.god_level) == 1? 0:pow(10,widget.god_level))}x',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 2, 156, 7)),
@@ -102,7 +103,7 @@ class _GodUpgradeTileWidgetState extends State<GodUpgradeTileWidget> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text('Duration: ', style: TextStyle(fontSize: 11)),
-                          Text('${value.god_stats_object.priapus_active_time}s',
+                          Text('${widget.god_active_time}s',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
                       ),
