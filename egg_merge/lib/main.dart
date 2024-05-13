@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:egg_merge/funcsFolder/saveload.dart';
 import 'package:egg_merge/sections/bottom_bar.dart';
 import 'package:egg_merge/sections/game_section.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
@@ -5,13 +8,19 @@ import 'package:egg_merge/sections/spawn_timer.dart';
 import 'package:egg_merge/sections/upperBar.dart';
 import 'package:flutter/material.dart';
 
-
 import 'package:provider/provider.dart';
+
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+  try{
+    MobileAds.instance.initialize();
+  } on Exception{
+    print('no internet probably');
+  }
+
   runApp(const MyApp());
 }
 
@@ -63,12 +72,14 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
+
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    
+    return Scaffold(
       backgroundColor: Colors.black,
         body: SafeArea(
-          
           child: Column(
             children: <Widget>[
               upperBar(),
@@ -79,7 +90,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
-    
+
   }
 }
 

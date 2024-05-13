@@ -6,6 +6,7 @@ import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 class EmptyEgg extends StatelessWidget {
@@ -60,7 +61,9 @@ class EggObjectModel extends ChangeNotifier {
   double spawnerPercent = 0;
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
+
   EggObjectModel() {
+
     loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList,god_stats_object);
 
     for (int n = 0; n < 20; n++) {
@@ -76,8 +79,6 @@ class EggObjectModel extends ChangeNotifier {
       //GODs CONTROLLER
       //TODO: CREATE ONE CONTROLLER FOR ALL GODS
       god_stats_object.priapus_controller_1sec();
-
-
 
       // TODO: MONEY CONTROLLER
       ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object,god_stats_object);
