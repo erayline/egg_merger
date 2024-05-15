@@ -41,7 +41,7 @@ void saveTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
 
     String eggLevelsString="";
     for(int n=0;n<20;n++){
-      eggLevelsString+=EggIndexList[n].level.toString() + "."; // from 0 to 19 
+      eggLevelsString+=EggIndexList[n].level.toString() + "."; // from 0 to 19
     }
     storage.setString("EggIndexListString", eggLevelsString);
 
@@ -91,10 +91,10 @@ void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
     ingame_stats_object.allTimeEggLevel= storage.getInt("allTimeEggLevel") ?? 1;
     ingame_stats_object.willGainAmountPrestigePoint= storage.getInt("willGainAmountPrestigePoint") ?? 0;
 
-    // ingame_stats_object.goldenWing = 9999999;
-    ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
-    // ingame_stats_object.totalMoney = BigInt.from(10).pow(50);
-    ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
+    ingame_stats_object.goldenWing = 9999999;
+    // ingame_stats_object.goldenWing = storage.getInt("golden_wing")??0;
+    ingame_stats_object.totalMoney = BigInt.from(10).pow(52);
+    // ingame_stats_object.totalMoney = BigInt.parse(storage.getString("totalMoney").toString());
     ingame_stats_object.allTimeMoney = BigInt.parse(storage.getString("allTimeMoney").toString());
     ingame_stats_object.allAllTimeMoney = BigInt.parse(storage.getString("allAllTimeMoney").toString());
 
@@ -109,7 +109,7 @@ void loadTheGame(UpgradeStats upgrade_stats_object, InGameStatsObject ingame_sta
     data = dataString != null
         ? Map<String, Object>.from(jsonDecode(dataString))
         : {};
-    
+
     //GODS STATES
     god_stats_object.priapus_active_time= storage.getInt("priapus_active_time") ?? GodStats().priapus_active_time;
     god_stats_object.priapus_cost= storage.getInt("priapus_cost") ?? GodStats().priapus_cost;

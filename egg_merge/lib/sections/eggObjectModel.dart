@@ -86,7 +86,7 @@ class EggObjectModel extends ChangeNotifier {
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allAllTimeMoney += ingame_stats_object.moneyPerSec;
       //prestige calculation
-      ingame_stats_object.calculatePrestigePoint();
+      ingame_stats_object.calculatePrestigePoint(ingame_stats_object);
 
       //save the fame function is should be here
       saveTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList,god_stats_object);

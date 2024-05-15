@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
 import 'package:egg_merge/sections/bottom_bar.dart';
 import 'package:egg_merge/sections/game_section.dart';
@@ -76,7 +77,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
+    createPrestigeMileStones();
+
+
+
     return Scaffold(
       backgroundColor: Colors.black,
         body: SafeArea(

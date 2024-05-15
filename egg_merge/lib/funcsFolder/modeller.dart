@@ -97,7 +97,7 @@ List<String> eggNames = [
   "Nova",  //90
   "It is all\negg",
   "IT-verse",
-  "Thank you\nfor playing\n<3",
+  "Present\nfor you",
 ];
 
 class UpgradeStats {
@@ -201,9 +201,25 @@ class InGameStatsObject {
   int willGainAmountPrestigePoint = 0;
   int currentPrestigePoint = 0;
 
-  void calculatePrestigePoint() {
-    willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength *3;
+  
+  
+  int indexOfMultiplier = 0;
+  
+  void calculatePrestigePoint(InGameStatsObject ingame_stats_object) {
+    indexOfMultiplier = 0;
+    if(allTimeEggLevel < prestigeMileStones[0]){
+      willGainAmountPrestigePoint = allTimeMoney.bitLength * 11;
+      return;
+    }
+
+    for(int i = 0;i<prestigeMileStones.length;i++){
+      if(ingame_stats_object.allTimeEggLevel>prestigeMileStones[i])
+        indexOfMultiplier = i;
+    }
+    ingame_stats_object.willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeEggLevel.bitLength * prestigeMileStoneMultiplier[indexOfMultiplier];
   }
+
+
 
   void prestigeFunction(
       List<EggObject> eggIndexList, UpgradeStats upgradeStats) {
@@ -303,7 +319,22 @@ bool gameGoldenEggController(int index,List<int> sayilar){
 
 
 //TODO: altın yumurtalara bir ayar çek az kalıyor. - bunun artışını yumurtaların katsayısını yine bulunan oyunun ulaşılan max yumurta'ya oranına göre yapabilirisin ayrıca bir tane tanrı altın tavaların kazandırdığı miktarı arttırabilir. bir iken iki iki iken üç falan yapabilir tabi bunun için kaynak harcanacak.
-List<int> prestigeMileStones = [40,50,60,70,80,90];
+
+
+
+
+List<int> prestigeMileStones = [];
+List<int> prestigeMileStoneMultiplier = [2,4,6,8,12,16,48,96,360,1024,2048,4096];
+void createPrestigeMileStones(){
+  prestigeMileStones = [];
+  
+  for(int i = 48;i<gameEggCount;i+=6){
+    prestigeMileStones.add(i);
+  }
+
+}
+
+
 List<int> mileStoneEggs = [13,23,30,40,48,57,62,80,83,93];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
@@ -312,6 +343,23 @@ void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
     }
   }
 }
+
+
+
+
+bool listedeVarMi(List<int> liste,aranan){
+  for(int i=0;i<liste.length;i++){
+    if(liste[i] == aranan) return true;
+  }
+  return false;
+}
+
+
+
+
+
+
+
 
 
 // at merge function
@@ -323,7 +371,8 @@ void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_
   wingAtMerge(willItHappen(upgrade_stats_object.wing_at_merge_amount), ingame_stats_object);
   EggIndexList[thisObjectIndex].level++;
   EggIndexList[draggedObjectData].level = 0;
-  
+
+  ingame_stats_object.calculatePrestigePoint(ingame_stats_object);
 }
 
 

@@ -18,7 +18,7 @@ class _StatsMenuState extends State<StatsMenu> {
       return Dialog(
         backgroundColor: Colors.transparent,
         child: Container(
-            width: 200,
+            width: 1000,
             height: 500,
             decoration: BoxDecoration(
               border: Border.all(width: 3),
@@ -42,8 +42,9 @@ class _StatsMenuState extends State<StatsMenu> {
                           'Eggs',
                         )),
                         Tab(
-                            icon: Text('Stats',
-                                ))
+                            icon: Text(
+                          'Stats',
+                        ))
                       ],
                     )),
                 body: Container(
@@ -52,104 +53,129 @@ class _StatsMenuState extends State<StatsMenu> {
                   ),
                   child: TabBarView(
                     children: [
-                      GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3, // 10 sütun
-                            mainAxisSpacing: 10.0, // Satırlar arası boşluk
-                            crossAxisSpacing: 10.0, // Sütunlar arası boşluk
-                          ),
-                          itemCount: gameEggCount,
-                          itemBuilder: (context, index) {
-                            return Center(
-                                child: IconButton(
-                              onPressed: () {
-                                if (value.ingame_stats_object.allTimeEggLevel >
-                                    index) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return Dialog(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Color.fromARGB(255, 44, 4, 48),
-                                            border: Border.all(
-                                                color: Colors.black, width: 2),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10,0,10,0),
+                        child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3, // 10 sütun
+                              mainAxisSpacing: 10.0, // Satırlar arası boşluk
+                              crossAxisSpacing: 10.0, // Sütunlar arası boşluk
+                            ),
+                            itemCount: gameEggCount,
+                            itemBuilder: (context, index) {
+                              return Center(
+                                  child: IconButton(
+                                onPressed: () {
+                                  if (value
+                                          .ingame_stats_object.allTimeEggLevel >
+                                      index) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 44, 4, 48),
+                                              border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 2),
+                                            ),
+                                            width: 100,
+                                            height: 200,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: <Widget>[
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: <Widget>[
+                                                    Image.asset(
+                                                      ImageRoutes[index]
+                                                          .toString(),
+                                                      width: 120,
+                                                    ),
+                                                    Text(
+                                                      (index + 1).toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          color: Colors.white),
+                                                    )
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      '${eggNames[index]}',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255)),
+                                                    ),
+                                                    Text(
+                                                      'Base: ${bigIntToString(BigInt.from(3).pow(index))}',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      'Current: ${bigIntToString(BigInt.from(3).pow(index) + BigInt.from(value.ingame_stats_object.currentPrestigePoint) * BigInt.from(3).pow(index) * BigInt.from(goldenPenKatsayisi) ~/ (BigInt.from(100)))}',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                          width: 100,
-                                          height: 200,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: <Widget>[
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  Image.asset(
-                                                    ImageRoutes[index]
-                                                        .toString(),
-                                                    width: 120,
-                                                  ),
-                                                  Text(
-                                                    (index + 1).toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        color: Colors.white),
-                                                  )
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  Text(
-                                                    '${eggNames[index]}',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        color: Color.fromARGB(
-                                                            255,
-                                                            255,
-                                                            255,
-                                                            255)),
-                                                  ),
-                                                  Text(
-                                                    'Base: ${bigIntToString(BigInt.from(3).pow(index))}',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  Text(
-                                                    'Current: ${bigIntToString(BigInt.from(3).pow(index) + BigInt.from(value.ingame_stats_object.currentPrestigePoint) * BigInt.from(3).pow(index) * BigInt.from(goldenPenKatsayisi) ~/ (BigInt.from(100)))}',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                              },
-                              icon: Image.asset(ImageRoutes[index].toString(),
-                                  color: (index <
-                                          value.ingame_stats_object
-                                              .allTimeEggLevel)
-                                      ? null
-                                      : (((index >=
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                icon: Stack(children: [
+                                  Image.asset(ImageRoutes[index].toString(),
+                                      color: (index <
                                               value.ingame_stats_object
-                                                  .allAllTimeEggLevel && gameGoldenEggController(index, mileStoneEggs)))
-                                          ? Colors.amber
-                                          : Colors.black)),
-                              highlightColor: Colors.transparent,
-                            ));
-                          }),
+                                                  .allTimeEggLevel)
+                                          ? null
+                                          : (((index >=
+                                                      value.ingame_stats_object
+                                                          .allAllTimeEggLevel &&
+                                                  gameGoldenEggController(
+                                                      index, mileStoneEggs)))
+                                              ? Colors.amber
+                                              : Colors.black)),
+                                  (listedeVarMi(prestigeMileStones, index)
+                                      ? (prestigeMileStones[value.ingame_stats_object
+                                                  .indexOfMultiplier] >=
+                                              index
+                                          ? Text(
+                                              '${prestigeMileStoneMultiplier[prestigeMileStones.indexOf(index)]}x',
+                                              style: TextStyle(
+                                                  color: Colors.amber,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          : Text('?',
+                                              style: TextStyle(
+                                                  color: Colors.amber,
+                                                  fontWeight: FontWeight.bold)))
+                                      : Text(''))
+                                ]),
+                                highlightColor: Colors.transparent,
+                              ));
+                            }),
+                      ),
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
