@@ -216,7 +216,7 @@ class InGameStatsObject {
       if(ingame_stats_object.allTimeEggLevel>prestigeMileStones[i])
         indexOfMultiplier = i;
     }
-    ingame_stats_object.willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeEggLevel.bitLength * prestigeMileStoneMultiplier[indexOfMultiplier];
+    ingame_stats_object.willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength * prestigeMileStoneMultiplier[indexOfMultiplier];
   }
 
 
@@ -324,7 +324,7 @@ bool gameGoldenEggController(int index,List<int> sayilar){
 
 
 List<int> prestigeMileStones = [];
-List<int> prestigeMileStoneMultiplier = [2,4,6,8,12,16,48,96,360,1024,2048,4096];
+List<int> prestigeMileStoneMultiplier = [2,4,8,16,48,96,200,500,360,1024,2048,4096];
 void createPrestigeMileStones(){
   prestigeMileStones = [];
   
