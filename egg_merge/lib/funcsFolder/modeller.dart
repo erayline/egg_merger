@@ -375,9 +375,9 @@ void atMergeFunction(InGameStatsObject ingame_stats_object,UpgradeStats upgrade_
   ingame_stats_object.calculatePrestigePoint(ingame_stats_object);
 }
 
-
-
 int goldenPenKatsayisi = 1;
+
+
 
 BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object) {
   if(god_stats_object.priapus_active){
