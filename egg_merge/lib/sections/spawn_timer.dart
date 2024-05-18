@@ -23,7 +23,7 @@ class _spawnTimerState extends State<spawnTimer> {
         return Container(
           height: 40,
           width: MediaQuery.of(context).size.width,
-          color: Color.fromARGB(255, 255, 205, 41),
+          color: Color.fromARGB(255, 233, 157, 43),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -40,11 +40,11 @@ class _spawnTimerState extends State<spawnTimer> {
                     CircularPercentIndicator(
                       radius: 17,
                       fillColor: Colors.transparent,
-                      progressColor: Colors.blue,
+                      progressColor: const Color.fromARGB(255, 22, 106, 176),
                       percent: value.spawnerPercent,
                     ),
                     Text(
-                        '${value.upgrade_stats_object.spawn_time_counter.toStringAsFixed(1)}/${value.upgrade_stats_object.spawn_time.toStringAsFixed(1)}'),
+                        '${value.upgrade_stats_object.spawn_time_counter.toStringAsFixed(1)}/${value.upgrade_stats_object.spawn_time.toStringAsFixed(1)}',style: TextStyle(color: Color.fromARGB(255, 14, 63, 115),fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),
@@ -52,7 +52,7 @@ class _spawnTimerState extends State<spawnTimer> {
                 animation: true,
                 animateFromLastPercent: true,
                 center: Text("${value.ingame_stats_object.merge_level_merged}/${value.ingame_stats_object.merge_level_required}"),
-                
+                trailing: Text('${value.ingame_stats_object.merge_level_current}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Color.fromARGB(255, 16, 0, 107)),),
                 progressColor: Color.fromARGB(255, 20, 174, 92),
                 width: 150,
                 lineHeight: 30,

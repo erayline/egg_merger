@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:egg_merge/funcsFolder/gods.dart';
+import 'package:egg_merge/funcsFolder/reklam.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
 
 
@@ -335,7 +336,7 @@ void createPrestigeMileStones(){
 }
 
 
-List<int> mileStoneEggs = [13,23,30,40,48,57,62,80,83,93];
+List<int> mileStoneEggs = [13,23,30,40];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<=inGameStatsObject.allAllTimeEggLevel){
@@ -379,21 +380,34 @@ int goldenPenKatsayisi = 1;
 
 
 
-BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object) {
+BigInt produceMoney(int index, List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object, Reklam reklam) {
   if(god_stats_object.priapus_active){
-    BigInt sonuc = BigInt.from(pow(10,god_stats_object.priapus_level))*(BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100)));
+    BigInt sonuc = 
+     BigInt.from(pow(10, 2*reklam.rewardedMoneyBoostActive)) *
+
+      (BigInt.from(pow(10,god_stats_object.priapus_level))
+      *(BigInt.from(3).pow(EggIndexList[index].level - 1) 
+      +  BigInt.from(ingame_stats_object.currentPrestigePoint)
+        *BigInt.from(3).pow(EggIndexList[index].level - 1)
+        *BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100))));
     return sonuc;
   }
 
-  BigInt sonuc = (BigInt.from(3).pow(EggIndexList[index].level - 1) + BigInt.from(ingame_stats_object.currentPrestigePoint)*BigInt.from(3).pow(EggIndexList[index].level - 1)*BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100)));
+  BigInt sonuc = 
+    BigInt.from(pow(10,2*reklam.rewardedMoneyBoostActive))
+    *((BigInt.from(3).pow(EggIndexList[index].level - 1)
+     + BigInt.from(ingame_stats_object.currentPrestigePoint)
+      *BigInt.from(3).pow(EggIndexList[index].level - 1)
+      *BigInt.from(goldenPenKatsayisi)~/(BigInt.from(100))));
+
   return sonuc;
 }
 
-BigInt calculateMoneyPerSec(List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object) {
+BigInt calculateMoneyPerSec(List<EggObject> EggIndexList,InGameStatsObject ingame_stats_object,GodStats god_stats_object,Reklam reklam) {
   BigInt result = BigInt.zero;
   for (int n = 0; n < 20; n++) {
     if (EggIndexList[n].level > 0) {
-      result += produceMoney(n, EggIndexList, ingame_stats_object,god_stats_object);
+      result += produceMoney(n, EggIndexList, ingame_stats_object,god_stats_object,reklam);
     }
   }
   return result;

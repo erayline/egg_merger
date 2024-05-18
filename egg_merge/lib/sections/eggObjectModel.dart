@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:egg_merge/funcsFolder/gods.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
+import 'package:egg_merge/funcsFolder/reklam.dart';
 import 'package:egg_merge/funcsFolder/saveload.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 class EmptyEgg extends StatelessWidget {
@@ -40,6 +39,8 @@ class EggObjectModel extends ChangeNotifier {
   UpgradeStats upgrade_stats_object = new UpgradeStats();
   InGameStatsObject ingame_stats_object = new InGameStatsObject();
   GodStats god_stats_object = new GodStats();
+  Reklam reklam = new Reklam();
+
 
   void increaseBaseEgg(UpgradeStats upgrade_stats_object,
       InGameStatsObject ingame_stats_object) {
@@ -62,6 +63,7 @@ class EggObjectModel extends ChangeNotifier {
 
   //MODELI INIT ETTIGIMIZDE BASLAYAN TIMERLAR
 
+
   EggObjectModel() {
 
     loadTheGame(upgrade_stats_object, ingame_stats_object, EggIndexList,god_stats_object);
@@ -76,12 +78,16 @@ class EggObjectModel extends ChangeNotifier {
 
     //PRODUCİNG MONEY HERE
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
+
+      //ad boost controller
+      reklam.rewardedMoneyBoostController();
+
       //GODs CONTROLLER
       //TODO: CREATE ONE CONTROLLER FOR ALL GODS
       god_stats_object.priapus_controller_1sec();
 
       // TODO: MONEY CONTROLLER
-      ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object,god_stats_object);
+      ingame_stats_object.moneyPerSec = calculateMoneyPerSec(EggIndexList, ingame_stats_object,god_stats_object,reklam);
       ingame_stats_object.totalMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allTimeMoney += ingame_stats_object.moneyPerSec;
       ingame_stats_object.allAllTimeMoney += ingame_stats_object.moneyPerSec;
@@ -173,7 +179,7 @@ class EggObjectModel extends ChangeNotifier {
                             height: 70,
                             color: Colors.transparent,
                             child: Text(
-                              bigIntToString(produceMoney(thisObjectIndex, EggIndexList, ingame_stats_object,god_stats_object)),
+                              bigIntToString(produceMoney(thisObjectIndex, EggIndexList, ingame_stats_object,god_stats_object,reklam)),
                               style: TextStyle(
                                 color: (value.god_stats_object.priapus_active ? const Color.fromARGB(255, 230, 255, 7) : Color.fromARGB(255, 255, 255, 255)),
                                 fontWeight: FontWeight.bold,

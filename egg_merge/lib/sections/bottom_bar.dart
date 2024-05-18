@@ -18,7 +18,7 @@ class _bottomBarState extends State<bottomBar> {
       return Container(
         width: MediaQuery.of(context).size.width,
         height: 70,
-        color: Color.fromARGB(255, 229, 156, 115),
+        color: Color.fromARGB(255, 227, 132, 77),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

@@ -143,12 +143,12 @@ class _GodUpgradeTileWidgetState extends State<GodUpgradeTileWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      (value.god_stats_object.priapus_level<1 ? Text(
+                      (value.god_stats_object.chronos_level<1 ? Text(
                         ('Unlock -> ${widget.god_cost}  '),
-                      ) : (value.god_stats_object.priapus_level<3 ? Text(
+                      ) : (value.god_stats_object.chronos_level<3 ? Text(
                         ('Feed ->  ${widget.god_cost}  '),
                       ): Text('MAXED'))),
-                      (value.god_stats_object.priapus_level<3 ?Image.asset(
+                      (value.god_stats_object.chronos_level<3 ?Image.asset(
                         "ourAssets/images/chicken-wings.png",
                         width: 30,
                       ) : Text(''))

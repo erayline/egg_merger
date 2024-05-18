@@ -15,7 +15,7 @@ class _inGameState extends State<inGame> {
     return Consumer<EggObjectModel>(builder: ((context, value, child){
       return Expanded(
         child: Container(
-          color: Color.fromARGB(255, 250, 226, 177),
+          color: Color.fromARGB(255, 248, 217, 155),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
