@@ -110,8 +110,8 @@ class UpgradeStats {
   }
 
   int spawn_time_decreaser_amount = 0;
-  double spawn_time = 4.5;
-  double spawn_time_counter = 4.5;
+  double spawn_time = 6;
+  double spawn_time_counter = 6;
   BigInt spawn_time_decreaser_cost = BigInt.from(1000);
   void setNewSpawnTimerDecreaserCost(){
     spawn_time_decreaser_cost *= BigInt.from(2);
@@ -174,7 +174,7 @@ class InGameStatsObject {
     merge_level_merged = 0;
     merge_level_required =  3 * merge_level_current;
     goldenWing += merge_level_up_reward;
-    merge_level_up_reward = 5 * merge_level_current;
+    merge_level_up_reward = 4 * merge_level_current;
   }
 
   double merge_level_percent = 0.0;
@@ -236,7 +236,7 @@ class InGameStatsObject {
     resetWingAtMergeUpgrd(upgradeStats);
 
     for (int n = 0; n < 20; n++) {
-      eggIndexList[n].level = 0;
+    eggIndexList[n].level = 0;
     }
   }
 }

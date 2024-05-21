@@ -107,7 +107,7 @@ class _upperBarState extends State<upperBar> {
                                                   Duration(seconds: 3), () {
                                                 _loadRewardedAd();
                                                 print('yenisi yüklendi');
-                                                Future.delayed(Duration(seconds: 120),(){
+                                                Future.delayed(Duration(seconds: 330),(){
                                                 rewardedAdOpen = true;
                                                 });
                                                 rewardedAdOpen = false;
@@ -119,7 +119,7 @@ class _upperBarState extends State<upperBar> {
                                             onTap: () {//REDDEDİLDİ
                                               rewardedAdOpen = false;
                                               Navigator.pop(context);
-                                              Future.delayed(Duration(seconds: 60),(){
+                                              Future.delayed(Duration(seconds: 300),(){
                                                 rewardedAdOpen = true;
                                               });
                                             },

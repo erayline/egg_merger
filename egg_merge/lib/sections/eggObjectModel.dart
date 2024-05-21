@@ -117,7 +117,7 @@ class EggObjectModel extends ChangeNotifier {
       if (isThereEmptySpace(EggIndexList)) {
         spawnerPercent = 1.0 - double.parse((upgrade_stats_object.spawn_time_counter / upgrade_stats_object.spawn_time).toStringAsFixed(2));
         upgrade_stats_object.spawn_time_counter-=0.1;
-        if(upgrade_stats_object.spawn_time_counter<0){upgrade_stats_object.spawn_time_counter=0.0;}; // bu da spawner değişkenlerine bağlı
+      if(upgrade_stats_object.spawn_time_counter<0){upgrade_stats_object.spawn_time_counter=0.0;}; // bu da spawner değişkenlerine bağlı
 
         if (upgrade_stats_object.spawn_time_counter <= 0) {
           spawnOneEgg(upgrade_stats_object, EggIndexList);

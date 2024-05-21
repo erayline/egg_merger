@@ -1,3 +1,4 @@
+import 'package:egg_merge/components/stats_line.dart';
 import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
@@ -199,7 +200,7 @@ class _StatsMenuState extends State<StatsMenu> {
                             StatsLineWidget(
                                 color: Color.fromARGB(255, 0, 0, 0),
                                 infoName: "god chicken count",
-                                infoItself: "0"),
+                                infoItself: (value.god_stats_object.priapus_level>0?"1":"0")),
                           ],
                         ),
                       )
@@ -210,38 +211,5 @@ class _StatsMenuState extends State<StatsMenu> {
             )),
       );
     });
-  }
-}
-
-class StatsLineWidget extends StatefulWidget {
-  final String infoName;
-  final String infoItself;
-  final Color color;
-  const StatsLineWidget(
-      {super.key,
-      required this.color,
-      required this.infoName,
-      required this.infoItself});
-
-  @override
-  State<StatsLineWidget> createState() => _StatLinesWidgetState();
-}
-
-class _StatLinesWidgetState extends State<StatsLineWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 30,
-      width: 170,
-      decoration: BoxDecoration(
-        color: widget.color,
-        borderRadius: BorderRadius.circular(7.0),
-      ),
-      child: Center(
-          child: Text(
-        "${widget.infoName}: ${widget.infoItself}",
-        style: TextStyle(fontSize: 12, color: Colors.white),
-      )),
-    );
   }
 }

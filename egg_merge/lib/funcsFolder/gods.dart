@@ -7,14 +7,14 @@ class GodStats{
     3. level -> her 50 saniyede 15 saniyeliğine 100x kazanç boostu sağlayacak
   */
   int priapus_level = 0;
-  int priapus_unlock_cost = 5000;
+  int priapus_unlock_cost = 10000;
   int priapus_feed_level = 1;
   int priapus_timer = 100;
   int priapus_active_time =5;
   bool priapus_active = false;
-  int priapus_cost = 10; // golden wing
+  int priapus_cost = 10000; // golden wing
   void priapus_cost_increase(){
-    priapus_cost = priapus_feed_level*2 + (priapus_level-1)*200;
+    priapus_cost = priapus_feed_level*3 + (priapus_level-1)*200;
   }
   void priapus_level_controller(){
     

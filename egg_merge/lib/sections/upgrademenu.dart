@@ -193,7 +193,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                     width: 10,
                   ),
                   Text(
-                    "${value.upgrade_stats_object.spawn_time_decreaser_amount}/30",
+                    "${value.upgrade_stats_object.spawn_time_decreaser_amount}/40",
                     style: TextStyle(color: Colors.white),
                   )
                 ],
@@ -211,7 +211,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                   if (canIBuy(value.ingame_stats_object.totalMoney,
                       value.upgrade_stats_object.spawn_time_decreaser_cost)) {
                     if (value.upgrade_stats_object.spawn_time_decreaser_amount <
-                        30) {
+                        40) {
                       buy_decrease_spawn_time(value.upgrade_stats_object,
                           value.ingame_stats_object);
                     }

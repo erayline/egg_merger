@@ -181,6 +181,7 @@ class _GodControlPageState extends State<GodControlPage> {
                         value.god_stats_object.priapus_level++;
                         value.ingame_stats_object.goldenWing -=
                             value.god_stats_object.priapus_unlock_cost;
+                            value.god_stats_object.priapus_cost_increase();
                         return;
                       }
                       return;
@@ -221,7 +222,7 @@ class _GodControlPageState extends State<GodControlPage> {
                 )
               : Center(
                   child: Text(
-                  'To unlock god\nunlock eggs',
+                  '',
                   style: TextStyle(fontSize: 19, color: Colors.black),
                 ))),
           SizedBox(

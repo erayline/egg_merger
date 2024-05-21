@@ -48,15 +48,18 @@ class _spawnTimerState extends State<spawnTimer> {
                   ],
                 ),
               ),
-              LinearPercentIndicator(
-                animation: true,
-                animateFromLastPercent: true,
-                center: Text("${value.ingame_stats_object.merge_level_merged}/${value.ingame_stats_object.merge_level_required}"),
-                trailing: Text('${value.ingame_stats_object.merge_level_current}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Color.fromARGB(255, 16, 0, 107)),),
-                progressColor: Color.fromARGB(255, 20, 174, 92),
-                width: 150,
-                lineHeight: 30,
-                percent: value.ingame_stats_object.merge_level_percent,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,5,0),
+                child: LinearPercentIndicator(
+                  animation: true,
+                  animateFromLastPercent: true,
+                  center: Text("${value.ingame_stats_object.merge_level_merged}/${value.ingame_stats_object.merge_level_required}"),
+                  trailing: Text('${value.ingame_stats_object.merge_level_current}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Color.fromARGB(255, 16, 0, 107)),),
+                  progressColor: Color.fromARGB(255, 20, 174, 92),
+                  width: 150,
+                  lineHeight: 30,
+                  percent: value.ingame_stats_object.merge_level_percent,
+                ),
               ), //buraya level
             ],
           ),
