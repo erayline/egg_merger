@@ -336,7 +336,7 @@ void createPrestigeMileStones(){
 }
 
 
-List<int> mileStoneEggs = [13,23,30,40];
+List<int> mileStoneEggs = [16,23,30,40];
 void checkGameProgressionLevel(InGameStatsObject inGameStatsObject){
   for(int i=0;i<mileStoneEggs.length;i++){
     if(mileStoneEggs[i]<=inGameStatsObject.allAllTimeEggLevel){

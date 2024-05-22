@@ -224,7 +224,7 @@ class _DecreaseSpawnTimeWidgetState extends State<DecreaseSpawnTimeWidget> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                     )),
-                child: Text((30 <=
+                child: Text((40 <=
                         value.upgrade_stats_object.spawn_time_decreaser_amount
                     ? "MAXED"
                     : "${bigIntToString(value.upgrade_stats_object.spawn_time_decreaser_cost)} \$")),

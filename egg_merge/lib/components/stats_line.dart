@@ -20,7 +20,7 @@ class _StatLinesWidgetState extends State<StatsLineWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      width: 170,
+      width: 230,
       decoration: BoxDecoration(
         color: widget.color,
         borderRadius: BorderRadius.circular(7.0),
@@ -28,7 +28,7 @@ class _StatLinesWidgetState extends State<StatsLineWidget> {
       child: Center(
           child: Text(
         "${widget.infoName}: ${widget.infoItself}",
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 14, color: Colors.white),
       )),
     );
   }
