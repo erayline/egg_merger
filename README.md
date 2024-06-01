@@ -1,7 +1,9 @@
-# egg_merge
+# Eggable - dart flutter mobile application but a minigame
 
-A new Flutter project. I am learning plus creating a game as a side hustle.
+## how it works.
+It's based on draggable widget.
 
-## Why tho
+## why did I made it?
+To learn flutter and make a little money.
 
-Because I loved idle games since I was a kid.
+(You can play the game from here)[https://play.google.com/store/search?q=eggable&c=apps]
