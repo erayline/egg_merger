@@ -1,0 +1,63 @@
+!Yapılacaklar listesi (sırayla takip et)
+
+
+
+
+#MVP KISMI
+
+
+
+
+number one priority:
+learn how to rout pages.
+
+
+
+
+->açılmış yumurtalar menüsü dizayn artı kodlama
+
+
+
+----->birinci kısımda tüm kilidi açılmış yumurtalar bulunacak.
+----->ikinci kısımda şimdiye kadar yapılmış birleştirmeler, kazanılan toplam para vs vs. koyabildiğimiz kadar.
+
+->prestij menüsü kodlanacak
+
+->şimdiye kadarki açılan yumurtalar listesi kodlanacak ve bu noktada başka statlar da bulunacak.
+
+
+
+
+
+
+
+
+
+
+DANZO
+->numara şekillendirme kodlanacak
+
+->shared preferences kısmı kodlanacak
+--> model init edilirken önceden kaydettiklerimiz yüklenecek.
+--> model init edildiğinde Timer'larımızdan birinin içinde sürekli kaydetmesi adına bir fonksiyon yazacağım ve bu fonksiyon modelin dışında tanımlanacak fonksiyonlar adında bir sayfa açmalısın artık.
+
+
+done-> UI geliştir
+done-> birleştirme mekaniğini kodla
+done-> boş yumurta oluştur, level 0 iken gözükecek.
+done-> leveli 0'dan farklı olanı level 0 olan boş alana sürükleyince levelleri değişsin.
+done-> create the spawn mechanics
+done---> zamanlayıcı kullanmayı öğren. belirli aralıklarla fonksiyon çağırıyor.
+done---> zamanlayıcı her çalıştığında eggObjectModeldeki index listesinin en başından level'i sıfır olanı bulup onu BaseSpawnLevel adlı değişken kadar arttıracak.
+done--->eğer hiç bulamazsa çalışmayacak bu kadar basit. (fikir olarak doğmayanlar birikebilir.)
+done-->spawner timer'ındaki sayı doğru düzgün değişsin.
+
+done->create money mechanics
+done-->return 3^level * goldpan
+done--->geliştirmeler menüsü
+done->arkaplan siyah yapılacak safezone üstü
+done->upgrade logosu değişecek
+done->geliştirmeler menüsü kodlanacak
+done->Figmadan dizaynını tamamla
+done--->presij menüsü
+done-> prestij mantığını kodla
