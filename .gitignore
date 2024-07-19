@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 flutter/ephemeral/
 
 # Visual Studio user-specific files.
@@ -15,3 +16,6 @@ x86/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
+=======
+egg_merge/TODOS.txt
+>>>>>>> dac25ce12b1e070aefacd3e3cf2fd1c12a224b4a
