@@ -217,7 +217,9 @@ class _GodControlPageState extends State<GodControlPage> {
                   god_cooldown: value.god_stats_object.chronos_timer,
                   god_cost: value.god_stats_object.chronos_cost,
                   golden_wing: value.ingame_stats_object.goldenWing,
-                  feed_unlock: () {},
+                  feed_unlock: () {
+                    
+                  },
                   god_active_time: value.god_stats_object.chronos_active_time,
                 )
               : Center(

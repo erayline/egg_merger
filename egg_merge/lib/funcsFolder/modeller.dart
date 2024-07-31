@@ -6,7 +6,7 @@ import 'package:egg_merge/sections/eggObjectModel.dart';
 
 int gameEggCount=93;
 List<String> eggNames = [
-  "Blue",
+  "You are\nmy first",
   "Bluer",
   "Warning!",
   "Where am I?",
@@ -174,7 +174,7 @@ class InGameStatsObject {
     merge_level_merged = 0;
     merge_level_required =  3 * merge_level_current;
     goldenWing += merge_level_up_reward;
-    merge_level_up_reward = 4 * merge_level_current;
+    merge_level_up_reward = 7 * merge_level_current;
   }
 
   double merge_level_percent = 0.0;
@@ -217,7 +217,7 @@ class InGameStatsObject {
       if(ingame_stats_object.allTimeEggLevel>prestigeMileStones[i])
         indexOfMultiplier = i;
     }
-    ingame_stats_object.willGainAmountPrestigePoint = allTimeMoney.bitLength * allTimeMoney.bitLength * prestigeMileStoneMultiplier[indexOfMultiplier];
+    ingame_stats_object.willGainAmountPrestigePoint = allTimeMoney.bitLength *allTimeMoney.bitLength *allTimeMoney.bitLength *allTimeMoney.bitLength * prestigeMileStoneMultiplier[indexOfMultiplier];
   }
 
 
@@ -329,7 +329,7 @@ List<int> prestigeMileStoneMultiplier = [2,4,8,16,48,96,200,500,360,1024,2048,40
 void createPrestigeMileStones(){
   prestigeMileStones = [];
   
-  for(int i = 48;i<gameEggCount;i+=6){
+  for(int i = 34;i<gameEggCount;i+=6){
     prestigeMileStones.add(i);
   }
 

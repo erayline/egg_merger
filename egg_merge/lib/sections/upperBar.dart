@@ -2,9 +2,7 @@ import 'package:egg_merge/funcsFolder/modeller.dart';
 import 'package:egg_merge/funcsFolder/numberFormating.dart';
 import 'package:egg_merge/funcsFolder/reklam.dart';
 import 'package:egg_merge/sections/eggObjectModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
@@ -107,7 +105,7 @@ class _upperBarState extends State<upperBar> {
                                                   Duration(seconds: 3), () {
                                                 _loadRewardedAd();
                                                 print('yenisi yüklendi');
-                                                Future.delayed(Duration(seconds: 330),(){
+                                                Future.delayed(Duration(seconds: 140),(){
                                                 rewardedAdOpen = true;
                                                 });
                                                 rewardedAdOpen = false;
